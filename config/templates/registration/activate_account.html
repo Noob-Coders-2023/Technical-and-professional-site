@@ -1,0 +1,15 @@
+
+{% autoescape off %}
+ عزیز,{{ user.username }}
+
+http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
+{% endautoescape %}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,128 @@
+{% load static %}
+{% load base_tags %}
+{% block main %}
+
+
+
+
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+
+    {#        <div></div>#}
+
+    {#    {% endfor %}#}
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/nazli" type="text/css"/>
+
+    </head>
+    <body>
+    {#----------------navbar--------------------    #}
+    <header class="header">
+        <a href="#" class="logo"><i class="fas fa-shopping-basket">فنی حرفه ای</i>
+            <nav class="navbar">
+
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'account:password_change' %}">تغییر پسورد</a>
+                    <a href="{% url 'account:password_reset' %}">فراموشی پسورد</a>
+                    <a href="{% url 'account:user_selected_courses' %}">دروس انتخابی</a>
+                    <a href="{% url 'blog:conect' %}">ارتباط با مسولین</a>
+                 {% if request.user.is_superuser %}
+                    <a href="{% url 'blog:create_course' %}">ارايه دروس</a>
+                     {% endif %}
+
+                {% endif %}
+            </nav>
+        </a>
+        <div class="icons">
+            {#<-----------login------------------->#}
+            {% if request.user.is_anonymous %}
+                <a class="icon" href="{% url 'account:login' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-person-add"
+                         viewBox="0 0 16 16">
+                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                        <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+                    </svg>
+                </a>
+            {% endif %}
+            {#<--------------------log out----------->#}
+            <form method="post" action="{% url 'account:logout' %}">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-person-dash"
+                             viewBox="0 0 16 16">
+                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                            <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+                        </svg>
+                    </button>
+                {% endif %}
+            </form>
+
+
+        </div>
+    </header>
+
+    <!------home section------------>
+    <section class="home" id="home">
+        <div class="content">
+
+        </div>
+    </section>
+
+
+    <!-------------course------------>
+
+    <section class="features" id="features">
+        <h1 class="heading"><span>دوره ها</span>پیش ثبت نام</h1>
+   <div class="box-container">
+    {% for course in courses %}
+
+    <div class="box">
+
+
+
+
+
+            <img src="{{ course.thumbnail.url }}" alt="تصویر">
+
+            <h3><a href="{% url 'blog:detail' course.slug %}">{{ course.title }}</a></h3>
+            <p>شروع دوره :{{ course.jstart }}
+                <br>
+                پایان دوره :{{ course.jend }} </p>
+
+    </div>
+
+
+
+     {% endfor %} </div>
+</section>
+
+
+
+    {% if courses.has_previous %}
+        <a href="{% url 'blog:home' %}?page={{ courses.previous_page_number }}">صفحه ی قبل</a>
+    {% endif %}
+
+    {% if courses.has_next %}
+        <a href="{% url 'blog:home' %}?page={{ courses.next_page_number }}">صفحه ی بعد</a>
+    {% endif %}
+    </body>
+    </html>
+
+
+
+    <script src="{% static 'blog/js/home.js' %}"></script>
+
+{% endblock %}

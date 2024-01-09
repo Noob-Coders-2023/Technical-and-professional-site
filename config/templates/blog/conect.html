@@ -1,0 +1,36 @@
+
+{% load widget_tweaks %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ارتباط </title>
+    <link href="{% static 'blog/css/conect.css' %}" rel="stylesheet">
+      <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="content-container">
+<form action="" method="post" autocomplete="off" class="content-left">
+    {% csrf_token %}
+    <div class="content-left-title">
+        <h2>فرم ارتباط</h2>
+        <hr>
+    </div>
+
+    <label for="id_title">موضوع:</label>
+    {{ form.title|add_class:"input" }}
+
+    <label for="id_text">متن پیام:</label>
+    {{ form.text|add_class:"texterea" }}
+
+    <input type="submit" value="ارسال" class="submit">
+</form>
+
+<img src="{% static 'blog/img/right_img.png' %}">
+</div>
+</body>
+</html>

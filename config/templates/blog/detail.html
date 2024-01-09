@@ -1,0 +1,71 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="{% static 'blog/css/detail.css' %}" rel="stylesheet">
+    <style>
+        .circle {
+            background: url('{{ course.thumbnail.url }}');
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="circle"></div>
+    <form method="post" action="{% url 'blog:choices' %}" id="form">
+        {% csrf_token %}
+
+
+            <br>
+        <h1>عنوان دوره:{{ course.title }}</h1>
+        <p>
+        <div> مدرس:{{ course.teacher }}</div>
+        <br>
+        <div> {{ course.picture }}</div>
+        <br>
+        <div> تاریخ شروع:{{ course.jstart }}</div>
+        <br>
+        <div>تاریخ پایان: {{ course.jend }}</div>
+        <br>
+        <div>ساعت استاندارد: {{ course.ptime }} ساعت</div>
+        <br>
+        <div> نام مرکز دولتی:{{ course.govermentcenter }}</div>
+        <br>
+        <div>کارگاه/اموزشگاه: {{ course.workshop }}</div>
+        <br>
+
+        </p>
+
+
+        <input type="hidden" name="course_id" value="{{ course.id }}">
+        {% if selected %}
+
+
+
+        {% else %}
+            <button type="submit">Example1</button>
+        {% endif %}
+
+
+    </form>
+        {% if selected %}
+
+        <button class="delete-course" data-course-id="{{ selected.id }}">حذف</button>
+
+
+        {% endif %}
+
+
+    </div>
+</body>
+</html>
+
+<script src="{% static 'blog/js/detail.js' %}"></script>
+

@@ -1,0 +1,13 @@
+body{
+    direction: rtl;
+    text-align: right;
+}
+span.btn-show-pass{
+    right: initial;
+    left: 0;
+}
+.errors{
+    color: red;
+    background-color: #fbd4d4;
+    padding: 20px 30px;
+}

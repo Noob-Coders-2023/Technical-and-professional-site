@@ -1,0 +1,75 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="{% static 'blog/css/singup.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+
+    <title>ثبت نام</title>
+</head>
+<body>
+<div class="container">
+    <div class="title">ثبت نام</div>
+    <form  method="post">
+        {% csrf_token %}
+        <div class="user-details">
+            <div class="input-box">
+
+                <span class="detail">نام:</span>
+                {{ form.first_name|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">نام خانوادگی:</span>
+                {{ form.last_name|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">نام کاربری:</span>
+                {{ form.username|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">آدرس ایمیل: </span>
+                {{ form.email|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">شماره همراه:</span>
+                {{ form.phone_number|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">کدملی:</span>
+                {{ form.national_code|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">گذر واژه:</span>
+                {{ form.password1|add_class:'input' }}
+            </div>
+            <br>
+            <div class="input-box">
+                <span class="detail">تکرار گذر واژه:</span>
+                {{ form.password2|add_class:'input' }}
+            </div>
+
+            <div class="button">
+                <button type="submit">ثبت نام</button>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>
