@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -23,9 +23,18 @@
 
     <label for="id_title">موضوع:</label>
     {{ form.title|add_class:"input" }}
-
+      {% if form.title.errors %}
+            <div class="error-message">
+                {{ form.title.errors.0 }}
+            </div>
+        {% endif %}
     <label for="id_text">متن پیام:</label>
     {{ form.text|add_class:"texterea" }}
+       {% if form.text.errors %}
+            <div class="error-message">
+                {{ form.text.errors.0 }}
+            </div>
+        {% endif %}
 
     <input type="submit" value="ارسال" class="submit">
 </form>

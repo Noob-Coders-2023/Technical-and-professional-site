@@ -15,20 +15,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include,re_path
-from django.contrib.auth import views as auth_views
+from django.urls import path,include
 from django.contrib.auth import views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('account/', include('account.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('gallery/', include('gallery.urls')),
     path(
         "reset/<uidb64>/<token>/",
         views.PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",
     ),
-
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
 

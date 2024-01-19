@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'extension',
     'widget_tweaks',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'gallery',
 
 
 ]
@@ -59,7 +62,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
-
+KAVENEGAR_APIKEY = '416D49557453634967774D55565474635A316D596B57775579585A5074436C615142555353366F727A61343D'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -111,9 +114,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'fa-ir'
 
+USE_I18N = True
+USE_L10N = True
 TIME_ZONE = 'Asia/Tehran'
 
-USE_I18N = True
 
 USE_TZ = True
 
@@ -137,3 +141,11 @@ EMAIL_HOST_USER =config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT =config('EMAIL_PORT')
 
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
+}

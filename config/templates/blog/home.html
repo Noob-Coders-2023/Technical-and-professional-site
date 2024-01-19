@@ -3,16 +3,6 @@
 {% block main %}
 
 
-
-
-    {##}
-    {#            </div>#}
-    {#        </div>#}
-
-    {#        <div></div>#}
-
-    {#    {% endfor %}#}
-
     <!doctype html>
     <html lang="en">
     <head>
@@ -22,6 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
         <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'gallary/css/gallary.css' %}" rel="stylesheet">
         <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/nazli" type="text/css"/>
 
     </head>
@@ -36,6 +27,7 @@
                     <a href="{% url 'account:password_reset' %}">فراموشی پسورد</a>
                     <a href="{% url 'account:user_selected_courses' %}">دروس انتخابی</a>
                     <a href="{% url 'blog:conect' %}">ارتباط با مسولین</a>
+                    <a href="{% url 'account:profile' %}">پروفایل</a>
                  {% if request.user.is_superuser %}
                     <a href="{% url 'blog:create_course' %}">ارايه دروس</a>
                      {% endif %}
@@ -80,8 +72,32 @@
 
         </div>
     </section>
+<!-----------------------------------gallary------------------------------>
+    <a href="{% url 'gallery:image_gallery' %}">++++++++</a>
+{#        <h1>Image Gallery</h1>#}
+{#    {% for image in images %}#}
+{#        <div>#}
+{#            <img src="{{ image.image.url }}" alt="{{ image.title }}">#}
+{#            <h2>{{ image.title }}</h2>#}
+{#            <p>{{ image.description }}</p>#}
+{#        </div>#}
+{#    {% endfor %}#}
+ <div class="swiper-container">
+        <div class="swiper-wrapper">
+           {% for item in img_list %}
+               <div class="swiper-slide"><img src="{{  item.image.url  }}" alt="{{ item.description }}"></div>
+                    <h2>{{ item.title }}</h2>
+                    <p>{{ item.description }}</p>
+     {% endfor %}
 
+                </div>
 
+        </div>
+        <!-- اضافه کردن پیشرفت‌ها و دکمه‌های ناوبری Swiper -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
     <!-------------course------------>
 
     <section class="features" id="features">
@@ -124,5 +140,6 @@
 
 
     <script src="{% static 'blog/js/home.js' %}"></script>
+    <script src="{% static 'gallary/js/gallary.js' %}"></script>
 
 {% endblock %}

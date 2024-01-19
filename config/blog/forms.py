@@ -4,9 +4,13 @@ from django.forms.renderers import TemplatesSetting
 
 
 
-
 class ContectForm(forms.Form):
-    title=forms.CharField(label='موضوع')
+    messages = {
+        "required":'لطفا این فیلد را پر کنید',
+
+
+    }
+    title=forms.CharField(label= 'موضوع',error_messages=messages)
 
     text=forms.CharField(widget=forms.Textarea,label='متن پیام')
 class ChoicesForm(forms.Form):

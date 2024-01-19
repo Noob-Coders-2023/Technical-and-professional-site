@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+  <h2>آپلود تصویر جدید</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_image">تصویر:</label>
+    <input type="file" name="image" required>
+    <br>
+    <label for="id_title">عنوان:</label>
+    <input type="text" name="title" required>
+    <br>
+    <label for="id_description">توضیحات:</label>
+    <textarea name="description" required></textarea>
+    <br>
+    <button type="submit">آپلود</button>
+  </form>
+  <br>
+  <a href="{% url 'blog:home' %}">بازگشت به خانه</a>
+{% endblock %}
+</body>
+</html>
+</body>
+</html>

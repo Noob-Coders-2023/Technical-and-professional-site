@@ -1,0 +1,52 @@
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>پروفایل</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+{% block content %}
+  <h2>پروفایل کاربری</h2>
+
+  <form method="post"  novalidate>
+    {% csrf_token %}
+{#  <label >:ا</label>#}
+    {{ form.email|add_class:'username' }}یمیل
+    {{ form.email.errors }}
+  <br> <br><br>
+{#  <label >:</label>#}نام کاربری
+    {{ form.username|add_class:"usernameInput" }}
+    {{ form.username.errors }}
+       <span class="usernameError" style="color: red;"></span>
+    <br> <br><br>
+{#  <label ></label>#}نام:
+    {{ form.first_name }}
+    {{ form.first_name.errors }}
+{#    {{ form.first_name.errors }}#}
+    <br> <br><br>
+{# <label >:</label>#}
+    {{ form.last_name }}نام خانوادگی
+    {{ form.last_name.errors }}
+  <br> <br><br>
+    <input type="text" name="phone_number" value="{{ form.phone_number.value }}" {% if form.phone_number.value %}readonly{% endif %}>
+
+  <br> <br><br>
+    <input type="text" name="national_code" value="{{ form.national_code.value }}" readonly>
+
+
+    <button type="submit">ذخیره تغییرات</button>
+  </form>
+
+
+{% endblock %}
+
+
+{% include 'includes/messages_block.html' %}
+
+<script src="{% static 'registration/profile/js/profile.js' %}"></script>
+</body>
+</html>
