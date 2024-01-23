@@ -30,13 +30,18 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    GENDER_CHOICES = [
+        ('M', 'مرد'),
+        ('F', 'زن'),
+
+    ]
     email = models.EmailField(unique=True, blank=True, null=True)
     username = models.CharField(max_length=30, unique=True, blank=True, null=True)
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     national_code = models.CharField(max_length=20, blank=True, null=True)
-
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     objects = UserManager()
 
     def __str__(self):

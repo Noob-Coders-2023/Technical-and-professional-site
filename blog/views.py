@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
 from .forms import ContectForm, ChoicesForm, CourseForm
 from .models import Course, Conect, Choes_cours
 from django.contrib import messages
 from gallery.models import Image
+from posts.models import Post
+import pandas as pd
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -16,13 +16,15 @@ from gallery.models import Image
 def home(request):
     course_list = Course.objects.filter(status='n').order_by('start')
     img_list = Image.objects.all()
+    posts = Post.objects.all()
     paginator = Paginator(course_list, 2)
     page = request.GET.get('page')
     courses = paginator.get_page(page)
 
     context = {
         "courses": courses,
-        "img_list": img_list
+        "img_list": img_list,
+        'posts': posts,
     }
     return render(request, 'blog/home.html', context)
 
@@ -106,3 +108,24 @@ def create_course(request):
         form = CourseForm()
 
     return render(request, 'blog/create_course.html', {'form': form})
+
+
+def export_courses_to_excel(request):
+    # خواندن لیست دروس از پایگاه داده
+    courses = Choes_cours.objects.all()
+
+    # تبدیل QuerySet به دیتافریم pandas
+    courses_df = pd.DataFrame(list(courses.values()))
+
+    # نام فایل Excel
+    excel_file_name = 'registered_courses.xlsx'
+
+    # تولید فایل Excel
+    courses_df.to_excel(excel_file_name, index=False)
+
+    # ارسال فایل Excel به عنوان پاسخ به درخواست
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename="{excel_file_name}"'
+    courses_df.to_excel(response, index=False)
+
+    return response

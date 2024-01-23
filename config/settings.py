@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'rest_framework_simplejwt',
-    'gallery',
+    'gallery.apps.GalleryConfig',
+    'posts.apps.PostsConfig',
 
 
 ]

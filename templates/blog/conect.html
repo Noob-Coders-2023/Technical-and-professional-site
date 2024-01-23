@@ -1,7 +1,7 @@
 
 {% load widget_tweaks %}
 {% load static %}
-<!doctype html>
+
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
@@ -21,14 +21,14 @@
         <hr>
     </div>
 
-    <label for="id_title">موضوع:</label>
+    <label >موضوع:</label>
     {{ form.title|add_class:"input" }}
       {% if form.title.errors %}
             <div class="error-message">
                 {{ form.title.errors.0 }}
             </div>
         {% endif %}
-    <label for="id_text">متن پیام:</label>
+    <label >متن پیام:</label>
     {{ form.text|add_class:"texterea" }}
        {% if form.text.errors %}
             <div class="error-message">
