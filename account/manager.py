@@ -1,43 +1,23 @@
-import os
-import sys
-from django.core.management import execute_from_command_line
-from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import BaseUserManager
 
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+class UserManager(BaseUserManager):
+    def create_user(self, phone_number, email, username, password):
+        if not phone_number:
+            raise ValueError('کاربر باید حتما شماره همراه داشته باشد')
 
-    try:
+        if not email:
+            raise ValueError('کاربر باید حتما آدرس ایمیل داشته باشد')
 
-        import django
-        django.setup()
+        if not username:
+            raise ValueError('کاربر باید حتما نام کاربری داشته باشد')
 
-        create_superuser()
+        user = self.model(phone_number=phone_number, email=self.normalize_email(email), username=username)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-        execute_from_command_line(sys.argv)
-    except ImportError as exc:
-        raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
-        ) from exc
-
-
-def create_superuser():
-    User = get_user_model()
-    email = 'admin@example.com'
-    username = 'admin'
-    password = 'adminpassword'
-
-    if not User.objects.filter(email=email).exists():
-        User.objects.create_superuser(email=email, username=username, password=password)
-        print(f'Superuser created with email: {email}, username: {username}')
-    else:
-        print(f'Superuser with email: {email} already exists.')
-
-
-
-
-    if __name__ == '__main__':
-        main()
+    def create_superuser(self, phone_number, email, username, password):
+        user = self.create_user(phone_number, email, username, password)
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
