@@ -1,3 +1,4 @@
+{% load jalali_tags %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -16,7 +17,7 @@
     <title>ایجاد دوره جدید</title>
 </head>
 <body>
-    <div>  {% include 'includes/messages_block.html' %}</div>
+<div>  {% include 'includes/messages_block.html' %}</div>
 <div class="container">
     <div class="title">ایجاد دوره جدید</div>
     <form action="#" method="post" novalidate>
@@ -78,7 +79,7 @@
             <br>
             <div class="input-box">
                 <span class="detail">مدت زمان دوره:</span>
-                {{ form.ptime|add_class:'input' }}
+                {{ form.time|add_class:'input' }}
                 {% if form.time.errors %}
                     <div class="error_message">
                         {{ form.time.errors }}
@@ -88,7 +89,7 @@
             <br>
             <div class="input-box">
                 <span class="detail">تاریخ شروع:</span>
-                {{ form.jstart|add_class:'input' }}
+                {{ form.start|add_class:'input' }}
                 {% if form.start.errors %}
                     <div class="error_message">
                         {{ form.start.errors }}
@@ -98,7 +99,7 @@
             <br>
             <div class="input-box">
                 <span class="detail">تاریخ پایان:</span>
-                {{ form.jend|add_class:'input' }}
+                {{ form.end|add_class:'input' }}
                 {% if form.end.errors %}
                     <div class="error_message">
                         {{ form.end.errors }}
@@ -138,19 +139,9 @@
                     </div>
                 {% endif %}
             </div>
-{#            <br>#}
-{#           <div class="input-box">#}
-{#                <span class="detail">جنسیت:</span>#}
-{#                {{ form.status|add_class:'input' }}#}
-{##}
-{#                {% if form.status.errors %}#}
-{#                    <div class="error_message">#}
-{#                        {{ form.status.errors }}#}
-{#                    </div>#}
-{#                {% endif %}#}
-{#            </div>#}
+
             <br>
-         <input type="hidden" name="status" value="n">
+            <input type="hidden" name="status" value="n">
 
 
             <div class="button">
@@ -162,7 +153,8 @@
 
     </form>
 </div>
-
-
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<script src="{% static 'blog/js/create_course.js' %}"></script>
 </body>
 </html>

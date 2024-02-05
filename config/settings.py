@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'jalali_date',
 
+
 ]
 AUTH_USER_MODEL = 'account.User'
 MIDDLEWARE = [
@@ -60,6 +61,30 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# defaults
+JALALI_DATE_DEFAULTS = {
+    'Strftime': {
+        'date': '%y/%m/%d',
+        'datetime': '%H:%M:%S_%y%m%d'
+    },
+    'Static': {
+        "js": [
+            # loading detepicker
+            'admin/ls/django_jalali.min.js',
+            # OR
+            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.core.js',
+            # 'admin/jquery.ui.datepicker.jalali/scripts/calendar.js',
+            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc.js',
+            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc-fa.js',
+            # admin/js/main.js
+        ],
+        'css': {
+            'all': [
+                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
+            ]
+        }
+    }
+}
 
 ROOT_URLCONF = 'config.urls'
 KAVENEGAR_APIKEY = '416D49557453634967774D55565474635A316D596B57775579585A5074436C615142555353366F727A61343D'

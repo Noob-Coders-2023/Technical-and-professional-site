@@ -11,6 +11,8 @@ from django.http import HttpResponse
 from jdatetime import datetime
 from datetime import date as datetimeen
 from extension.utils import persian_number_converter
+from persiantools.jdatetime import JalaliDate
+from django.shortcuts import render, redirect
 from django.http import HttpResponseForbidden
 import xlwt
 
@@ -117,6 +119,11 @@ def create_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
+            # jalali_start = JalaliDate.to_jalali(form.cleaned_data['start'])
+            # jalali_end = JalaliDate.to_jalali(form.cleaned_data['end'])
+            # course = form.save(commit=False)
+            # course.start = jalali_start.togregorian()
+            # course.end = jalali_end.togregorian()
             form.save()
             messages.success(request, "کلاس شما ایجاد شد.")
             return redirect('blog:create_course')

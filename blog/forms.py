@@ -1,6 +1,8 @@
 from django import forms
 from blog.models import Course,Choes_cours
 from django.forms.renderers import TemplatesSetting
+from jalali_date.fields import JalaliDateField
+from jalali_date.widgets import AdminJalaliDateWidget
 
 
 class ContectForm(forms.Form):
@@ -27,3 +29,9 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+    def __init__(self,*args,**kwargs):
+        super(CourseForm,self).__init__(*args,**kwargs)
+        self.fields['start']=JalaliDateField(label=('تاریخ شروع'),widget=AdminJalaliDateWidget)
+        self.fields['end']=JalaliDateField(label=('تاریخ پایان'),widget=AdminJalaliDateWidget)
+
+
