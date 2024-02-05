@@ -1,17 +1,93 @@
-<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="{% static 'post/css/creat-post.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+
+
+    <title>ایجاد پست</title>
 </head>
 <body>
-  <h2>Create a New Post</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
+<div class="cont">
 
+    <div>  {% include 'includes/messages_block.html' %}</div>
+
+    <div class="container">
+
+        <div class="title">پست</div>
+        <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div>
+                    {% for error in form.non_field_errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="user-details">
+
+
+                <div class="input-box">
+                    <span class="detail">تصویر:</span>
+                  {{ form.thumbnail|add_class:'input' }}
+                    {% if form.thumbnail.errors %}
+                        <div class="error_message">
+                            {{ form.thumbnail.errors }}
+                        </div>
+                    {% endif %}
+
+
+                </div>
+
+                <br>
+
+
+                <div class="input-box">
+
+                    <span class="detail">عنوان:</span>
+                    {{ form.title|add_class:'input' }}
+                    {% if form.title.errors %}
+                        <div class="error_message">
+                            {{ form.title.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <br>
+
+
+                <div class="input-box">
+                    <span class="detail">توضیحات:</span>
+
+                    {{ form.content|add_class:'input00' }}
+
+                    {% if form.content.errors %}
+                        <div class="error_message">
+                            {{ form.content.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+
+
+                <div class="button">
+                   <button type="submit">آپلود</button>
+                </div>
+
+
+            </div>
+        </form>
+    <a href="{% url 'blog:home' %}">بازگشت به خانه</a>
+    </div>
+</div>
 
 </body>
 </html>

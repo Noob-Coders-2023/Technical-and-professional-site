@@ -1,217 +1,346 @@
+@import "font.css";
+@font-face {
+    font-family: myFont;
+    src: url("/static/blog/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
 
-
-@import url('https://fontlibrary.org//face/nazli');
-
-:root{
-    --orange: #c88ae1;
-    --black: #130f40;
-    --light-color:#666;
-    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
-    --border:.2rem solid rgba(0,0,0,.1);
-    --outline:.1rem solid rgba(0,0,0,.1);
-    --outline-hover:.2rem solid var(--black);
 }
-*{
-    font-family: 'NazliRegular';
-   font-weight: normal;
-   font-style: normal;
+:root {
+    --orange: #c88ae1;
+    --black: #372daf;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    --border: .2rem solid rgba(0, 0, 0, .1);
+    --outline: .1rem solid rgba(0, 0, 0, .1);
+    --outline-hover: .2rem solid var(--black);
+}
+
+* {
+    font-family: 'myFont', Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: none;border: none;
+    outline: none;
+    border: none;
     text-decoration: none;
     text-transform: capitalize;
     transition: all .2s linear;
 
 }
-html{
+
+html {
     font-size: 62.5%;
-    overflow-x:hidden ;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 7rem;
 }
 
-body{
+body {
     background: #eee;
 
 }
-.header{
-    position: fixed;
-    top:0;left: 0;right: 0;
+
+.header {
+    position: sticky;
+    top: 0px;
+    left: 0;
+    right: 0;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 9%;
     background: #fff;
-    box-shadow:var(--box-shadow) ;
+    box-shadow: var(--box-shadow);
 
 
 }
-.header .logo{
+.finished{
+    color: #a91717;
+}
+
+.header_top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: url("../img/4907157.png");
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 65px;
+    margin-left: 42px;
+    margin-right: 106px;
+
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
+    width: 316px;
+    height: 55px;
+}
+
+.logo img {
+
+}
+
+.header .logo {
     font-size: 2.5rem;
     font-weight: bolder;
     color: var(--black);
 
 }
-.header .logo i{
-    color: var(--orange);
+
+.header .logo i {
+    color: #0006c1;
 }
-.header .navbar a{
+
+.header .navbar a {
     font-size: 1.7rem;
     margin: 0 1rem;
     color: var(--black);
 
 }
-.header .navbar a:hover{
-    color: var(--orange);
+
+.header .navbar a:hover {
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
 }
-.header .icons svg{
+
+.navbar {
+    display: flex;
+    gap: 14px;
+}
+
+nav div {
+    display: inline;
+    font-size: 15px;
+    color: #1a1a77;
+}
+
+.submenu {
+    position: absolute;
+    width: 200px;
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #ffff;
+    box-shadow: 0 20px 45px #00000025;
+    margin-top: 0px;
+    opacity: 0;
+    z-index: -9999;
+    transition: all ease 0.5s;
+    list-style-type: none;
+flex-direction: column;
+    border: 1px solid blue;
+}
+
+.submenu li:hover {
+    background-color: #ddd;
+}
+li{
+    border-bottom: #1b1b1b;
+}
+.about-us:hover .submenu {
+    flex-direction: column;
+    z-index: 1000;
+   display: flex;
+    opacity: 1;
+        gap: 10px;
+    flex-direction: column;
+    margin-top: 33px;
+}
+
+.header .icons svg {
+    /*height: 50px;*/
+    /*width: 4.8rem;*/
+    line-height: 4.8rem;
+    color: var(--black);
+    font-size: .3rem;
+    text-align: center;
+    background: none;
+}
+
+.header .icons svg:hover {
+    background: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.header .icons svg {
     height: 4.5rem;
     width: 4.5rem;
     line-height: 4.5rem;
+    background: none;
     color: var(--black);
     font-size: .3rem;
     text-align: center;
 }
-.header .icons svg:hover{
-    background: var(--orange);
+
+.header .icons svg:hover {
+    background: #9f9c9c;
     color: #fff;
 }
-.header .icons svg{
-    height: 4.5rem;
-    width: 4.5rem;
-    line-height: 4.5rem;
-    background: #eee;
-    color: var(--black);
-    font-size: .3rem;
-    text-align: center;
-}
-.header .icons svg:hover{
-    background: var(--orange);
-    color: #fff;
-}
-section{
+
+section {
     padding: 2rem 9%;
 
 }
-.home{
+
+.home {
     display: flex;
     align-items: center;
     justify-content: center;
-background:url("../img/Internet-Business-1.jpg");
-    background-repeat:no-repeat ;
-    background-position:center ;
+
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: contain;
     padding-top: 17rem;
     padding-bottom: 40rem;
-        margin-top: 82px;
+    margin-top: 82px;
 
 }
 
-.heading{
-    text-align:center;
+.heading {
+    text-align: center;
     padding: 2rem 0;
     padding-bottom: 3rem;
     font-size: 3.5rem;
-    color: var(--black)
-;
+    color: var(--black);
 }
-.heading span{
-    background: var(--orange);
+
+.heading span {
+    background:#13137f;;
     color: #fff;
     display: inline-block;
     padding: .5rem 3rem;
-    clip-path: polygon(100% 0,93% 50%,100% 99%,0% 100%,7% 50%,0% 0%);
-}
-.features .box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
-    gap:1.5rem
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
 }
 
-.features .box-container .box{
+.features .box.end {
+    opacity: 50%;
+    pointer-events: none;
+}
+
+.features .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem
+}
+
+.features .box-container .box {
     padding: 3rem 2rem;
     background: #fff;
     outline: var(--outline);
     outline-offset: -1rem;
     text-align: center;
     box-shadow: var(--box-shadow);
+        border-radius: 24px;
 }
-.features .box-container .box:hover{
-      outline: var(--outline-hover);
+
+
+.features .box-container .box:hover {
+    outline: var(--outline-hover);
     outline-offset: -1rem;
 }
-.features .box-container .box img{
+
+.features .box-container .box img {
     margin: 1rem 0;
     height: 15rem;
 
 }
-.features .box-container .box h3{
+
+.features .box-container .box h3 {
     font-size: 2.5rem;
     line-height: 1.8;
     color: var(--black);
 }
-.features .box-container .box p{
+
+.features .box-container .box p {
     font-size: 1.5rem;
     line-height: 1.8;
     color: var(--light-color);
     padding: 1rem 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width: 991px){
-
-    html{
-    font-size: 55%;
+. {
+    text-align: left;
+    font-weight: 300;
 
 }
-    .header{
+
+.date__today {
+
+color: #7b7b7b;
+}
+
+.header_top__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 22px;
+    /* margin-top: -17px; */
+    padding-top: 28px;
+}
+
+svg {
+    width: 24px;
+    height: 30px;
+    margin-bottom: 18px;
+}
+.logo img{
+    width: 220px;
+}
+
+@media (max-width: 991px) {
+
+    html {
+        font-size: 55%;
+
+    }
+
+    .header {
         padding: 2rem;
     }
 }
+
 @media (max-width: 768px) {
-    .header .navbar{
+    .header .navbar {
         position: absolute;
-        top: 110%;right: 2rem;
+        top: 110%;
+        right: 2rem;
         width: 30rem;
         box-shadow: var(--box-shadow);
         border-radius: .5rem;
         background: #fff;
     }
-     .header .navbar a{
-         font-size: 2rem;
-         margin: 2rem 2.5rem;
-         display: block;
 
-     }
-     section{
-    padding: 2rem ;
-}
+    .header .navbar a {
+        font-size: 2rem;
+        margin: 2rem 2.5rem;
+        display: block;
 
+    }
 
-}
-@media(max-width: 450px){
+    section {
+        padding: 2rem;
+    }
 
-    html{
-    font-size: 50%;
 
 }
-    .heading{
+
+@media (max-width: 450px) {
+
+    html {
+        font-size: 50%;
+
+    }
+
+    .heading {
         font-size: 2.5rem;
     }
 

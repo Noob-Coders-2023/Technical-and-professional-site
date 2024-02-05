@@ -8,21 +8,21 @@ from .manager import UserManager
 
 class User(AbstractBaseUser):
     GENDER_CHOICES = [
-        ('M', 'مرد'),
-        ('F', 'زن'),
+        ('m', 'مرد'),
+        ('w', 'زن'),
 
     ]
     email = models.EmailField(unique=True, blank=True, null=True, max_length=255)
     username = models.CharField(max_length=30, unique=True, blank=True, null=True)
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
-    phone_number = models.CharField(max_length=11, blank=True, null=True,unique=True)
+    phone_number = models.CharField(max_length=11, blank=True, null=True, unique=True)
     national_code = models.CharField(max_length=20, blank=True, null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['email','username']
+    REQUIRED_FIELDS = ['email', 'username']
 
     objects = UserManager()
 
@@ -39,9 +39,13 @@ class User(AbstractBaseUser):
         return self.is_admin
 
 
-class OTPRequest(models.Model):
-    request_id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4())
-    PHONE = models.CharField(max_length=10)
-    receiver = models.CharField(max_length=20)
-    password = models.CharField(max_length=4)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+
+
+
+class OtpCode(models.Model):
+    phone_number = models.CharField(max_length=11)
+    code = models.PositiveSmallIntegerField()
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.phone_number}-{self.code}-{self.created}'

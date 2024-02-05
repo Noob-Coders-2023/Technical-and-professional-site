@@ -8,34 +8,48 @@ from gallery.models import Image
 from posts.models import Post
 import pandas as pd
 from django.http import HttpResponse
+from jdatetime import datetime
+from datetime import date as datetimeen
+from extension.utils import persian_number_converter
+from django.http import HttpResponseForbidden
+import xlwt
 
 
 # Create your views here.
 
 
 def home(request):
-    course_list = Course.objects.filter(status='n').order_by('start')
+    # course_list = Course.objects.filter(status='n').order_by('start')
+    course_list = Course.objects.all().order_by('start')
+    n = datetimeen.today()
+    for o in course_list:
+        if o.start > n:
+            o.status = 'n'
+        else:
+            o.status = 'f'
     img_list = Image.objects.all()
     posts = Post.objects.all()
-    paginator = Paginator(course_list, 2)
+    paginator = Paginator(course_list, 3)
     page = request.GET.get('page')
     courses = paginator.get_page(page)
-
+    current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     context = {
         "courses": courses,
         "img_list": img_list,
         'posts': posts,
+        'current_date': current_date
+
     }
     return render(request, 'blog/home.html', context)
 
 
 @login_required()
-def detail(request, slug):
+def detail(request, id):
     context = {
-        "course": get_object_or_404(Course, slug=slug, status='n'),
+        "course": get_object_or_404(Course, id=id, status='n'),
 
     }
-    selected = Choes_cours.objects.filter(user_id=request.user.id, cours_id=context['course'].id)
+    selected = Choes_cours.objects.filter(user_id=request.user.id, id=context['course'].id)
     if selected.exists():
         context['selected'] = selected.get()
 
@@ -54,26 +68,27 @@ def conect(request):
         if form.is_valid():
             cd = form.cleaned_data
             Conect.objects.create(title=cd['title'], text=cd['text'], user=request.user)
-            messages.success(request, "Message sent.")
-            return redirect('blog:home')
+            messages.success(request, "پیام شما ارسال شد")
+            return redirect('blog:conect')
 
 
     else:
         form = ContectForm()
 
     return render(request, 'blog/conect.html', {'form': form})
-    messages.success(request, "Message sent.")
 
 
 def choices(request):
     if request.method == 'POST':
         form = ChoicesForm(request.POST)
 
-        if form.is_valid():
+        if form.is_valid() or True:
             cd = form.cleaned_data
             Choes_cours.objects.create(cours_id=int(cd['course_id']), user_id=request.user.id)
 
             return redirect('blog:home')
+
+        return redirect('blog:home')
 
 
 def user_selected_courses(request):
@@ -88,8 +103,8 @@ def user_selected_courses(request):
         return render(request, 'registration/home.html', context)
 
 
-def delete_course(request, course_id):
-    user_courses = Choes_cours.objects.filter(id=course_id)
+def delete_course(request, id):
+    user_courses = Choes_cours.objects.filter(id=id)
 
     if user_courses.exists():
         user_course = user_courses.first()
@@ -103,19 +118,43 @@ def create_course(request):
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('blog:home')
+            messages.success(request, "کلاس شما ایجاد شد.")
+            return redirect('blog:create_course')
+        else:
+            messages.error(request, "لطفا دوباره امتحان کنید. ")
     else:
         form = CourseForm()
 
     return render(request, 'blog/create_course.html', {'form': form})
 
 
+from melipayamak import Api
+import requests
+
+
 def export_courses_to_excel(request):
+    import requests
+
+    data = {'from': '50002710017796', 'to': '09916450191', 'text': 'test sms'}
+    response = requests.post('https://console.melipayamak.com/api/send/simple/e97f2fd3453d4717bd528e07a8210f0d',
+                             json=data)
+    print(response)
+
+
+def export_courses_to_excel1(request):
     # خواندن لیست دروس از پایگاه داده
     courses = Choes_cours.objects.all()
+    lst = []
+    for o in courses:
+        lst.append({
+            'نام': o.user.first_name,
+            'نام خانوادگی': o.user.last_name,
+            'نام دوره': o.cours.title,
 
+        })
     # تبدیل QuerySet به دیتافریم pandas
-    courses_df = pd.DataFrame(list(courses.values()))
+    # courses_df = pd.DataFrame(list(courses.values()))
+    courses_df = pd.DataFrame(lst)
 
     # نام فایل Excel
     excel_file_name = 'registered_courses.xlsx'
@@ -129,3 +168,22 @@ def export_courses_to_excel(request):
     courses_df.to_excel(response, index=False)
 
     return response
+    # response=HttpResponse(content_type='application/ms-excel')
+    # response['content-Disposition']='attachment;filename=student'+str(datetime..now())+'.xls'
+    # workbook=xlwt.Workbook(encoding='utf-8')
+    # worksheet=workbook.add_sheet('students')
+    # columns=['name','last name','code']
+    # rownumber=0
+    # for col in range(len(columns)):
+    #     worksheet.write(rownumber,col,columns[col])
+    #
+    #
+    # students=Choes_cours.objects.all().values_list('course_id','user_id')
+    # for std in students:
+    #     rownumber+=1
+    #     for col in range(len(std)):
+    #         worksheet.write(rownumber,col,std[col])
+    #
+    # workbook.save(response)
+    #
+    # return response

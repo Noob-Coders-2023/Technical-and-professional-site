@@ -12,6 +12,7 @@ from extension.utils import jalali_converter, persian_number_converter
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    thumbnail = models.ImageField(verbose_name="تصویر", blank=True, default=None)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

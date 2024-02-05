@@ -19,12 +19,11 @@ LOGIN_REDIRECT_URL = 'blog:home'
 LOGOUT_REDIRECT_URL = 'blog:home'
 LOGIN_URL = 'account:login'
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,7 +47,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'gallery.apps.GalleryConfig',
     'posts.apps.PostsConfig',
-
+    'jalali_date',
 
 ]
 AUTH_USER_MODEL = 'account.User'
@@ -88,7 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite4',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -119,7 +118,6 @@ USE_I18N = True
 USE_L10N = True
 TIME_ZONE = 'Asia/Tehran'
 
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
@@ -138,14 +136,13 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # _-----------------email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_HOST_USER =config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT =config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
 
 REST_FRAMEWORK = {
 

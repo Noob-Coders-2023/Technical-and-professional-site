@@ -1,4 +1,3 @@
-
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -9,36 +8,70 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="{% static 'blog/css/detail.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+        <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'post/css/show-posts.css' %}" rel="stylesheet">
+
     <style>
         .circle {
             background: url('{{ course.thumbnail.url }}');
+            background-size: cover;
 
         }
     </style>
 </head>
 <body>
+{% include 'blog/navbar.html' %}
+<div class="body" >
 <div class="container">
     <div class="circle"></div>
     <form method="post" action="{% url 'blog:choices' %}" id="form">
         {% csrf_token %}
 
 
-            <br>
+        <br>
         <h1>عنوان دوره:{{ course.title }}</h1>
         <p>
-        <div> مدرس:{{ course.teacher }}</div>
+        <div class="teacher"> مدرس:{{ course.teacher }}</div>
         <br>
         <div> {{ course.picture }}</div>
         <br>
-        <div> تاریخ شروع:{{ course.jstart }}</div>
+        <div>
+            <div class="teacher">توضیحات:</div>
+            {{ course.description|linebreaks }}</div>
         <br>
-        <div>تاریخ پایان: {{ course.jend }}</div>
+        <div>
+            <div class="teacher"> تاریخ شروع:</div>
+            {{ course.jstart }}</div>
         <br>
-        <div>ساعت استاندارد: {{ course.ptime }} ساعت</div>
+        <div>
+            <div class="teacher">تاریخ پایان:</div>
+            {{ course.jend }}</div>
         <br>
-        <div> نام مرکز دولتی:{{ course.govermentcenter }}</div>
+        <div>
+            <div class="teacher">ساعت استاندارد:</div>
+            {{ course.ptime }} ساعت
+        </div>
         <br>
-        <div>کارگاه/اموزشگاه: {{ course.workshop }}</div>
+        <div>
+            <div class="teacher">نام مرکز دولتی:</div>
+            {{ course.govermentcenter }}</div>
+        <br>
+        <div>:
+            <div class="teacher">کارگاه/اموزشگاه:</div>
+            {{ course.workshop }}</div>
+        <br> <div>:
+            <div class="teacher">جنسیت کلاس:</div>
+{#            {{ course.gender }}#}
+        {% if course.gender == 'w' %}
+    <span>مونث</span>
+{% elif course.gender == 'm' %}
+    <span>مذکر</span>
+{% elif course.gender == 'wm' %}
+    <span>مونث و مذکر</span>
+{% endif %}
+    </div>
         <br>
 
         </p>
@@ -50,20 +83,29 @@
 
 
         {% else %}
-            <button type="submit">Example1</button>
+            {% if user.gender in  course.gender %}
+                            <button class="choice-course btn btn-primary" type="submit"> انتخاب درس</button>
+
+            {% else %}
+                <label>این درس برای شما تعریف نشده است.</label>
+            {% endif %}
+
+
         {% endif %}
 
 
     </form>
-        {% if selected %}
+    {% if selected %}
 
-        <button class="delete-course" data-course-id="{{ selected.id }}">حذف</button>
-
-
-        {% endif %}
+        <button class="delete-course btn btn-secondary" data-course-id="{{ selected.id }}">حذف درس منتخب</button>
 
 
-    </div>
+    {% endif %}
+
+
+</div>
+</div>
+{% include 'blog/footer.html' %}
 </body>
 </html>
 

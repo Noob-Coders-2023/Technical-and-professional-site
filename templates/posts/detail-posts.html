@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+        <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+        <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+        <link href="{% static 'post/css/list_post.css' %}" rel="stylesheet">
+</head>
+<body>
+{% include 'blog/navbar.html' %}
+
+<div class="container">
+{% for post in post_list %}
+    <div class="content">
+    <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}">
+        <div class="flex">
+<a class="title" href="{% url 'posts:post' post.id %}">{{ post.title|truncatewords:10 }}</a>
+
+
+<div class="created_at ">{{ post.jcreated_at}}</div></div></div>
+   {% endfor %}
+</div>
+{% include 'blog/footer.html' %}
+</body>
+</html>

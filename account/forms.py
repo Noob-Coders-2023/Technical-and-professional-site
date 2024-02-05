@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+
 messages = {
     "required": 'لطفا این فیلد را پر کنید',
     'invalid': 'لطفا کارکتر معتبر وارد کنید',
@@ -13,32 +14,25 @@ messages = {
 }
 
 
-#
-# class SignupForm(UserCreationForm):
-#     messages = {
-#         "required": _('لطفاً این فیلد را پر کنید'),
-#         'invalid': _('لطفاً یک مقدار معتبر وارد کنید'),
-#         'max_length': _('تعداد کاراکترها بیشتر از حد مجاز است'),
-#         'min_length': _('تعداد کاراکترها کمتر از حد مجاز است'),
-#     }
-#     email = forms.EmailField(max_length=200, error_messages=messages)
-#     username = forms.CharField(error_messages=messages)
-#     first_name = forms.CharField(error_messages=messages)
-#     last_name = forms.CharField(error_messages=messages)
-#     phone_number = forms.CharField(error_messages=messages,validators=[RegexValidator(regex=r'09\d{9}', message='شماره موبایل معتبر نیست')])
-#     national_code = forms.CharField(error_messages=messages)
-#     class Meta:
-#         model = User
-#         fields = ('username', 'email', 'password1', 'password2','first_name','last_name','phone_number','national_code')
-#
 
 class SignupForm(UserCreationForm):
-    password1 = forms.CharField(label='password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='confrim password', widget=forms.PasswordInput)
+    GENDER_CHOICES = (
+        ('w', 'مونث'),
+        ('m', 'مذکر'),
 
+    )
+    password1 = forms.CharField(label='password', widget=forms.PasswordInput,required=True)
+    password2 = forms.CharField(label='confirm password', widget=forms.PasswordInput)
+    email = forms.EmailField(label='ایمیل', required=True)
+    phone_number = forms.CharField(label='شماره تلفن', required=True)
+    username=forms.CharField(label='نام کاربری',required=True)
+    first_name=forms.CharField(label='نام ',required=True)
+    last_name=forms.CharField(label='نام خانوادگی ',required=True)
+    national_code=forms.CharField(label='شماره کارت ملی',required=True)
+    gender = forms.ChoiceField(label='جنسیت', choices=GENDER_CHOICES, required=True)
     class Meta:
         model = User
-        fields = ('email', 'username', 'first_name', "last_name", 'phone_number', 'national_code',)
+        fields = ('email', 'username', 'first_name', "last_name", 'phone_number', 'national_code', 'gender')
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -64,13 +58,39 @@ class CustomUserChangeForm(UserChangeForm):
         'max_length': _('تعداد کاراکترها بیشتر از حد مجاز است'),
         'min_length': _('تعداد کاراکترها کمتر از حد مجاز است'),
     }
-    email = forms.EmailField(max_length=200, error_messages=messages)
+
     username = forms.CharField(error_messages=messages)
     first_name = forms.CharField(error_messages=messages)
     last_name = forms.CharField(error_messages=messages)
     phone_number = forms.CharField(error_messages=messages)
     national_code = forms.CharField(error_messages=messages)
+    email = forms.EmailField(max_length=200, error_messages=messages)
+    def clean_email(self):
+        user=User.objects.get(phone_number=self.initial["phone_number"])
+        email=self.cleaned_data['email']
+        if user.email ==email:
+            return email
+
+
+        user=User.objects.filter(email=email).exists()
+        if user:
+            raise ValidationError('این ایمیل قبلا استفاده شده است')
+        return email
+
+
+    # def clean_phone_number(self):
+    #
+    #
+    #     phone_number=self.cleaned_data['phone_number']
+    #     user=User.objects.filter(phone_number=phone_number).exists()
+    #     if user:
+    #         raise ValidationError('این شماره موبایل قبلا استفاده شده است')
+    #     return phone_number
 
     class Meta(UserChangeForm.Meta):
         model = User
-        fields = ('email', 'username', 'first_name', 'last_name', 'phone_number', 'national_code',"password")
+        fields = ('email', 'username', 'first_name', 'last_name', 'phone_number', 'national_code', "password")
+
+
+class VerifyCodeForm(forms.Form):
+    code = forms.IntegerField()

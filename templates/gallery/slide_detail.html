@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ image.title }}</title>
+        <link href="{% static 'gallery/css/slide_detail.css' %}" rel="stylesheet">
+        <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+</head>
+<body>{% include 'blog/navbar.html' %}
+<div class="gallery">
+
+
+<div class="container">
+
+    <h1 class="title">{{ image.title|linebreaks }}</h1>
+
+    {% if image.image %}
+        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+    {% endif %}
+
+    <p>{{ image.description|linebreaks }}</p>
+</div>
+</div>
+{% include 'blog/footer.html' %}
+</body>
+</html>

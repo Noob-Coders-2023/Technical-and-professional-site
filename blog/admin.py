@@ -7,10 +7,10 @@ from django.contrib import admin
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'ptime', 'jstart', 'jend', 'status','teacher')
+    list_display = ('title', 'ptime', 'jstart', 'jend', 'status','teacher','gender')
     list_filter = ("status",)
     search_fields = ("title",'description')
-    prepopulated_fields = {'slug':('title',)}
+    # prepopulated_fields = {'slug':('title',)}
     ordering = ['-status','start']
 
 admin.site.register(Course, CourseAdmin)

@@ -1,0 +1,24 @@
+.gallery .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 38px;
+    border: 2px solid blue;
+    border-radius: 15px;
+    padding: 43px;
+    font-size: 21px;
+    margin: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
+}
+
+.title {
+    color: #386fb3;
+}
+
+img {
+    border-radius: 15px;
+}

@@ -1,0 +1,67 @@
+.container-access {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #ffff;
+    padding-top: 33px;
+    padding-bottom: 33px;
+
+}
+
+.content-access {
+    max-width: 100%;
+    padding: 0px 38px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.fields {
+    width: 100%;
+    position: relative;
+    display: flex;
+    gap: 33px;
+    overflow: hidden;
+}
+
+.content-access a {
+    background-color: #00264d;
+    color: #ffff;
+    font-size: 19px;
+    width: 197px;
+    height: 189px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .03);
+    border-radius: 16px;
+    text-align: center;
+    padding: 23px;
+    cursor: pointer;
+}
+
+.content-access a img {
+    height: 80px;
+    /* width: 104px; */
+    margin-bottom: 20px;
+}
+
+.prev1 {
+    background-color: orange;
+    width: 49px;
+    height: 49px;
+    border-radius: 26px;
+    text-align: center;
+    padding-top: 4px;
+    font-size: 27px;
+    color: #ffff;
+}
+
+.next1 {
+    background-color: orange;
+    width: 49px;
+    height: 49px;
+    border-radius: 26px;
+    text-align: center;
+    padding-top: 4px;
+    font-size: 27px;
+    color: #ffff;
+}

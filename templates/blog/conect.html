@@ -1,4 +1,3 @@
-
 {% load widget_tweaks %}
 {% load static %}
 
@@ -10,36 +9,51 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ارتباط </title>
     <link href="{% static 'blog/css/conect.css' %}" rel="stylesheet">
-      <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
 </head>
 <body>
-<div class="content-container">
-<form action="" method="post" autocomplete="off" class="content-left">
-    {% csrf_token %}
-    <div class="content-left-title">
-        <h2>فرم ارتباط</h2>
-        <hr>
-    </div>
-
-    <label >موضوع:</label>
-    {{ form.title|add_class:"input" }}
-      {% if form.title.errors %}
-            <div class="error-message">
-                {{ form.title.errors.0 }}
+<div>  {% include 'includes/messages_block.html' %}</div>
+<div class="container">
+    <form action="" method="post" autocomplete="off" class="content-left">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div>
+                {% for error in form.non_field_errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
             </div>
         {% endif %}
-    <label >متن پیام:</label>
-    {{ form.text|add_class:"texterea" }}
-       {% if form.text.errors %}
-            <div class="error-message">
-                {{ form.text.errors.0 }}
+        <div class="content-left-title">
+            <h2 class="title">فرم ارتباط</h2>
+
+        </div>
+        <div class="user-details">
+            <div class="input-box">
+                <label class="detail">موضوع:</label>
+                {{ form.title|add_class:"input" }}
+                {% if form.title.errors %}
+                    <div class="error-message">
+                        {{ form.title.errors }}
+                    </div>
+                {% endif %}
+
             </div>
-        {% endif %}
+            <div class="input-box">
+                <label class="detail">متن پیام:</label>
+                {{ form.text|add_class:"input1" }}
+                {% if form.text.errors %}
+                    <div class="error-message">
+                        {{ form.text.errors.0 }}
+                    </div>
+                {% endif %}
 
-    <input type="submit" value="ارسال" class="submit">
-</form>
+            </div>
 
-<img src="{% static 'blog/img/right_img.png' %}">
+            <input type="submit" value="ارسال" class="button">
+        </div>
+    </form>
+
+
 </div>
 </body>
 </html>
