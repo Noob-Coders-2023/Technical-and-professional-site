@@ -1,6 +1,57 @@
-{% include 'includes/messages_block.html' %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="send">
-</form>
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="{% static 'registration/login/css/verify.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+
+
+    <title> کد ارسالی </title>
+</head>
+<body>
+{% include 'blog/navbar.html' %}
+
+
+<div class="container">
+    <div>  {% include 'includes/messages_block.html' %}</div>
+    <div class="title">کد ارسال شده را وارد کنید!</div>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div>
+                {% for error in form.non_field_errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="user-details">
+
+
+            <div class="input-box">
+                <span class="detail">کد:</span>
+                {{ form.code|add_class:'input' }}
+                {% if form.code.errors %}
+                    <div class="error_message">
+                        {{ form.code.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+            <div class="button">
+                <input type="submit" value="ارسال">
+            </div>
+        </div>
+    </form>
+</div>
+
+{% include 'blog/footer.html' %}
+</body>
