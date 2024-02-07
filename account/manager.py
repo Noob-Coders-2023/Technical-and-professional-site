@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, phone_number, email, username, password, first_name, last_name, national_code):
+    def create_user(self, phone_number, email, username, password, first_name, last_name, national_code,gender):
         if not phone_number:
             raise ValueError('کاربر باید حتما شماره همراه داشته باشد')
 
@@ -13,12 +13,12 @@ class UserManager(BaseUserManager):
             raise ValueError('کاربر باید حتما نام کاربری داشته باشد')
 
         user = self.model(phone_number=phone_number, email=self.normalize_email(email), username=username,
-                          first_name=first_name, last_name=last_name, national_code=national_code)
+                          first_name=first_name, last_name=last_name, national_code=national_code,gender=gender)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, phone_number, email, username, password, first_name=None, last_name=None, national_code=None):
+    def create_superuser(self, phone_number, email, username, password, first_name=None, last_name=None, national_code=None,gender=None):
         user = self.create_user(
             phone_number=phone_number,
             email=email,
@@ -26,7 +26,8 @@ class UserManager(BaseUserManager):
             password=password,
             first_name=first_name,
             last_name=last_name,
-            national_code=national_code
+            national_code=national_code,
+            gender=gender
         )
 
         user.is_admin = True

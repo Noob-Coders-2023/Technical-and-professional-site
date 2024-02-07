@@ -18,7 +18,7 @@ class Course(models.Model):
     title = models.CharField(max_length=70, verbose_name='نام دوره')
     teacher = models.CharField(max_length=100, null=True, verbose_name='مدرس')
     # slug = models.SlugField(max_length=50, unique=True, verbose_name='آدرس دوره', blank=True, default=None)
-    thumbnail = models.ImageField(verbose_name="تصویر", blank=True, default=None)
+    thumbnail = models.ImageField(upload_to='images/',verbose_name="تصویر", blank=True, null=True)
     description = models.TextField(verbose_name="محتوا")
 
     time = models.IntegerField(verbose_name="مدت زمان دوره")

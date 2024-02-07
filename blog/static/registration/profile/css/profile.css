@@ -12,17 +12,19 @@
 
 }
 body{
-    display: flex;
     height: 100vh;
-    justify-content: center;
     align-items: center;
-    /*background:linear-gradient(135deg,#71b7e6,#9b59b6);*/
     background:#eee ;
-        flex-direction: column;
-    gap: 50px;
+
+}
+.body {padding-left: 0;padding-right: 0;
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .container{
-
+    margin-bottom: 45px;
     box-shadow: 0 15px 50px rgba(0,0,0,.2);
     max-width: 700px;
     width: 100%;
@@ -54,14 +56,15 @@ form .user-details .input-box{
     width:calc(100%/2 - 20px);
 }
 .user-details .input-box .detail{
-    margin-bottom: 15px;
+     font-size: 18px;
+    color: #0623b9;
     font-weight: 500;
     margin-bottom: 5px;
     display: block;
 
 }
 .user-details .input-box .detail1{
-    margin-bottom: 15px;
+
     font-weight: 500;
     margin-bottom: 5px;
     display: block;
@@ -69,6 +72,7 @@ form .user-details .input-box{
 
 }
 .user-details .input-box .input{
+    padding-right: 10px;
     height: 45px;
     width: 100%;
     outline: none;

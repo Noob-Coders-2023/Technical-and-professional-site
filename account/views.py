@@ -47,6 +47,7 @@ def user_selected_courses(request):
 
         return render(request, 'registration/home.html', context)
 
+
 class Register(View):
     form_class = SignupForm
 
@@ -69,15 +70,14 @@ class Register(View):
                 'first_name': form.cleaned_data['first_name'],
                 'last_name': form.cleaned_data['last_name'],
                 'national_code': form.cleaned_data['national_code'],
+                'gender': form.cleaned_data['gender'],
+
 
             }
             messages.success(request, 'کدی برای شما ارسال شد', 'success')
             return redirect('account:verify_code')
         messages.error(request, 'فیلد ها صحیح وارد نشده اند.', 'error')
-        return render(request,'registration/register.html',{"form":form})
-
-
-
+        return render(request, 'registration/register.html', {"form": form})
 
 
 # def activate(request, uidb64, token):
@@ -115,16 +115,18 @@ class UserRegisterVerifyCodeView(View):
             cd = form.cleaned_data
             if cd['code'] == code_instance.code:
                 User.objects.create_user(user_session['phone_number'], user_session['email'],
-                                         user_session['username'], user_session['password2'],user_session['first_name'],
-                                         user_session['last_name'],user_session[''
-                                                                                ''])
+                                         user_session['username'], user_session['password2'],
+                                         user_session['first_name'],
+                                         user_session['last_name'], user_session['national_code']
+                                         , user_session['gender'])
 
                 code_instance.delete()
                 messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
             else:
-                messages.error(request,'کد شما اشتباه است','danger')
+                messages.error(request, 'کد شما اشتباه است', 'danger')
                 return redirect('account:verify_code')
         return redirect('blog:home')
+
 
 @login_required
 def profile(request):

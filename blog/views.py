@@ -21,8 +21,8 @@ import xlwt
 
 
 def home(request):
-    # course_list = Course.objects.filter(status='n').order_by('start')
-    course_list = Course.objects.all().order_by('start')
+    # course_list = Course.objects.filter(status='n').order_by('start'),'start'
+    course_list = Course.objects.all().order_by('status')
     n = datetimeen.today()
     for o in course_list:
         if o.start > n:
@@ -31,7 +31,7 @@ def home(request):
             o.status = 'f'
     img_list = Image.objects.all()
     posts = Post.objects.all()
-    paginator = Paginator(course_list, 3)
+    paginator = Paginator(course_list, 9)
     page = request.GET.get('page')
     courses = paginator.get_page(page)
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
@@ -51,17 +51,14 @@ def detail(request, id):
         "course": get_object_or_404(Course, id=id, status='n'),
 
     }
-    selected = Choes_cours.objects.filter(user_id=request.user.id, id=context['course'].id)
+    selected = Choes_cours.objects.filter(user_id=request.user.id, cours_id=context['course'].id)
     if selected.exists():
         context['selected'] = selected.get()
 
     if request.user.is_authenticated:
-
         return render(request, 'blog/detail.html', context)
-    else:
-        return redirect('account:login')
-        if request.user.is_authenticated:
-            return render(request, 'blog/detail.html', context)
+
+    return redirect('account:login')
 
 
 def conect(request):
@@ -119,11 +116,7 @@ def create_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
-            # jalali_start = JalaliDate.to_jalali(form.cleaned_data['start'])
-            # jalali_end = JalaliDate.to_jalali(form.cleaned_data['end'])
-            # course = form.save(commit=False)
-            # course.start = jalali_start.togregorian()
-            # course.end = jalali_end.togregorian()
+
             form.save()
             messages.success(request, "کلاس شما ایجاد شد.")
             return redirect('blog:create_course')
@@ -135,20 +128,7 @@ def create_course(request):
     return render(request, 'blog/create_course.html', {'form': form})
 
 
-from melipayamak import Api
-import requests
-
-
 def export_courses_to_excel(request):
-    import requests
-
-    data = {'from': '50002710017796', 'to': '09916450191', 'text': 'test sms'}
-    response = requests.post('https://console.melipayamak.com/api/send/simple/e97f2fd3453d4717bd528e07a8210f0d',
-                             json=data)
-    print(response)
-
-
-def export_courses_to_excel1(request):
     # خواندن لیست دروس از پایگاه داده
     courses = Choes_cours.objects.all()
     lst = []
@@ -175,22 +155,3 @@ def export_courses_to_excel1(request):
     courses_df.to_excel(response, index=False)
 
     return response
-    # response=HttpResponse(content_type='application/ms-excel')
-    # response['content-Disposition']='attachment;filename=student'+str(datetime..now())+'.xls'
-    # workbook=xlwt.Workbook(encoding='utf-8')
-    # worksheet=workbook.add_sheet('students')
-    # columns=['name','last name','code']
-    # rownumber=0
-    # for col in range(len(columns)):
-    #     worksheet.write(rownumber,col,columns[col])
-    #
-    #
-    # students=Choes_cours.objects.all().values_list('course_id','user_id')
-    # for std in students:
-    #     rownumber+=1
-    #     for col in range(len(std)):
-    #         worksheet.write(rownumber,col,std[col])
-    #
-    # workbook.save(response)
-    #
-    # return response

@@ -26,6 +26,7 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.username}"
 
@@ -35,6 +36,7 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+    @property
     def is_staff(self):
         return self.is_admin
 

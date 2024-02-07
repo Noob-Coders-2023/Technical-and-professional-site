@@ -61,7 +61,11 @@ h1{
     font-size: 17px;
     border: 1px solid #d7a900;
 }
+.delete-course:active{
+    transform: scale(0.96);
+}
 .choice-course{
+        cursor: pointer;
         background-color:#1f9f1f;
     height: 42px;
     width: 121px;
@@ -70,4 +74,8 @@ h1{
     color: #ffffff;
     font-size: 17px;
     border: 1px solid darkgreen;
+    transition: all 0.2s ease;
+}
+.choice-course:active{
+    transform: scale(0.96);
 }

@@ -1,60 +1,86 @@
-*{
+@font-face {
+    font-family: myFont;
+    src: url("/static/blog/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+* {
+    font-family: 'myFont', Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
 }
-body{    align-items: center;
+
+body {
+    /*align-items: center;*/
     /*margin-bottom: 165px;*/
     /*padding-bottom: 95px;*/
-    padding-top: 235px;
+    /*padding-top: 138px;*/
     gap: 25px;
     direction: rtl;
     display: flex;
     text-align: right;
     flex-direction: column;
 }
-.container{
+
+.body {
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
     max-width: 700px;
     width: 100%;
-margin-bottom: 116px;
+    margin-bottom: 116px;
     padding: 25px 30px;
-
-     background:#eee;
-    box-sizing:border-box;
+    background: #eee;
+    box-sizing: border-box;
     border-radius: 10px;
-    box-shadow: 0 15px 50px rgba(0,0,0,.2)
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .2)
 }
-.container .title{
+
+.container .title {
     font-size: 25px;
     font-weight: 500;
     position: relative;
 }
-.container .title::before{
+
+.container .title::before {
     content: '';
     position: absolute;
-   right: 0; bottom: 0;
+    right: 0;
+    bottom: 0;
     height: 3px;
     width: 25px;
-    background:linear-gradient(135deg,#71b7e6,#9b59b6) ;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-.container form .user-details{
+
+.container form .user-details {
     display: flex;
-    flex-wrap:wrap ;
+    flex-wrap: wrap;
 
 }
-form .user-details .input-box{
+
+form .user-details .input-box {
     margin: 20px 15px 12px 0;
-    width:calc(100%/2 - 20px);
+    width: calc(100% / 2 - 20px);
 }
-.user-details .input-box .detail{
-    margin-bottom: 15px;
+
+.user-details .input-box .detail {
+    font-size: 18px;
+    color: #0623b9;
     font-weight: 500;
     margin-bottom: 5px;
     display: block;
 
 }
-.user-details .input-box .input{
+
+.user-details .input-box .input {
+    padding-right: 10px;
     height: 45px;
     width: 100%;
     outline: none;
@@ -67,17 +93,20 @@ form .user-details .input-box{
 
 
 }
+
 .user-details .input-box .input:focus,
-.user-details .input-box .input:valid{
+.user-details .input-box .input:valid {
     border-color: #9b59b6;
 
 }
-form .button{
+
+form .button {
     height: 45px;
     margin: 45px 0;
 }
-form .button button{
-      height: 55px;
+
+form .button button {
+    height: 55px;
     width: 643px;
     outline: none;
     color: #eee;
@@ -86,28 +115,36 @@ form .button button{
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-    background:linear-gradient(135deg,#71b7e6,#9b59b6);
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-form .button button:hover{
-        background:linear-gradient(-135deg,#71b7e6,#9b59b6);
+
+form .button button:hover {
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
-@media (max-width:484px) {
-.container{
-    max-width: 100%;
-}
-    form .user-details .input-box{
+
+@media (max-width: 484px) {
+    .container {
+        max-width: 100%;
+    }
+
+    form .user-details .input-box {
         margin-bottom: 15px;
         width: 100%;
     }
-.container form .user-details{
-    max-height: 300px;
-    overflow: scroll;
-}
-.user-details::-webkit-scrollbar{width: 0}
+
+    .container form .user-details {
+        max-height: 300px;
+        overflow: scroll;
+    }
+
+    .user-details::-webkit-scrollbar {
+        width: 0
+    }
 
 }
+
 .alert-error {
-           background-color: rgba(243, 7, 7, 0.43);
+    background-color: rgba(243, 7, 7, 0.43);
     height: 50px;
     text-align: center;
     padding-top: 13px;
@@ -116,8 +153,9 @@ form .button button:hover{
     color: #800000;
     border: 1px solid;
 }
-.alert-success{
-        background-color: #4fdd336e;
+
+.alert-success {
+    background-color: #4fdd336e;
     height: 50px;
     text-align: center;
     padding-top: 13px;
@@ -126,8 +164,9 @@ form .button button:hover{
     color: green;
     border: 1px solid;
 }
+
 .error {
-        border-color: red;
+    border-color: red;
     color: #ffff;
     background-color: #f94545b8;
     width: 691px;
@@ -140,6 +179,7 @@ form .button button:hover{
 
     border-bottom-color: #470000;
 }
-.error_message{
-        color: red;
+
+.error_message {
+    color: red;
 }

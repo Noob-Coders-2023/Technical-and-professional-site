@@ -22,10 +22,12 @@ class ChoicesForm(forms.Form):
 
     )
     course_id=forms.CharField(label='موضوع')
-    gender = forms.ChoiceField(label='جنسیت', choices=GENDER_CHOICES, required=True)
+    gender = forms.ChoiceField(label='جنسیت', choices=GENDER_CHOICES)
 
 
 class CourseForm(forms.ModelForm):
+
+
     class Meta:
         model = Course
         fields = '__all__'

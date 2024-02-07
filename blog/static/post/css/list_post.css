@@ -21,7 +21,7 @@
 img {
     border-radius: 15px;
 }
-.content{
+.conten{
         background-color: white;
     border-radius: 15px;
     padding: 15px;
@@ -59,7 +59,7 @@ img{
     height: 110px;
     border-radius: 15px;
     position: relative;
-    border: 0.1px solid #ebebeb;
+
 }
 .created_at{
     font-size: 13px;

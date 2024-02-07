@@ -10,8 +10,13 @@
     <title>ارتباط </title>
     <link href="{% static 'blog/css/conect.css' %}" rel="stylesheet">
     <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+     <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
 </head>
 <body>
+
+<div>{% include 'blog/navbar.html' with current_date=current_date %}</div>
+<div class="body">
 <div>  {% include 'includes/messages_block.html' %}</div>
 <div class="container">
     <form action="" method="post" autocomplete="off" class="content-left">
@@ -55,5 +60,7 @@
 
 
 </div>
+</div>
+{% include 'blog/footer.html' %}
 </body>
 </html>

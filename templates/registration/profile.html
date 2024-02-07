@@ -7,12 +7,17 @@
     <title>پروفایل</title>
     <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
     <link href="{% static 'registration/profile/css/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
 </head>
-<body>    <div>  {% include 'includes/messages_block.html' %}</div>
-<div class="container">
+<body>
+<div>{% include 'blog/navbar.html' %}</div>
 
+<div class="body">
 
+    <div>  {% include 'includes/messages_block.html' %}</div>
     <div class="container">
+
 
         <h2 class="title">پروفایل کاربری</h2>
 
@@ -80,7 +85,6 @@
                 <br>
 
 
-
                 <div class="input-box">
                     <span class="detail1">کدملی:</span>
                     <input class="input1" type="text" name="national_code" value="{{ form.national_code.value }}"
@@ -92,11 +96,10 @@
 
 
     </div>
+
+
 </div>
-
-
-
-
+{% include 'blog/footer.html' %}
 <script src="{% static 'registration/profile/js/profile.js' %}"></script>
 </body>
 </html>
