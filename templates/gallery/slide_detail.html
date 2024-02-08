@@ -8,7 +8,7 @@
     <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
         <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
 </head>
-<body>{% include 'blog/navbar.html' %}
+<body>{% include 'blog/navbar.html' with current_date=current_date %}
 <div class="gallery">
 
 

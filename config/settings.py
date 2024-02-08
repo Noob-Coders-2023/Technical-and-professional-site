@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'jalali_date',
 
-
 ]
 AUTH_USER_MODEL = 'account.User'
 MIDDLEWARE = [
@@ -99,6 +98,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.contextprocessor.time_now'
             ],
         },
     },

@@ -22,7 +22,8 @@ import random
 from utils import send_top_code
 from .models import OtpCode
 from django.contrib import messages
-
+from jdatetime import datetime
+from extension.utils import persian_number_converter
 CustomUser = get_user_model()
 
 
@@ -130,6 +131,7 @@ class UserRegisterVerifyCodeView(View):
 
 @login_required
 def profile(request):
+    current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -142,4 +144,9 @@ def profile(request):
     else:
         form = CustomUserChangeForm(instance=request.user)
 
-    return render(request, 'registration/profile.html', {'form': form})
+    context = {
+        'form': form,
+        'current_date': current_date
+    }
+
+    return render(request, 'registration/profile.html',context)

@@ -1,4 +1,4 @@
-.slideshow{
+.slideshow {
     cursor: pointer;
 
     margin-top: 51px;
@@ -7,17 +7,25 @@
     width: 609px;
     cursor: pointer;
 }
-.slide{
+
+.slide {
     display: none;
-position: relative;
+    position: relative;
     animation: fade 0.5s;
 }
-.slides{
+
+.slides {
     position: relative;
 }
-.slide.active{
-display: block}
-.slide div{
+
+.slide.active {
+    display: block
+}
+
+
+.slide div {
+    border-radius: 0 0 15px 15px;
+    margin-bottom: 4px;
     background-color: rgba(0, 13, 255, 0.53);
     position: absolute;
     bottom: 0;
@@ -29,50 +37,56 @@ display: block}
     align-items: center;
 
 
-    border-radius-: 15px;
-
 }
-.slide div:hover{
-    min-height:100% ;
-     border-radius-: 15px;
 
+.slide div:hover {
+    border-radius: 15px 15px 15px 15px;
+    min-height: 99%;
 }
-.slide img{
+
+.slide img {
     width: 100%;
     border-radius: 15px;
 }
-.slide div p{
-    margin-bottom:0;
+
+.slide div p {
+    margin-bottom: 0;
     color: #fff;
     padding: 10px;
     transition: font-size 0.5s;
 }
-.slide div:hover p{
+
+.slide div:hover p {
     font-size: 3rem;
 }
-.prev,.next{
+
+.prev, .next {
     position: absolute;
     top: 50%;
 
-    color:#fff;
+    color: #fff;
     padding: 16px;
     margin-top: -32px;
 }
-.prev:active,.next:active{
+
+.prev:active, .next:active {
     color: black;
 
 }
-.prev{
+
+.prev {
     left: 0;
 
 }
-.next{
+
+.next {
     right: 0;
 
 }
-.points{
+
+.points {
     margin-top: 10px;
-        margin-top: 10px;
+    margin-top: 10px;
 
     display: flex;
     align-items: center;
@@ -81,33 +95,37 @@ display: block}
     justify-content: center;
 }
 
-.points span{
+.points span {
     width: 15px;
     height: 15px;
     display: inline-block;
     background-color: #aaaa;
     border-radius: 50px;
 }
-.points span.active{
+
+.points span.active {
     background-color: rgba(31, 67, 152, 0.77);
 }
+
 @keyframes fade {
-    0%{
+    0% {
         opacity: 0;
     }
-    100%{
+    100% {
         opacity: 1;
     }
 }
-.galler_post{
-        display: flex;
+
+.galler_post {
+    display: flex;
     flex-wrap: nowrap;
     gap: 73px;
     flex-direction: row;
     align-items: center;
-        padding: 2rem 9%;
+    padding: 2rem 9%;
 }
-.positive{
+
+.positive {
     margin-bottom: 0px;
     padding-bottom: 0px;
     padding-right: 59px;
@@ -115,14 +133,15 @@ display: block}
 
 }
 
-.positive svg{
-       margin-top: 25px;
+.positive svg {
+    margin-top: 25px;
 }
 
-.gallery{
+.gallery {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: space-evenly;
-    align-items: flex-start;}
+    align-items: flex-start;
+}

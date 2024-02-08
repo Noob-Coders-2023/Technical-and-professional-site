@@ -9,19 +9,17 @@ from posts.models import Post
 import pandas as pd
 from django.http import HttpResponse
 from jdatetime import datetime
-from datetime import date as datetimeen
 from extension.utils import persian_number_converter
-from persiantools.jdatetime import JalaliDate
+from datetime import date as datetimeen
 from django.shortcuts import render, redirect
-from django.http import HttpResponseForbidden
-import xlwt
+
 
 
 # Create your views here.
 
 
 def home(request):
-    # course_list = Course.objects.filter(status='n').order_by('start'),'start'
+
     course_list = Course.objects.all().order_by('status')
     n = datetimeen.today()
     for o in course_list:
@@ -47,9 +45,10 @@ def home(request):
 
 @login_required()
 def detail(request, id):
+    current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     context = {
         "course": get_object_or_404(Course, id=id, status='n'),
-
+        'current_date': current_date
     }
     selected = Choes_cours.objects.filter(user_id=request.user.id, cours_id=context['course'].id)
     if selected.exists():
