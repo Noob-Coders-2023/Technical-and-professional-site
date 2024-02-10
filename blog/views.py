@@ -154,3 +154,7 @@ def export_courses_to_excel(request):
     courses_df.to_excel(response, index=False)
 
     return response
+def resume(request):
+
+
+   return render(request,'blog/rezome.html')
