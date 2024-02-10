@@ -154,7 +154,9 @@ li{
     flex-direction: column;
     margin-top: 33px;
 }
-
+#svg{   color: #1a1a77;
+        background-color: unset;
+}
 .header .icons svg {
     /*height: 50px;*/
     /*width: 4.8rem;*/

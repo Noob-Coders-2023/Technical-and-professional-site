@@ -32,12 +32,12 @@
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                 <g id="SVGRepo_iconCarrier"> <desc></desc>
                                     <g> <polyline fill="none" points="21,18 21,11 11,1 1,11 1,31 21,31 21,24 "
-                                                  stroke="#1a1e93" stroke-linejoin="round" stroke-miterlimit="10"
+                                                  stroke="blue" stroke-linejoin="round" stroke-miterlimit="10"
                                                   stroke-width="1.088"></polyline>
-                                        <line fill="none" stroke="#1a1e93" stroke-linejoin="round"
+                                        <line fill="none" stroke="blue" stroke-linejoin="round"
                                               stroke-miterlimit="10" stroke-width="1.088" x1="32" x2="11" y1="21"
                                               y2="21"></line>
-                                        <polyline fill="none" points="17,27 11,21 17,15 " stroke="#1a1e93"
+                                        <polyline fill="none" points="17,27 11,21 17,15 " stroke="blue"
                                                   stroke-linejoin="round" stroke-miterlimit="10"
                                                   stroke-width="1.088"></polyline> </g> </g></svg>
                         </a>
@@ -47,7 +47,7 @@
                     <form method="post" action="{% url 'account:logout' %}">
                         {% csrf_token %}
                         {% if request.user.is_authenticated %}
-                            <button type="submit">
+                            <button type="submit" id="svg">
                                 <svg width="24px" height="64px" viewBox="0 0 32.00 32.00"
                                      enable-background="new 0 0 32 32" id="Stock_cut" version="1.1" xml:space="preserve"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -55,12 +55,12 @@
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier"> <desc></desc>
                                         <g> <polyline fill="none" points="21,18 21,11 11,1 1,11 1,31 21,31 21,24 "
-                                                      stroke="#121559" stroke-linejoin="round" stroke-miterlimit="10"
+                                                      stroke="blue" stroke-linejoin="round" stroke-miterlimit="10"
                                                       stroke-width="1.6719999999999999"></polyline>
-                                            <line fill="none" stroke="#121559" stroke-linejoin="round"
+                                            <line fill="none" stroke="blue" stroke-linejoin="round"
                                                   stroke-miterlimit="10" stroke-width="1.6719999999999999" x1="10"
                                                   x2="31" y1="21" y2="21"></line>
-                                            <polyline fill="none" points="25,15 31,21 25,27 " stroke="#121559"
+                                            <polyline fill="none" points="25,15 31,21 25,27 " stroke="blue"
                                                       stroke-linejoin="round" stroke-miterlimit="10"
                                                       stroke-width="1.6719999999999999"></polyline> </g> </g></svg>
                             </button>
