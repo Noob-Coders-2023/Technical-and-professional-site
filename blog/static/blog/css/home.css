@@ -216,7 +216,7 @@ section {
 }
 
 .heading span {
-    background:#13137f;;
+    background:#13137f;
     color: #fff;
     display: inline-block;
     padding: .5rem 3rem;
@@ -297,6 +297,44 @@ svg {
 .logo img{
     width: 220px;
 }
+.pagination{
+      display: flex;
+    font-size: 18px;
+    justify-content: center;
+    padding: 24px;
+}
+.step-links{
+        display: flex;
+    gap: 23px;
+}
+.step-links a{
+        border: 1px solid #ababab;
+    padding: 7px;
+    border-radius: 9px;
+    transition: all 0.2s ease;
+}
+.step-links a:active{
+       background-color: #13137f;
+    color: #EEEEEE;
+        border: 1px solid #13137f;
+    padding: 7px;
+    border-radius: 9px;
+    transform: scale(0.96);
+}
+.current{
+    background-color: #13137f;
+    color: #EEEEEE;
+        border: 1px solid #13137f;
+    padding: 7px;
+    border-radius: 9px;
+}
+
+
+
+
+
+
+
 
 @media (max-width: 991px) {
 

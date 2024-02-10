@@ -185,15 +185,45 @@
             {% endfor %}
         </div>
     </section>
+{##}
+{##}
+{#    {% if courses.has_previous %}#}
+{#        <a href="{% url 'blog:home' %}?page={{ courses.previous_page_number }}">صفحه ی قبل</a>#}
+{#    {% endif %}#}
+{##}
+{#    {% if courses.has_next %}#}
+{#        <a href="{% url 'blog:home' %}?page={{ courses.next_page_number }}">صفحه ی بعد</a>#}
+{#    {% endif %}#}
+
+<!-- در بخش تمپلیت شما -->
+<!-- در بخش تمپلیت شما -->
+<div class="pagination">
+    <span class="step-links">
+        {% if courses.has_previous %}
+            <a href="?page=1">&laquo;</a>
+             <a href="?page={{ courses.previous_page_number }}"> قبل</a>
+            <a href="?page={{ courses.previous_page_number }}">{{ courses.previous_page_number }}</a>
+        {% endif %}
+
+        {% for i in courses.paginator.page_range %}
+            {% if courses.number == i %}
+                <span class="current">{{ i }}</span>
+            {% elif i >= courses.number|add:page_limit and i <= courses.number|add:page_limit %}
+                <a href="?page={{ i }}">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if courses.has_next %}
+
+            <a href="?page={{ courses.next_page_number }}">{{ courses.next_page_number }}</a>
+                            <a href="?page={{ courses.next_page_number }}"> بعد</a>
+            <a href="?page={{ courses.paginator.num_pages }}"> &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 
-    {% if courses.has_previous %}
-        <a href="{% url 'blog:home' %}?page={{ courses.previous_page_number }}">صفحه ی قبل</a>
-    {% endif %}
 
-    {% if courses.has_next %}
-        <a href="{% url 'blog:home' %}?page={{ courses.next_page_number }}">صفحه ی بعد</a>
-    {% endif %}
 
 
 
