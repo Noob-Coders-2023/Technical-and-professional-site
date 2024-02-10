@@ -29,7 +29,7 @@ def home(request):
             o.status = 'f'
     img_list = Image.objects.all()
     posts = Post.objects.all()
-    paginator = Paginator(course_list, 1)
+    paginator = Paginator(course_list, 8)
     page = request.GET.get('page')
     courses = paginator.get_page(page)
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
