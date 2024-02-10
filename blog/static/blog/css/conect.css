@@ -173,3 +173,23 @@ form .button button:hover {
     color: green;
     border: 1px solid;
 }
+.error {
+        border-color: red;
+    color: #ffff;
+    background-color: #f94545b8;
+    width: 691px;
+    height: 50px;
+    text-align: center;
+    padding-top: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+
+    border-bottom-color: #470000;
+}
+.error-message{
+        color: red;
+}
+.error-message{
+    padding-right: 23px;
+}

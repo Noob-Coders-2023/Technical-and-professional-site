@@ -19,7 +19,7 @@
 <div class="body">
 <div>  {% include 'includes/messages_block.html' %}</div>
 <div class="container">
-    <form action="" method="post" autocomplete="off" class="content-left">
+    <form action="" method="post" autocomplete="off" class="content-left" novalidate>
         {% csrf_token %}
         {% if form.non_field_errors %}
             <div>

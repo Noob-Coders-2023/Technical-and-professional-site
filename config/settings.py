@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'jalali_date',
 
+
 ]
 AUTH_USER_MODEL = 'account.User'
 MIDDLEWARE = [

@@ -139,7 +139,18 @@
                         </div>
                     {% endif %}
                 </div>
-                {{ form.gender|add_class:'input' }}
+                <div class="gender_details">
+                    <span class="gender_title">جنسیت:</span>
+                    <div class="category">
+                        {% for value, label in form.gender.field.choices %}
+                            <label>
+                                <input type="radio" name="{{ form.gender.name }}" value="{{ value }}"
+                                       {% if form.gender.value == value %}checked{% endif %} class="input">
+                                {{ label }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
 
                 <div class="button">
                     <button type="submit">ثبت نام</button>

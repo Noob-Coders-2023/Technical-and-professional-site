@@ -113,12 +113,13 @@
 {% endblock %}
 <!-------------------------------------quick access------------>
 {% block access %}
+
     <div class="container-access">
         <h1>دسترسی سریع</h1>
         <div class="content-access">
-            <span class="next1">&#10094</span>
-            <div class="fields">
-                <a class="field">
+            <span class="next1" id="nextBtn">&#10094</span>
+            <div class="fields swiper-wrapper" id="fields">
+                <a class="field swiper-slide">
                     <img src="{% static 'access/img/نمونه سوال.png' %}">
                     <div>نمونه سوالات سنجش مهارت</div>
                 </a>
@@ -147,7 +148,7 @@
                     <div>ارتباط با ريیس و معاونین سازمان</div>
                 </a></div>
 
-            <span class="prev1">&#10095</span>
+            <span class="prev1" id="backBtn">&#10095</span>
 
 
         </div>

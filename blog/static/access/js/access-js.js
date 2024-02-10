@@ -1,30 +1,85 @@
-let container_access = document.querySelector('.container-access');
-// let content_access = document.querySelectorAll('.fields');
-let prev1 = document.querySelector(".prev1");
-let next1 = document.querySelector(".next1");
+//
+// const fields = document.querySelectorAll(".field");
+// const scrollContainer = document.querySelector(".fields");
+// let backBtn=document.getElementById('backBtn')
+// let nextBtn=document.getElementById('nextBtn')
+// let intervalTime = 3000; // زمان اسکرول به میلی‌ثانیه (در اینجا ۳ ثانیه)
+// let scrollAmount = -200; // مقدار اسکرول به اندازه پیکسل
+//
+// let scrollPosition = 0;
+// let scrollInterval = setInterval(() => {
+//   scrollPosition += scrollAmount;
+//   if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+//     clearInterval(scrollInterval);
+//     scrollPosition = 0;
+//   }
+//   scrollContainer.scrollTo({ top: 0, left: scrollPosition, behavior: 'smooth', easing: 'ease-in-out' });
+// }, intervalTime);
+//
+//
+//
+// scrollContainer.addEventListener('wheel',(evt)=>{
+//     evt.preventDefault();
+//     scrollContainer.scrollLeft+=evt.deltaY;
+//       scrollContainer.style.scrollBehavior='auto';
+// });
+//
+//
+// nextBtn.addEventListener('click',()=>{
+//     scrollContainer.style.scrollBehavior='smooth';
+//     scrollContainer.scrollLeft+=200
+// })
+//
+// backBtn.addEventListener('click',()=>{
+//       scrollContainer.style.scrollBehavior='smooth';
+//     scrollContainer.scrollLeft-=200
+// })
+const fields = document.querySelectorAll(".field");
+const scrollContainer = document.querySelector(".fields");
+let backBtn = document.getElementById('backBtn');
+let nextBtn = document.getElementById('nextBtn');
+let intervalTime = 5000; // زمان اسکرول به میلی‌ثانیه (در اینجا ۳ ثانیه)
+let scrollAmount = 200; // مقدار اسکرول به اندازه پیکسل
 
+let isScrollingManually = false;
 
-let contentAccess = document.querySelector('.fields');
+let scrollDirection = 1; // 1 برای اسکرول به راست و -1 برای اسکرول به چپ
 
-// تابع برای اسکرول به چپ
-function autoScroll() {
-    contentAccess.scrollLeft += 20; // 20 پیکسل به چپ اسکرول می‌کند
+function startAutoScroll() {
+    if (!isScrollingManually) {
+        scrollContainer.scrollTo({
+            top: 0,
+            left: scrollContainer.scrollLeft + scrollAmount * scrollDirection,
+            behavior: 'smooth',
+            easing: 'ease-in-out'
+        });
+        scrollDirection *= -1; // تغییر جهت اسکرول
+    }
 }
 
-// فراخوانی تابع autoScroll هر 5 ثانیه
-let scrollInterval = setInterval(autoScroll, 5000); // 5000 میلی‌ثانیه یعنی 5 ثانیه
+let scrollInterval = setInterval(startAutoScroll, intervalTime);
 
-// اگر نیاز به متوقف کردن اسکرول خودکار دارید، می‌توانید از clearInterval استفاده کنید
-// clearInterval(scrollInterval);
+scrollContainer.addEventListener('scroll', () => {
+    isScrollingManually = true;
 
-
-
-
-console.log('sssss' , next1)
-next1.addEventListener('click', () => {
-    console.log('reza')
+    clearInterval(scrollInterval); // متوقف کردن اسکرول اتوماتیک به مدت زمان معین
+    setTimeout(() => {
+        isScrollingManually = false;
+        scrollInterval = setInterval(startAutoScroll, intervalTime);
+    }, intervalTime);
 });
-prev1.addEventListener('click', () => {
-content_access.item(0).scrollLeft -= 100;
-    console.log('hg')
+
+nextBtn.addEventListener('click', () => {
+    scrollContainer.style.scrollBehavior = 'smooth';
+    scrollContainer.scrollLeft += 200;
 });
+
+backBtn.addEventListener('click', () => {
+    scrollContainer.style.scrollBehavior = 'smooth';
+    scrollContainer.scrollLeft -= 200;
+});
+// scrollContainer.addEventListener('wheel',(evt)=>{
+//     evt.preventDefault();
+//     scrollContainer.scrollLeft+=evt.deltaY;
+//       scrollContainer.style.scrollBehavior='auto';
+// });
