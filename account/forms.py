@@ -93,4 +93,9 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class VerifyCodeForm(forms.Form):
-    code = forms.IntegerField()
+    code = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'min': 1000, 'max': 9999, 'step': 1, 'type': 'number'}),
+        min_value=1000,
+        max_value=9999,
+        localize=True,
+    )
