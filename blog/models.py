@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from account.models import User
 from django.conf import settings
 from extension.utils import jalali_converter, persian_number_converter
 
@@ -65,7 +66,7 @@ class Conect(models.Model):
 
 class Choes_cours(models.Model):
     cours = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
 
 
 class YourModel(models.Model):

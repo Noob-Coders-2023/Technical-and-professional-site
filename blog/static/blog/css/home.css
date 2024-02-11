@@ -99,6 +99,7 @@ body {
 }
 
 .header .logo i {
+        font-size: 19px;
     color: #0006c1;
 }
 
@@ -133,7 +134,7 @@ nav div {
     border-radius: 10px;
     background-color: #ffff;
     box-shadow: 0 20px 45px #00000025;
-    margin-top: 0px;
+    margin-top: 0;
     opacity: 0;
     z-index: -9999;
     transition: all ease 0.5s;
@@ -156,7 +157,7 @@ li {
     display: flex;
     opacity: 1;
     gap: 10px;
-    flex-direction: column;
+
     margin-top: 33px;
 }
 
@@ -166,8 +167,6 @@ li {
 }
 
 .header .icons svg {
-    /*height: 50px;*/
-    /*width: 4.8rem;*/
     line-height: 4.8rem;
     color: var(--black);
     font-size: .3rem;
@@ -292,7 +291,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 22px;
+    font-size: 17px;
     /* margin-top: -17px; */
     padding-top: 28px;
 }
@@ -366,6 +365,27 @@ svg {
 
     color: #fff;
 }
+.titre{
+
+}
+.container_excel{
+        display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    margin: 0 98px 56px;
+    border-radius: 15px;
+    outline: var(--outline);
+        box-shadow: var(--box-shadow);
+        outline-offset: -1rem;
+
+}
+.container_excel .titre{
+        font-size: 17px;
+    color: #00264d;
+}
+
 
 .download svg {
     margin-left: 7px;

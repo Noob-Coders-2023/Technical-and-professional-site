@@ -128,14 +128,19 @@ def create_course(request):
 
 
 def export_courses_to_excel(request):
-    # خواندن لیست دروس از پایگاه داده
     courses = Choes_cours.objects.all()
+
+    if not courses:
+        return HttpResponse("هیچ دوره‌ای برای صدور یافت نشد.")
+
     lst = []
     for o in courses:
         lst.append({
-            'نام': o.user.first_name,
-            'نام خانوادگی': o.user.last_name,
             'نام دوره': o.cours.title,
+            'نام': o.user.username,
+            'نام خانوادگی': o.user.last_name,
+            'کدملی': o.user.national_code,
+
 
         })
     # تبدیل QuerySet به دیتافریم pandas

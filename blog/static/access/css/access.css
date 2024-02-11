@@ -39,11 +39,10 @@
     transform:scale(1.1);
 }
 .content-access a {
-    background-color: #00264d;
+    background-color:#003871;
     color: #ffff;
-    font-size: 19px;
-    width: 197px;
-    height: 203px;
+    font-size: 17px;
+    height: 194px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .03);
     border-radius: 16px;
     text-align: center;
@@ -53,9 +52,8 @@
 }
 
 .content-access a img {
-    height: 80px;
-    /* width: 104px; */
-    margin-bottom: 20px;
+    height: 67px;
+    width: 108px;
 }
 
 .prev1 {
