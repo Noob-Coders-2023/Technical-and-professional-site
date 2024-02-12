@@ -11,15 +11,12 @@ from django.http import HttpResponse
 from jdatetime import datetime
 from extension.utils import persian_number_converter
 from datetime import date as datetimeen
-from django.shortcuts import render, redirect
-
 
 
 # Create your views here.
 
 
 def home(request):
-
     course_list = Course.objects.all().order_by('status')
     n = datetimeen.today()
     for o in course_list:
@@ -130,17 +127,21 @@ def create_course(request):
 def export_courses_to_excel(request):
     courses = Choes_cours.objects.all()
 
+
     if not courses:
         return HttpResponse("هیچ دوره‌ای برای صدور یافت نشد.")
 
     lst = []
     for o in courses:
+        jalali_selection_time = datetime.fromgregorian(datetime=o.selection_time).strftime('%Y/%m/%d')
         lst.append({
-            'نام دوره': o.cours.title,
+            'ردیف': len(lst) + 1,
             'نام': o.user.username,
             'نام خانوادگی': o.user.last_name,
             'کدملی': o.user.national_code,
-
+            'شماره تماس': o.user.phone_number,
+            'نام دوره': o.cours.title,
+            'زمان انتخاب': jalali_selection_time,
 
         })
     # تبدیل QuerySet به دیتافریم pandas
@@ -159,7 +160,7 @@ def export_courses_to_excel(request):
     courses_df.to_excel(response, index=False)
 
     return response
+
+
 def resume(request):
-
-
-   return render(request,'blog/rezome.html')
+    return render(request, 'blog/rezome.html')

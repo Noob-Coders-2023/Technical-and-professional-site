@@ -82,7 +82,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 22px;
-
+    flex-direction: row-reverse;
     width: 316px;
     height: 55px;
 }
@@ -99,10 +99,40 @@ body {
 }
 
 .header .logo i {
-        font-size: 19px;
+    font-size: 15px;
     color: #0006c1;
 }
 
+.account .logout {
+    margin-top: -54px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #2c20ab;
+}
+.account .logins{
+        display: flex;
+    gap: 5px;
+}
+.account .logout:hover{
+     color: #000000;
+
+}
+.account .logout:active{
+        transform: scale(.94);
+}
+.account a{
+        color: #2c20ab;
+}
+.account .slash{
+        color: #2c20ab;
+}
+.account a:hover{
+         color: #000000;
+
+}
+.account a:active{
+        transform: scale(.94);
+}
 .header .navbar a {
     font-size: 1.7rem;
     margin: 0 1rem;
@@ -160,41 +190,6 @@ li {
 
     margin-top: 33px;
 }
-
-#svg {
-    color: #1a1a77;
-    background-color: unset;
-}
-
-.header .icons svg {
-    line-height: 4.8rem;
-    color: var(--black);
-    font-size: .3rem;
-    text-align: center;
-    background: none;
-}
-
-.header .icons svg:hover {
-    background: none;
-    color: #fff;
-    cursor: pointer;
-}
-
-.header .icons svg {
-    height: 4.5rem;
-    width: 4.5rem;
-    line-height: 4.5rem;
-    background: none;
-    color: var(--black);
-    font-size: .3rem;
-    text-align: center;
-}
-
-.header .icons svg:hover {
-    background: #9f9c9c;
-    color: #fff;
-}
-
 section {
     padding: 2rem 9%;
 
@@ -343,7 +338,7 @@ svg {
 }
 
 .download {
-        margin: 64px;
+    margin: 64px;
     display: flex;
 
     gap: 9px;
@@ -361,15 +356,18 @@ svg {
     color: #fff;
 
 }
-.download a{
+
+.download a {
 
     color: #fff;
 }
-.titre{
+
+.titre {
 
 }
-.container_excel{
-        display: flex;
+
+.container_excel {
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -377,12 +375,13 @@ svg {
     margin: 0 98px 56px;
     border-radius: 15px;
     outline: var(--outline);
-        box-shadow: var(--box-shadow);
-        outline-offset: -1rem;
+    box-shadow: var(--box-shadow);
+    outline-offset: -1rem;
 
 }
-.container_excel .titre{
-        font-size: 17px;
+
+.container_excel .titre {
+    font-size: 17px;
     color: #00264d;
 }
 
@@ -407,14 +406,15 @@ svg {
 
 
 }
-.download.active .progress-wrapper{
+
+.download.active .progress-wrapper {
     transform: scale(.6);
 }
 
 .progress-wrapper .inner {
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 60px;
     position: absolute;
     height: 60px;
@@ -425,43 +425,53 @@ svg {
     transition-delay: 4s;
 
 }
-.download.active .progress-wrapper .inner{
-      transform: translate(-50%,-50%) scale(0);
+
+.download.active .progress-wrapper .inner {
+    transform: translate(-50%, -50%) scale(0);
 }
-.progress-wrapper .bar{
+
+.progress-wrapper .bar {
     position: absolute;
     width: 100%;
     height: 100%;
     background: #ededed;
     border-radius: 50%;
-    clip: rect(0px,100px,100px,50px);
+    clip: rect(0px, 100px, 100px, 50px);
 }
-.circle .bar .progress{
+
+.circle .bar .progress {
     position: absolute;
     width: 100%;
     height: 100%;
-    background:  #00264d;
+    background: #00264d;
     border-radius: 50%;
-    clip: rect(0px,50px,100px,0px);
+    clip: rect(0px, 50px, 100px, 0px);
     z-index: 1;
 }
-.circle .bar.left .progress{
-    transition: 1.5s linear;transition-delay: 1s;
+
+.circle .bar.left .progress {
+    transition: 1.5s linear;
+    transition-delay: 1s;
 }
-.download.active .circle .bar.left .progress{
+
+.download.active .circle .bar.left .progress {
     transform: rotate(180deg);
 }
-.circle .right{
+
+.circle .right {
     transform: rotate(180deg);
 }
-.circle .bar.right .progress{
+
+.circle .bar.right .progress {
     transition: 1.5s linear;
     transition-delay: 2.5s;
 }
-.download.active .circle .bar.right .progress{
+
+.download.active .circle .bar.right .progress {
     transform: rotate(180deg);
 }
-.progress-wrapper .checkmark{
+
+.progress-wrapper .checkmark {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -469,7 +479,8 @@ svg {
     border-radius: 50%;
     z-index: 2;
 }
-.checkmark span{
+
+.checkmark span {
     position: absolute;
     display: block;
     width: 30px;
@@ -479,40 +490,32 @@ svg {
     transition: .5s;
     transform-origin: left;
 }
-.checkmark span:first-child{
+
+.checkmark span:first-child {
     top: 45px;
     left: 22px;
     width: 30px;
     transform: rotate(45deg) scalex(1);
     transition-delay: 5s;
 }
-.download.active .checkmark span:first-child{
+
+.download.active .checkmark span:first-child {
 
     transform: rotate(45deg) scaleX(1);
 }
-.checkmark span:last-child{
+
+.checkmark span:last-child {
     top: 65px;
     left: 40px;
     width: 50px;
     transform: rotate(-45deg) scalex(1);
     transition-delay: 5s;
 }
-.download.active .checkmark span:last-child{
+
+.download.active .checkmark span:last-child {
 
     transform: rotate(-45deg) scaleX(1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @media (max-width: 991px) {

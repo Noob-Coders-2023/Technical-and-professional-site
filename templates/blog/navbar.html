@@ -24,45 +24,22 @@
                 <div>
                     {#<-----------login------------------->#}
                     {% if request.user.is_anonymous %}
+                        <div class="logins">
                         <a class="icon" href="{% url 'account:login' %}">
-                            <svg width="30px" height="131px" viewBox="-8.96 -8.96 49.92 49.92"
-                                 enable-background="new 0 0 32 32" id="Stock_cut" version="1.1" xml:space="preserve"
-                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                 fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier"> <desc></desc>
-                                    <g> <polyline fill="none" points="21,18 21,11 11,1 1,11 1,31 21,31 21,24 "
-                                                  stroke="blue" stroke-linejoin="round" stroke-miterlimit="10"
-                                                  stroke-width="1.088"></polyline>
-                                        <line fill="none" stroke="blue" stroke-linejoin="round"
-                                              stroke-miterlimit="10" stroke-width="1.088" x1="32" x2="11" y1="21"
-                                              y2="21"></line>
-                                        <polyline fill="none" points="17,27 11,21 17,15 " stroke="blue"
-                                                  stroke-linejoin="round" stroke-miterlimit="10"
-                                                  stroke-width="1.088"></polyline> </g> </g></svg>
+                            ورود
                         </a>
+                        <div class="slash">/</div>
+                        <a class="icon" href="{% url 'account:register' %}">ثبت نام</a>
+
+                        </div>
                     {% endif %}
                     <br>
                     {#<--------------------log out----------->#}
                     <form method="post" action="{% url 'account:logout' %}">
                         {% csrf_token %}
                         {% if request.user.is_authenticated %}
-                            <button type="submit" id="svg">
-                                <svg width="24px" height="64px" viewBox="0 0 32.00 32.00"
-                                     enable-background="new 0 0 32 32" id="Stock_cut" version="1.1" xml:space="preserve"
-                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier"> <desc></desc>
-                                        <g> <polyline fill="none" points="21,18 21,11 11,1 1,11 1,31 21,31 21,24 "
-                                                      stroke="blue" stroke-linejoin="round" stroke-miterlimit="10"
-                                                      stroke-width="1.6719999999999999"></polyline>
-                                            <line fill="none" stroke="blue" stroke-linejoin="round"
-                                                  stroke-miterlimit="10" stroke-width="1.6719999999999999" x1="10"
-                                                  x2="31" y1="21" y2="21"></line>
-                                            <polyline fill="none" points="25,15 31,21 25,27 " stroke="blue"
-                                                      stroke-linejoin="round" stroke-miterlimit="10"
-                                                      stroke-width="1.6719999999999999"></polyline> </g> </g></svg>
+                            <button type="submit" id="svg" >
+                               <div class="logout">خروج</div>
                             </button>
                         {% endif %}
                     </form>
@@ -84,7 +61,7 @@
 
 
     <header class="header">
-        <a href="{% url 'blog:home' %}" class="logo"><i class="fas fa-shopping-basket">فنی حرفه ای</i>
+        <a href="{% url 'blog:home' %}" class="logo"><i class="fas fa-shopping-basket">مرکز فنی حرفه ای ۱۴ جم</i>
             <nav class="navbar">
 
                 {% if request.user.is_authenticated %}
