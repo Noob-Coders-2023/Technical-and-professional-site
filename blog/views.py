@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ContectForm, ChoicesForm, CourseForm
-from .models import Course, Conect, Choes_cours,Free_school
+from .models import Course, Conect, Choes_cours, Free_school
 from django.contrib import messages
 from gallery.models import Image
 from posts.models import Post
@@ -39,6 +39,7 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
+
 # --------------detail cours
 @login_required()
 def detail(request, id):
@@ -55,6 +56,7 @@ def detail(request, id):
         return render(request, 'blog/detail.html', context)
 
     return redirect('account:login')
+
 
 # --------ارتباط با مسولین---------
 def conect(request):
@@ -73,7 +75,8 @@ def conect(request):
                 form.add_error('national_code', 'کد ملی وارد شده باید با کد ملی ثبت نام شما مطابقت داشته باشد.')
                 return render(request, 'blog/conect.html', {'form': form})
             cd = form.cleaned_data
-            Conect.objects.create(title=cd['title'], text=cd['text'], user=request.user)
+            Conect.objects.create(title=cd['title'], text=cd['text'], first_lastname=cd['first_lastname'],
+                                  user=request.user)
             messages.success(request, "پیام شما ارسال شد")
             return redirect('blog:conect')
 
@@ -86,6 +89,40 @@ def conect(request):
         form = ContectForm()
 
     return render(request, 'blog/conect.html', {'form': form})
+
+
+# _____________form shekayat___________
+def complaint(request):
+    if request.method == 'POST':
+        form = ContectForm(request.POST)
+        if form.is_valid():
+            phone_number = form.cleaned_data.get('phone_number')
+            national_code = form.cleaned_data.get('national_code')
+            user_national_code = request.user.national_code
+            user_phone_number = request.user.phone_number
+
+            if phone_number != user_phone_number:
+                form.add_error('phone_number', 'شماره تلفن وارد شده باید با شماره تلفن ثبت نام شما مطابقت داشته باشد.')
+                return render(request, 'blog/complaint_form.html', {'form': form})
+            if national_code != user_national_code:
+                form.add_error('national_code', 'کد ملی وارد شده باید با کد ملی ثبت نام شما مطابقت داشته باشد.')
+                return render(request, 'blog/complaint_form.html', {'form': form})
+            cd = form.cleaned_data
+            Conect.objects.create(title=cd['title'], text=cd['text'], user=request.user, first_lastname=cd['first_lastname'],subject=cd['subject'],
+                                  mehvar=cd['mehvar']
+                                  )
+            messages.success(request, "پیام شما ارسال شد")
+            return redirect('blog:complaint')
+
+        else:
+            messages.error(request, "پیام شما ارسال نشد,لطفا دوباره امتحان کنید.")
+            return render(request, 'blog/complaint_form.html', {'form': form})
+
+
+    else:
+        form = ContectForm()
+
+    return render(request, 'blog/complaint_form.html', {'form': form})
 
 
 def choices(request):
@@ -112,6 +149,7 @@ def user_selected_courses(request):
 
         return render(request, 'registration/home.html', context)
 
+
 # ------حذف درس----------
 def delete_course(request, id):
     user_courses = Choes_cours.objects.filter(id=id)
@@ -121,6 +159,7 @@ def delete_course(request, id):
         user_course.delete()
 
     return redirect('blog:home')
+
 
 # -----ساخت درس توسط ادمین----------
 def create_course(request):
@@ -138,10 +177,10 @@ def create_course(request):
 
     return render(request, 'blog/create_course.html', {'form': form})
 
+
 # ------دریافت لیست دروس اتخابی کلاینت---
 def export_courses_to_excel(request):
     courses = Choes_cours.objects.all()
-
 
     if not courses:
         return HttpResponse("هیچ دوره‌ای برای صدور یافت نشد.")
@@ -183,8 +222,8 @@ def resume(request):
 
 # ---------لیست اموزشگاه های آزاد----------
 def free_school(request):
-    academy_list=Free_school.objects.all()
-    context={
-        'academy_list':academy_list
+    academy_list = Free_school.objects.all()
+    context = {
+        'academy_list': academy_list
     }
-    return render(request, 'access/free_school.html',context)
+    return render(request, 'access/free_school.html', context)

@@ -27,9 +27,10 @@ body {
 }
 
 .container {
+    display: flex;
     outline: var(--outline);
     outline-offset: -3rem;
-    max-width: 761px;
+    max-width: 1000px;
     width: 100%;
     margin-bottom: 116px;
     padding: 59px 57px;
@@ -37,6 +38,8 @@ body {
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0 15px 50px rgba(0, 0, 0, .2);
+    justify-items: start;
+    flex-direction: column;
 }
 
 .container:hover,
@@ -120,9 +123,10 @@ form .user-details .input-box {
 }
 
 form .button {
-    height: 45px;
-    margin: 45px 0;
+      height: 45px;
+    margin: 45px 119px;
 }
+
 
 .button {
     height: 55px;
@@ -139,6 +143,21 @@ form .button {
 
 form .button button:hover {
     background: linear-gradient(-135deg, #718ce6, #05138d);
+}
+
+.mehvar_details{
+        display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    padding-right: 16px;
+}
+.mehvar_details .category{
+        display: flex;
+    padding-right: 14px;
+    flex-direction: column;
+}
+.mehvar_title{
+    color: #1717c2;
 }
 
 @media (max-width: 484px) {

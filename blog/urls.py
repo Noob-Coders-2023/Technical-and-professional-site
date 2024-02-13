@@ -12,5 +12,6 @@ urlpatterns = [
     path('export-courses/', export_courses_to_excel, name='export_courses_to_excel'),
     path('resume_me/', resume, name='resume'),
     path('amozeshgayeazad/',free_school, name='free_school'),
+    path('complaint_form/',complaint, name='complaint'),
 
 ]
