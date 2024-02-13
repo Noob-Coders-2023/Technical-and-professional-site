@@ -27,14 +27,22 @@ body {
 }
 
 .container {
-    max-width: 700px;
+    outline: var(--outline);
+    outline-offset: -3rem;
+    max-width: 761px;
     width: 100%;
     margin-bottom: 116px;
-    padding: 25px 30px;
+    padding: 59px 57px;
     background: #eee;
     box-sizing: border-box;
     border-radius: 10px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, .2)
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .2);
+}
+
+.container:hover,
+.container:active {
+    outline: var(--outline-hover);
+    outline-offset: -3rem;
 }
 
 .container .title {
@@ -44,13 +52,13 @@ body {
 }
 
 .container .title::before {
-    content: '';
+      content: '';
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 3px;
-    width: 25px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    height: 2px;
+    width: 54px;
+    background: #1111bd;
 }
 
 .container form .user-details {
@@ -66,7 +74,7 @@ form .user-details .input-box {
 }
 
 .user-details .input-box .detail {
-   font-size: 18px;
+    font-size: 18px;
     color: #0623b9;
     font-weight: 500;
     margin-bottom: 5px;
@@ -104,8 +112,10 @@ form .user-details .input-box {
 }
 
 .user-details .input-box .input:focus,
-.user-details .input-box .input:valid {
-    border-color: #9b59b6;
+.user-details .input-box .input:valid ,
+.user-details .input-box .input1:focus,
+.user-details .input-box .input1:valid{
+    border-color: #001180;
 
 }
 
@@ -124,11 +134,11 @@ form .button {
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(135deg, #718ce6, #05138d);
 }
 
 form .button button:hover {
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(-135deg, #718ce6, #05138d);
 }
 
 @media (max-width: 484px) {
@@ -153,28 +163,28 @@ form .button button:hover {
 }
 
 .alert-error {
-    background-color: rgba(243, 7, 7, 0.43);
+    background-color: #ff00009c;
     height: 50px;
     text-align: center;
-    padding-top: 13px;
-    width: 462px;
-    border-radius: 11px;
-    color: #800000;
-    border: 1px solid;
+    padding-top: 15px;
+    /* width: 462px; */
+    /* border-radius: 11px; */
+    color: #ffffff;
+    /* border: 1px solid; */
+    font-size: 18px;
 }
 
 .alert-success {
-    background-color: #4fdd336e;
+    background-color: #9ADE7B;
     height: 50px;
     text-align: center;
-    padding-top: 13px;
-    width: 462px;
-    border-radius: 11px;
-    color: green;
-    border: 1px solid;
+    padding-top: 15px;
+    color: #ffffff;
+    font-size: 18px;
 }
+
 .error {
-        border-color: red;
+    border-color: red;
     color: #ffff;
     background-color: #f94545b8;
     width: 691px;
@@ -187,9 +197,11 @@ form .button button:hover {
 
     border-bottom-color: #470000;
 }
-.error-message{
-        color: red;
+
+.error-message {
+    color: red;
 }
-.error-message{
+
+.error-message {
     padding-right: 23px;
 }

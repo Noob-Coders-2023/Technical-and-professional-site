@@ -113,7 +113,7 @@
                 </div>
                 <br>
                 <div class="input-box">
-                    <span class="detail">نام مرکز دولتی:</span>
+                    <span class="detail">نام مرکز :</span>
                     {{ form.govermentcenter|add_class:'input' }}
                     {% if form.govermentcenter.errors %}
                         <div class="error_message">
@@ -133,6 +133,16 @@
                             {{ form.workshop.errors }}
                         </div>
                     {% endif %}
+                </div>
+             <div class="input-box">
+                    <span class="detail">کد دوره(اختیاری):</span>
+                    {{ form.course_code|add_class:'input' }}
+
+{#                    {% if form.course_code.errors %}#}
+{#                        <div class="error_message">#}
+{#                            {{ form.course_code.errors }}#}
+{#                        </div>#}
+{#                    {% endif %}#}
                 </div>
                 <div class="input-box">
                     <span class="detail">جنسیت:</span>

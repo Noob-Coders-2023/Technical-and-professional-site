@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, detail, conect, choices, create_course, delete_course,export_courses_to_excel,resume
+from .views import *
 
 app_name = "blog"
 urlpatterns = [
@@ -11,5 +11,6 @@ urlpatterns = [
     path('delete_course/<int:id>/', delete_course, name='delete_course'),
     path('export-courses/', export_courses_to_excel, name='export_courses_to_excel'),
     path('resume_me/', resume, name='resume'),
+    path('amozeshgayeazad/',free_school, name='free_school'),
 
 ]

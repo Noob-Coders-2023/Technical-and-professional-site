@@ -17,7 +17,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
     phone_number = models.CharField(max_length=11, blank=True, null=True, unique=True)
-    national_code = models.CharField(max_length=20, blank=True, null=True)
+    national_code = models.CharField(max_length=10, blank=True, null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

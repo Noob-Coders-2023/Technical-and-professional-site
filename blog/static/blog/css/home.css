@@ -102,10 +102,12 @@ body {
     font-size: 15px;
     color: #0006c1;
 }
-
+.account div{
+    display: flex;
+}
 .account .logout {
-    margin-top: -54px;
-    font-size: 16px;
+
+    font-size: 18px;
     cursor: pointer;
     color: #2c20ab;
 }

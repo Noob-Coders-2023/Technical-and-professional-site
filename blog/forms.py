@@ -1,6 +1,5 @@
 from django import forms
 from blog.models import Course,Choes_cours
-from django.forms.renderers import TemplatesSetting
 from jalali_date.fields import JalaliDateField
 from jalali_date.widgets import AdminJalaliDateWidget
 
@@ -10,9 +9,11 @@ class ContectForm(forms.Form):
         "required": 'لطفا این فیلد را پر کنید',
 
     }
+    first_lastname=forms.CharField(label='نام و نام خانوادگی', error_messages=messages)
+    national_code=forms.CharField(label='کدملی', error_messages=messages)
+    phone_number=forms.CharField(label='شماره تماس', error_messages=messages)
     title = forms.CharField(label='موضوع', error_messages=messages)
-
-    text = forms.CharField(widget=forms.Textarea, label='متن پیام')
+    text = forms.CharField(label='متن پیام', error_messages=messages)
 
 
 class ChoicesForm(forms.Form):

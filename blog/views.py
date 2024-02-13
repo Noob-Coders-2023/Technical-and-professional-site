@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ContectForm, ChoicesForm, CourseForm
-from .models import Course, Conect, Choes_cours
+from .models import Course, Conect, Choes_cours,Free_school
 from django.contrib import messages
 from gallery.models import Image
 from posts.models import Post
@@ -15,7 +15,7 @@ from datetime import date as datetimeen
 
 # Create your views here.
 
-
+# ----------------page home
 def home(request):
     course_list = Course.objects.all().order_by('status')
     n = datetimeen.today()
@@ -39,7 +39,7 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
-
+# --------------detail cours
 @login_required()
 def detail(request, id):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
@@ -56,15 +56,30 @@ def detail(request, id):
 
     return redirect('account:login')
 
-
+# --------ارتباط با مسولین---------
 def conect(request):
     if request.method == 'POST':
         form = ContectForm(request.POST)
         if form.is_valid():
+            phone_number = form.cleaned_data.get('phone_number')
+            national_code = form.cleaned_data.get('national_code')
+            user_national_code = request.user.national_code
+            user_phone_number = request.user.phone_number
+
+            if phone_number != user_phone_number:
+                form.add_error('phone_number', 'شماره تلفن وارد شده باید با شماره تلفن ثبت نام شما مطابقت داشته باشد.')
+                return render(request, 'blog/conect.html', {'form': form})
+            if national_code != user_national_code:
+                form.add_error('national_code', 'کد ملی وارد شده باید با کد ملی ثبت نام شما مطابقت داشته باشد.')
+                return render(request, 'blog/conect.html', {'form': form})
             cd = form.cleaned_data
             Conect.objects.create(title=cd['title'], text=cd['text'], user=request.user)
             messages.success(request, "پیام شما ارسال شد")
             return redirect('blog:conect')
+
+        else:
+            messages.error(request, "پیام شما ارسال نشد,لطفا دوباره امتحان کنید.")
+            return render(request, 'blog/conect.html', {'form': form})
 
 
     else:
@@ -97,7 +112,7 @@ def user_selected_courses(request):
 
         return render(request, 'registration/home.html', context)
 
-
+# ------حذف درس----------
 def delete_course(request, id):
     user_courses = Choes_cours.objects.filter(id=id)
 
@@ -107,7 +122,7 @@ def delete_course(request, id):
 
     return redirect('blog:home')
 
-
+# -----ساخت درس توسط ادمین----------
 def create_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
@@ -123,7 +138,7 @@ def create_course(request):
 
     return render(request, 'blog/create_course.html', {'form': form})
 
-
+# ------دریافت لیست دروس اتخابی کلاینت---
 def export_courses_to_excel(request):
     courses = Choes_cours.objects.all()
 
@@ -164,3 +179,12 @@ def export_courses_to_excel(request):
 
 def resume(request):
     return render(request, 'blog/rezome.html')
+
+
+# ---------لیست اموزشگاه های آزاد----------
+def free_school(request):
+    academy_list=Free_school.objects.all()
+    context={
+        'academy_list':academy_list
+    }
+    return render(request, 'access/free_school.html',context)

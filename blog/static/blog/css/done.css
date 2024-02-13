@@ -68,3 +68,15 @@ tbody tr:nth-child(even){
 tbody tr:hover{
     background-color: #fff6;
 }
+td a{
+        display: flex;
+    width: 33px;
+    height: 39px;
+    text-align: center;
+    /* padding: 10px; */
+      margin: 12px 31px 12px 0;
+    color: #4e4e55;
+}
+td a:hover{
+        color:blue;
+}
