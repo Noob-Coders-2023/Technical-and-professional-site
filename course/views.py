@@ -221,8 +221,45 @@ def export_courses_to_excel(request):
     courses_df.to_excel(response, index=False)
 
     return response
+# ------دریافت لیست تمامی دروس ---
+def all_courses_to_excel(request):
+    courses = Course.objects.all()
+
+    if not courses:
+        return HttpResponse("هیچ دوره‌ای برای صدور یافت نشد.")
+
+    lst = []
+    for o in courses:
+        jalali_start = datetime.fromgregorian(datetime=o.start).strftime('%Y/%m/%d')
+        jalali_end = datetime.fromgregorian(datetime=o.end).strftime('%Y/%m/%d')
+        gender_display = 'زن' if o.gender == 'w' else 'مرد' if o.gender == 'm' else 'زن و مرد'
+        lst.append({
+            'ردیف': len(lst) + 1,
+            'نام دوره': o.title,
+            'مدرس': o.teacher,
+            'کد درس': o.course_code,
+            'تاریخ شروع':jalali_start,
+            'تاریخ پایان': jalali_end,
+            'نام مرکز دولتی': o.govermentcenter,
+            'کارگاه/آموزشگاه': o.workshop,
+            'جنسیت': gender_display,
+
+        })
+
+    courses_df = pd.DataFrame(lst)
 
 
+    excel_file_name = 'all_courses.xlsx'
+
+    # تولید فایل Excel
+    courses_df.to_excel(excel_file_name, index=False)
+
+    # ارسال فایل Excel به عنوان پاسخ به درخواست
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename="{excel_file_name}"'
+    courses_df.to_excel(response, index=False)
+
+    return response
 
 
 
