@@ -106,10 +106,12 @@ form .user-details .input-box {
     outline: none;
     border-radius: 5px;
     border: 1px solid #ccc;
-    padding-left: 15px;
+
     font-size: 16px;
     border-bottom-width: 2px;
     transition: all 0.3s ease;
+    resize: none;
+        padding: 13px;
 
 
 }
@@ -194,10 +196,9 @@ form .button button:hover {
     height: 50px;
     text-align: center;
     padding-top: 15px;
-    /* width: 462px; */
-    /* border-radius: 11px; */
+
     color: #ffffff;
-    /* border: 1px solid; */
+
     font-size: 18px;
 }
 

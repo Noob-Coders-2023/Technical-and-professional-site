@@ -11,14 +11,18 @@
 
     <link href="{% static 'post/css/creat-post.css' %}" rel="stylesheet">
     <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+       <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
 
 
     <title>ایجاد پست</title>
 </head>
 <body>
+<div>{% include 'blog/navbar.html' with current_date=current_date %}</div>
+<div>  {% include 'includes/messages_block.html' %}</div>
 <div class="cont">
+<div class="body">
 
-    <div>  {% include 'includes/messages_block.html' %}</div>
 
     <div class="container">
 
@@ -85,9 +89,10 @@
 
             </div>
         </form>
-    <a href="{% url 'blog:home' %}">بازگشت به خانه</a>
+
     </div>
 </div>
-
+</div>
+{% include 'blog/footer.html' %}
 </body>
 </html>

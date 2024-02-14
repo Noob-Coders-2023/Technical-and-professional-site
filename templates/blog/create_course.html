@@ -19,10 +19,10 @@
 </head>
 <body>
 <div>{% include 'blog/navbar.html' %}</div>
-
+    <div>  {% include 'includes/messages_block.html' %}</div>
 
 <div class="body">
-    <div>  {% include 'includes/messages_block.html' %}</div>
+
     <div class="container">
         <div class="title">ایجاد دوره جدید</div>
         <form action="#" method="post" novalidate enctype="multipart/form-data">
@@ -72,15 +72,7 @@
                     {% endif %}
                 </div>
                 <br>
-                <div class="input-box">
-                    <span class="detail">محتوا:</span>
-                    {{ form.description|add_class:'input' }}
-                    {% if form.description.errors %}
-                        <div class="error_message">
-                            {{ form.description.errors }}
-                        </div>
-                    {% endif %}
-                </div>
+
                 <br>
                 <div class="input-box">
                     <span class="detail">مدت زمان دوره:</span>
@@ -134,15 +126,15 @@
                         </div>
                     {% endif %}
                 </div>
-             <div class="input-box">
+                <div class="input-box">
                     <span class="detail">کد دوره(اختیاری):</span>
                     {{ form.course_code|add_class:'input' }}
 
-{#                    {% if form.course_code.errors %}#}
-{#                        <div class="error_message">#}
-{#                            {{ form.course_code.errors }}#}
-{#                        </div>#}
-{#                    {% endif %}#}
+                    {#                    {% if form.course_code.errors %}#}
+                    {#                        <div class="error_message">#}
+                    {#                            {{ form.course_code.errors }}#}
+                    {#                        </div>#}
+                    {#                    {% endif %}#}
                 </div>
                 <div class="input-box">
                     <span class="detail">جنسیت:</span>
@@ -151,6 +143,15 @@
                     {% if form.gender.errors %}
                         <div class="error_message">
                             {{ form.gender.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="input-box">
+                    <span class="detail">محتوا:</span>
+                    {{ form.description|add_class:'input1' }}
+                    {% if form.description.errors %}
+                        <div class="error_message">
+                            {{ form.description.errors }}
                         </div>
                     {% endif %}
                 </div>

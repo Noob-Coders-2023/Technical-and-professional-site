@@ -218,8 +218,7 @@ def export_courses_to_excel(request):
     return response
 
 
-def resume(request):
-    return render(request, 'blog/rezome.html')
+
 
 
 # ---------لیست اموزشگاه های آزاد----------

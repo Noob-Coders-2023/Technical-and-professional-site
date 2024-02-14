@@ -13,9 +13,9 @@ class Course(models.Model):
         ('f', 'مهلت به پایان رسید')
     )
     GENDER_CHOICES = (
-        ('w', 'مونث'),
-        ('m', 'مذکر'),
-        ('wm', 'مونث ومذکر')
+        ('w', 'زن'),
+        ('m', 'مرد'),
+        ('wm', 'زن و مرد')
     )
     title = models.CharField(max_length=70, verbose_name='نام دوره')
     teacher = models.CharField(max_length=100, null=True, verbose_name='مدرس')

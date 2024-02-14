@@ -12,14 +12,17 @@
 
     <link href="{% static 'gallery/css/add_img.css' %}" rel="stylesheet">
     <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
-
+   <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
 
     <title>آپلود تصویر جدید</title>
 </head>
 <body>
+<div>{% include 'blog/navbar.html' with current_date=current_date %}</div>
+<div>  {% include 'includes/messages_block.html' %}</div>
 <div class="cont">
 
-    <div>  {% include 'includes/messages_block.html' %}</div>
+<div class="body">
 
     <div class="container">
 
@@ -86,9 +89,10 @@
 
             </div>
         </form>
-    <a href="{% url 'blog:home' %}">بازگشت به خانه</a>
+
     </div>
 </div>
-
+</div>
+{% include 'blog/footer.html' %}
 </body>
 </html>

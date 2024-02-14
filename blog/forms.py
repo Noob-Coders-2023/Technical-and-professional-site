@@ -26,7 +26,7 @@ class ContectForm(forms.ModelForm):
     national_code = forms.CharField(label='کدملی', error_messages=messages)
     phone_number = forms.CharField(label='شماره تماس', error_messages=messages)
     title = forms.CharField(label='موضوع', error_messages=messages)
-    text = forms.CharField(label='متن پیام', error_messages=messages)
+    text = forms.CharField(label='متن پیام', error_messages=messages, widget=forms.Textarea)
     relationship = forms.ChoiceField(label='ارتباط با', error_messages=messages, choices=RELATIONSHIP_CHOICES)
 
 
@@ -59,7 +59,7 @@ class complaint (forms.ModelForm):
     national_code = forms.CharField(label='کدملی', error_messages=messages)
     phone_number = forms.CharField(label='شماره تماس', error_messages=messages)
     title = forms.CharField(label='موضوع', error_messages=messages)
-    text = forms.CharField(label='متن پیام', error_messages=messages)
+    text = forms.CharField(label='متن پیام', error_messages=messages, widget=forms.Textarea)
     mehvar = forms.MultipleChoiceField(label='محور شکایت', choices=MEHVAR_CHOICES, widget=forms.CheckboxSelectMultiple)
     subject = forms.ChoiceField(label='موضوع', error_messages=messages, choices=SUBJECT_CHOICES)
 
@@ -78,6 +78,7 @@ class CourseForm(forms.ModelForm):
         model = Course
         fields = '__all__'
 
+    description = forms.CharField(max_length=700, widget=forms.Textarea)
     def __init__(self, *args, **kwargs):
         super(CourseForm, self).__init__(*args, **kwargs)
         self.fields['start'] = JalaliDateField(label=('تاریخ شروع'), widget=AdminJalaliDateWidget)

@@ -1,16 +1,25 @@
-*{
+@font-face {
+    font-family: myFont;
+    src: url("/static/blog/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+*{font-family: 'myFont', Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
 }
 body{
-    display: flex;
+
     height: 100vh;
-    justify-content: center;
-    align-items: center;
-    /*background:linear-gradient(135deg,#71b7e6,#9b59b6);*/
     background:#eee ;
+}
+.body {
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .container{
     max-width: 700px;
@@ -30,8 +39,7 @@ body{
    right: 0; bottom: 0;
     height: 3px;
     width: 25px;
-    /*background:linear-gradient(135deg,#71b7e6,#9b59b6) ;*/
-    background: #eee;
+    background: #1111bd;
 }
 .container form .user-details{
     display: flex;
@@ -43,7 +51,6 @@ form .user-details .input-box{
     width:calc(100%/2 - 20px);
 }
 .user-details .input-box .detail{
-    margin-bottom: 15px;
     font-weight: 500;
     margin-bottom: 5px;
     display: block;
@@ -75,7 +82,7 @@ form .user-details .input-box{
 }
 .user-details .input-box .input:focus,
 .user-details .input-box .input:valid{
-    border-color: #9b59b6;
+  border-color: #001180;
 
 }
 form .button{
@@ -92,10 +99,13 @@ form .button button{
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-    background:linear-gradient(135deg,#71b7e6,#9b59b6);
+   background: linear-gradient(135deg, #718ce6, #05138d);
 }
 form .button button:hover{
-        background:linear-gradient(-135deg,#71b7e6,#9b59b6);
+  background: linear-gradient(-135deg, #718ce6, #05138d);
+}
+form .button button:active{
+    transform: scale(0.96);
 }
 @media (max-width:484px) {
 .container{
@@ -112,20 +122,42 @@ form .button button:hover{
 .user-details::-webkit-scrollbar{width: 0}
 
 }
+.alert-error {
+    background-color: #ff00009c;
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+.alert-success {
+    background-color: #9ADE7B;
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
 .error {
-        border-color: red;
     color: #ffff;
     background-color: #f94545b8;
-    width: 691px;
+    /* width: 691px; */
     height: 50px;
     text-align: center;
     padding-top: 16px;
     margin-bottom: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
 
-    border-bottom-color: #470000;
 }
-.error_message{
-        color: red;
+
+.errorlist {
+        padding: 9px 24px;
+    color: red;
+}
+
+.error-message {
+    padding-right: 23px;
 }

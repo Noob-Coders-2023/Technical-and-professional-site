@@ -87,9 +87,7 @@ body {
     height: 55px;
 }
 
-.logo img {
 
-}
 
 .header .logo {
     font-size: 2.5rem;
@@ -97,10 +95,15 @@ body {
     color: var(--black);
 
 }
-
+#svg{
+    background-color: unset;
+}
 .header .logo i {
     font-size: 15px;
     color: #0006c1;
+}
+.header .logo i:hover{
+    color: #01012c;
 }
 .account div{
     display: flex;

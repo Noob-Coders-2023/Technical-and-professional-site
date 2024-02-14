@@ -4,7 +4,7 @@ from .models import Post
 from .forms import PostForm
 from jdatetime import datetime
 from extension.utils import persian_number_converter
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -17,7 +17,10 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.user = request.user
             new_post.save()
+            messages.success(request, "پست شما با موفقیت آپلود شد.", 'success')
             return redirect('posts:create')
+        else:
+            messages.error(request, "متاسفانه پست شما با موفقیت آپلود نشد.لطفا مجددا تلاش کنید.", 'error')
     else:
         form = PostForm()
     return render(request, 'posts/create_post.html', {'form': form})

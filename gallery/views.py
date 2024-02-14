@@ -14,11 +14,14 @@ def add_gallery_item(request):
             form.save()
             messages.success(request, "عکس شما با موفقیت آپلود شد.", 'success')
             return redirect('gallery:image_gallery')
+        else:
+            messages.error(request, "متاسفانه وعکس شما با موفقیت آپلود نشد.لطفا مجددا تلاش کنید.", 'error')
+
+
     else:
-        # messages.error(request, "متاسفانه وعکس شما با موفقیت آپلود نشد.لطفا مجددا تلاش کنید.",extra_tags='error')
         form = GalleryItemForm()
 
-    # messages.success(request, "عکس شما با موفقیت آپلود شد.",'success')
+
     return render(request, 'gallery/add_img.html', {'form': form})
 def slide_detail(request, id):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
