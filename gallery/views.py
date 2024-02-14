@@ -23,6 +23,19 @@ def add_gallery_item(request):
 
 
     return render(request, 'gallery/add_img.html', {'form': form})
+
+def galleries(request):
+    current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
+    gallery_list = Image.objects.all()
+    context = {
+        'gallery_list': gallery_list,
+        'current_date': current_date
+    }
+    return render(request, 'gallery/detail-imgs.html', context)
+
+
+
+
 def slide_detail(request, id):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     image = get_object_or_404(Image, pk=id)

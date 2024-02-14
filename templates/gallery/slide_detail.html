@@ -4,11 +4,11 @@
 <head>
     <title>{{ image.title }}</title>
         <link href="{% static 'gallery/css/slide_detail.css' %}" rel="stylesheet">
-        <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
-    <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
-        <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
 </head>
-<body>{% include 'blog/navbar.html' with current_date=current_date %}
+<body>{% include 'course/navbar.html' with current_date=current_date %}
 <div class="gallery">
 
 
@@ -23,6 +23,6 @@
     <p>{{ image.description|linebreaks }}</p>
 </div>
 </div>
-{% include 'blog/footer.html' %}
+{% include 'course/footer.html' %}
 </body>
 </html>

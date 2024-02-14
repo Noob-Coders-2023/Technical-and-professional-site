@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ post.title }}</title>
-        <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
-        <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
-        <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
         <link href="{% static 'post/css/detail-post.css' %}" rel="stylesheet">
 </head>
 <body>
-{% include 'blog/navbar.html' %}
+{% include 'course/navbar.html' %}
 <div class="container">
 <div class="title">{{ post.title }}</div>
 <div class="content">{{ post.content|linebreaks }}</div>
 <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}">
 <div class="created_at ">{{ post.jcreated_at}}</div>
 </div>
-{% include 'blog/footer.html' %}
+{% include 'course/footer.html' %}
 </body>
 </html>

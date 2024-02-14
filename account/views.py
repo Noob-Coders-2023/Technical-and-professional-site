@@ -8,7 +8,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from blog.models import Choes_cours
+from course.models import Choes_cours
 from .forms import SignupForm, CustomUserChangeForm, VerifyCodeForm
 from .tokens import account_activation_token
 from django.contrib.auth import get_user_model
@@ -126,7 +126,7 @@ class UserRegisterVerifyCodeView(View):
             else:
                 messages.error(request, 'کد شما اشتباه است', 'danger')
                 return redirect('account:verify_code')
-        return redirect('blog:home')
+        return redirect('course:home')
 
 
 @login_required

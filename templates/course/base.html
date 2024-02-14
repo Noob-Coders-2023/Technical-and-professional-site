@@ -1,0 +1,40 @@
+{% load static %}
+{% load base_tags %}
+{% include 'includes/messages_block.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>فنی و حرفه ای</title>
+    <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'gallery/css/gallery.css' %}" rel="stylesheet">
+    <link href="{% static 'post/css/show-posts.css' %}" rel="stylesheet">
+    <link href="{% static 'access/css/access.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
+
+
+
+</head>
+<body>
+{% block header_top %}
+
+{% endblock %}
+
+{% include 'course/navbar.html' %}
+{% block gallery %}{% endblock %}
+{% block access %}{% endblock %}
+{% block features %}{% endblock %}
+{% block excel %}{% endblock %}
+{% include 'course/footer.html' %}
+</body>
+<script src="{% static 'gallery/js/gallery.js' %}"></script>
+<script src="{% static 'Exel/Exel.js' %}"></script>
+<script src="{% static 'access/js/access-js.js' %}"></script>
+<script src="{% static 'access/js/script.js' %}"></script>
+
+
+</html>

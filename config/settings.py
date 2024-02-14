@@ -15,8 +15,8 @@ from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOGIN_REDIRECT_URL = 'blog:home'
-LOGOUT_REDIRECT_URL = 'blog:home'
+LOGIN_REDIRECT_URL = 'course:home'
+LOGOUT_REDIRECT_URL = 'course:home'
 LOGIN_URL = 'account:login'
 
 # Quick-start development settings - unsuitable for production
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
+    'course.apps.BlogConfig',
     'account.apps.AccountConfig',
     'extension',
     'widget_tweaks',
@@ -99,7 +99,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'blog.contextprocessor.time_now'
+                'course.contextprocessor.time_now'
             ],
         },
     },

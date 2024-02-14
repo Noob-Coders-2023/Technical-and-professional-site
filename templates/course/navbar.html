@@ -1,0 +1,99 @@
+{% load static %}
+{% load base_tags %}
+{#----------------navbar-------------------- #}
+{% block navbar %}
+
+    <div class="header_top">
+
+        <div class="slogan">
+            <img src="{% static 'course/img/سال.png' %}" alt="شعار سال" width="196"
+                 height="110">
+        </div>
+        <a class="logo" aria-label="title" target="_self">
+            <img src="{% static 'gallery/svg/logo-animate_1.svg' %}" type="image/svg+xml" width="240"
+                 height="116" alt="logo title">
+        </a>
+
+
+        <div class="header_top__left">
+            <div class="date__today">
+
+                تاریخ امروز: {{ current_date }}
+            </div>
+            <div class="account">
+                <div>
+                    {#<-----------login------------------->#}
+                    {% if request.user.is_anonymous %}
+                        <div class="logins">
+                        <a class="icon" href="{% url 'account:login' %}">
+                            ورود
+                        </a>
+                        <div class="slash">/</div>
+                        <a class="icon" href="{% url 'account:register' %}">ثبت نام</a>
+
+                        </div>
+                    {% endif %}
+                    <br>
+                    {#<--------------------log out----------->#}
+                    <form method="post" action="{% url 'account:logout' %}">
+                        {% csrf_token %}
+                        {% if request.user.is_authenticated %}
+                            <button type="submit" id="svg" >
+                               <div class="logout">خروج</div>
+                            </button>
+                        {% endif %}
+                    </form>
+
+
+                </div>
+                {% if request.user.is_authenticated %}
+
+                    <a href="{% url 'account:password_change' %}">تغییر پسورد</a>
+                    <a href="{% url 'account:password_reset' %}">فراموشی پسورد</a>
+
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <header class="header">
+        <a href="{% url 'course:home' %}" class="logo"><i class="fas fa-shopping-basket">مرکز فنی حرفه ای ۱۴ جم</i>
+            <nav class="navbar">
+
+                {% if request.user.is_authenticated %}
+
+                    <a href="{% url 'account:user_selected_courses' %}">دروس انتخابی</a>
+                    <a href="{% url 'course:conect' %}">ارتباط با مسولین</a>
+                    <a href="{% url 'account:profile' %}">پروفایل</a>
+                    {% if user.is_admin %}
+                        <a href="{% url 'course:create_course' %}">ایجاد دوره</a>
+                    {% endif %}
+                    <a href='{% url 'posts:list' %}'>پست ها</a>
+                    <a href='{% url 'gallery:galleries' %}'>گالری</a>
+                    <div href="#" class="about-us">درباره ما
+                        <ul class="submenu">
+
+
+                            <li><a href="https://irantvto.ir/%D9%85%D8%B9%D8%B1%D9%81%DB%8C-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86">معرفی سازمان</a></li>
+                            <li><a href="https://irantvto.ir/%D8%B4%D8%B1%D8%AD-%D9%88%D8%B8%D8%A7%DB%8C%D9%81-%D8%B5%D9%81%D8%AD%D9%87-%D8%A7%D8%B5%D9%84%DB%8C">شرح وضایف</a></li>
+                            <li><a href="https://irantvto.ir/%D9%85%D9%86%D8%B4%D9%88%D8%B1">منشور اخلاقی</a></li>
+                            <li><a href="https://irantvto.ir/%D9%85%D8%B9%D8%B1%D9%81%DB%8C-%D9%85%D8%AF%DB%8C%D8%B1%D8%A7%D9%86">معرفی مدیران</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+                {% endif %}
+            </nav>
+        </a>
+        <div class="icons">
+
+
+        </div>
+    </header>
+{% endblock %}

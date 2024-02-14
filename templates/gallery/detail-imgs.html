@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>گالری ها</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'post/css/list_post.css' %}" rel="stylesheet">
+</head>
+<body>
+{% include 'course/navbar.html' %}
+
+<div class="container">
+    {% for gallery in gallery_list %}
+        <div class="conten">
+        <img src="{{ gallery.image.url }}" alt="{{ gallery.title }}">
+        <div class="flex">
+        <a class="title" href="{% url 'gallery:slide_detail' gallery.id %}">{{ gallery.title|truncatewords:10 }}</a>
+
+
+</div></div>
+    {% endfor %}
+    </div>
+    {% include 'course/footer.html' %}
+</body>
+</html>

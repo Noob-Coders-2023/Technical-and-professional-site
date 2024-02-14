@@ -10,14 +10,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ post.title }}</title>
-        <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
-        <link href="{% static 'blog/css/home.css' %}" rel="stylesheet">
-        <link href="{% static 'blog/css/footer.css' %}" rel="stylesheet">
+    <title>پست ها</title>
+        <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
         <link href="{% static 'post/css/list_post.css' %}" rel="stylesheet">
 </head>
 <body>
-{% include 'blog/navbar.html' %}
+{% include 'course/navbar.html' %}
 
 <div class="container">
 {% for post in post_list %}
@@ -30,6 +30,6 @@
 <div class="created_at ">{{ post.jcreated_at}}</div></div></div>
    {% endfor %}
 </div>
-{% include 'blog/footer.html' %}
+{% include 'course/footer.html' %}
 </body>
 </html>

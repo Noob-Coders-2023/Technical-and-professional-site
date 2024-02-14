@@ -1,0 +1,178 @@
+{% load jalali_tags %}
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="{% static 'course/css/sabt.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+
+    <title>ایجاد دوره جدید</title>
+</head>
+<body>
+<div>{% include 'course/navbar.html' %}</div>
+    <div>  {% include 'includes/messages_block.html' %}</div>
+
+<div class="body">
+
+    <div class="container">
+        <div class="title">ایجاد دوره جدید</div>
+        <form action="#" method="post" novalidate enctype="multipart/form-data">
+
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div>
+                    {% for error in form.non_field_errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="user-details">
+                <div class="input-box">
+
+
+                    <span class="detail">نام دوره:</span>
+                    {{ form.title|add_class:'input' }}
+
+                    {% if form.title.errors %}
+                        <div class="error_message">
+                            {{ form.title.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <br>
+                <div class="input-box">
+                    <span class="detail">مدرس:</span>
+                    {{ form.teacher|add_class:'input' }}
+                    {% if form.teacher.errors %}
+                        <div class="error_message">
+                            {{ form.teacher.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="input-box">
+                    <span class="detail">تصویر: </span>
+                    {{ form.thumbnail|add_class:'input' }}
+                    {% if form.thumbnail.errors %}
+                        <div class="error_message">
+                            {{ form.thumbnail.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+
+                <br>
+                <div class="input-box">
+                    <span class="detail">مدت زمان دوره:</span>
+                    {{ form.time|add_class:'input' }}
+                    {% if form.time.errors %}
+                        <div class="error_message">
+                            {{ form.time.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+                <div class="input-box">
+                    <span class="detail">تاریخ شروع:</span>
+                    {{ form.start|add_class:'input' }}
+                    {% if form.start.errors %}
+                        <div class="error_message">
+                            {{ form.start.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+                <div class="input-box">
+                    <span class="detail">تاریخ پایان:</span>
+                    {{ form.end|add_class:'input' }}
+                    {% if form.end.errors %}
+                        <div class="error_message">
+                            {{ form.end.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+                <div class="input-box">
+                    <span class="detail">نام مرکز :</span>
+                    {{ form.govermentcenter|add_class:'input' }}
+                    {% if form.govermentcenter.errors %}
+                        <div class="error_message">
+                            {{ form.govermentcenter.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+
+
+                <div class="input-box">
+                    <span class="detail">کارگاه/آموزشگاه:</span>
+                    {{ form.workshop|add_class:'input' }}
+
+                    {% if form.workshop.errors %}
+                        <div class="error_message">
+                            {{ form.workshop.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="input-box">
+                    <span class="detail">کد دوره(اختیاری):</span>
+                    {{ form.course_code|add_class:'input' }}
+
+                    {#                    {% if form.course_code.errors %}#}
+                    {#                        <div class="error_message">#}
+                    {#                            {{ form.course_code.errors }}#}
+                    {#                        </div>#}
+                    {#                    {% endif %}#}
+                </div>
+                <div class="input-box">
+                    <span class="detail">جنسیت:</span>
+                    {{ form.gender|add_class:'input' }}
+
+                    {% if form.gender.errors %}
+                        <div class="error_message">
+                            {{ form.gender.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="input-box">
+                    <span class="detail">محتوا:</span>
+                    {{ form.description|add_class:'input1' }}
+                    {% if form.description.errors %}
+                        <div class="error_message">
+                            {{ form.description.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <br>
+                <input type="hidden" name="status" value="n">
+
+
+                <div class="button">
+                    <button type="submit">ثبت</button>
+                </div>
+                <br>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+{% include 'course/footer.html' %}
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<script src="{% static 'course/js/create_course.js' %}"></script>
+</body>
+</html>
