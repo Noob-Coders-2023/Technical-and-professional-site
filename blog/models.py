@@ -5,6 +5,7 @@ from django.conf import settings
 from extension.utils import jalali_converter, persian_number_converter
 from django.core.exceptions import ValidationError
 
+
 # Create your models here.
 class Course(models.Model):
     STATUS_CHOICES = (
@@ -53,29 +54,36 @@ class Course(models.Model):
 
 
 class Conect(models.Model):
-    SUBJECT_CHOICES =(
-        ('sh','شکایت'),
-        ('da','درخوایت'),
-        ('en','انتقاد'),
+    SUBJECT_CHOICES = (
+        ('sh', 'شکایت'),
+        ('da', 'درخواست'),
+        ('en', 'انتقاد'),
 
     )
-    MEHVAR_CHOICES=(
-        ('ma','مالی'),
-        ('ed','اداری'),
-        ('am','آموزش'),
-        ('sa','سنجش و گواهینامه'),
-        ('ta','تکریم ارباب رجوع'),
+    MEHVAR_CHOICES = (
+        ('ma', 'مالی'),
+        ('ed', 'اداری'),
+        ('am', 'آموزش'),
+        ('sa', 'سنجش و گواهینامه'),
+        ('ta', 'تکریم ارباب رجوع'),
 
     )
-    first_lastname=models.CharField(max_length=150,verbose_name='نام و نام خانوادگی',null=True, blank=True)
+    RELATIONSHIP_CHOICES = (
+        ('rm', 'رییس مرکز'),
+        ('ka', 'کارشناس آموزش'),
+        ('ki', 'کارشناس it'),
+        ('ma', 'معاون آموزش'),
+        ('em', 'ارتباط با مربیان'),
+    )
+    first_lastname = models.CharField(max_length=150, verbose_name='نام و نام خانوادگی', null=True, blank=True)
     national_code = models.CharField(max_length=10, blank=True, null=True)
     phone_number = models.CharField(max_length=11, blank=True, null=True, unique=True)
     title = models.CharField(max_length=100, verbose_name='موضوع', null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, null=True, blank=True)
     text = models.CharField(max_length=700, verbose_name='متن پیام', null=True, blank=True)
-    subject= models.CharField(max_length=2, choices=SUBJECT_CHOICES, verbose_name='موضوع', null=True, blank=True)
-    mehvar=models.CharField(max_length=2, choices=MEHVAR_CHOICES, verbose_name='محور شکایت', null=True, blank=True)
-
+    subject = models.CharField(max_length=2, choices=SUBJECT_CHOICES, verbose_name='موضوع', null=True, blank=True)
+    mehvar = models.CharField(max_length=2, choices=MEHVAR_CHOICES, verbose_name='محور شکایت', null=True, blank=True)
+    relationship=models.CharField(max_length=2,choices=RELATIONSHIP_CHOICES ,verbose_name='ارتباط با', null=True, blank=True)
     class Meta:
         verbose_name = "پیام "
         verbose_name_plural = 'پیام ها'
@@ -87,7 +95,8 @@ class Choes_cours(models.Model):
     selection_time = models.DateField(auto_now_add=True, verbose_name='زمان انتخاب شده درس', null=True, blank=True)
 
     def jselection_time(self):
-         return jalali_converter(self.selection_time)
+        return jalali_converter(self.selection_time)
+
 
 # class YourModel(models.Model):
 #     image = models.ImageField(upload_to='images/')
@@ -98,17 +107,14 @@ class Free_school(models.Model):
         ('m', 'مذکر'),
         ('wm', 'مونث ومذکر')
     )
-    name= models.CharField(max_length=40, verbose_name='نام آموزشگاه')
-    founder=models.CharField(max_length=60, verbose_name='نام موسس')
+    name = models.CharField(max_length=40, verbose_name='نام آموزشگاه')
+    founder = models.CharField(max_length=60, verbose_name='نام موسس')
     phone_number = models.CharField(max_length=11, verbose_name='شماره تماس')
-    field=models.CharField(max_length=100 ,verbose_name='رشته آموزشی')
+    field = models.CharField(max_length=100, verbose_name='رشته آموزشی')
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES, verbose_name='جنسیت')
-    address=models.CharField(max_length=150,verbose_name='آدرس')
+    address = models.CharField(max_length=150, verbose_name='آدرس')
     location_link = models.CharField(max_length=255, blank=True, null=True, verbose_name='لینک گوگل مپ')
 
     class Meta:
         verbose_name = "آموزشگاه آزاد"
         verbose_name_plural = 'آموزشگاهای آزاد'
-
-
-

@@ -75,13 +75,14 @@ def conect(request):
                 form.add_error('national_code', 'کد ملی وارد شده باید با کد ملی ثبت نام شما مطابقت داشته باشد.')
                 return render(request, 'blog/conect.html', {'form': form})
             cd = form.cleaned_data
-            Conect.objects.create(title=cd['title'], text=cd['text'], first_lastname=cd['first_lastname'],
+            Conect.objects.create(title=cd['title'], text=cd['text'], first_lastname=cd['first_lastname'],relationship=cd['relationship'],
                                   user=request.user)
             messages.success(request, "پیام شما ارسال شد")
             return redirect('blog:conect')
 
         else:
             messages.error(request, "پیام شما ارسال نشد,لطفا دوباره امتحان کنید.")
+
             return render(request, 'blog/conect.html', {'form': form})
 
 
@@ -91,10 +92,10 @@ def conect(request):
     return render(request, 'blog/conect.html', {'form': form})
 
 
-# _____________form shekayat___________
+# _____________form shekayat ___________
 def complaint(request):
     if request.method == 'POST':
-        form = ContectForm(request.POST)
+        form = complaint(request.POST)
         if form.is_valid():
             phone_number = form.cleaned_data.get('phone_number')
             national_code = form.cleaned_data.get('national_code')
@@ -116,6 +117,7 @@ def complaint(request):
 
         else:
             messages.error(request, "پیام شما ارسال نشد,لطفا دوباره امتحان کنید.")
+
             return render(request, 'blog/complaint_form.html', {'form': form})
 
 

@@ -156,9 +156,17 @@ form .button button:hover {
     padding-right: 14px;
     flex-direction: column;
 }
-.mehvar_title{
+.mehvar_title,.subject_title{
     color: #1717c2;
 }
+.subject_details{
+    display: flex;
+    gap: 11px;
+    flex-direction: column;
+    font-size: 18px;
+    padding-right: 20px;
+}
+
 
 @media (max-width: 484px) {
     .container {

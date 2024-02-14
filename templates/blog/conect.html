@@ -64,8 +64,7 @@
                 {% endif %}
 
             </div>
-
-            <div class="input-box">
+      <div class="input-box">
                 <label class="detail">موضوع:</label>
                 {{ form.title|add_class:"input" }}
                 {% if form.title.errors %}
@@ -75,6 +74,17 @@
                 {% endif %}
 
             </div>
+            <div class="input-box">
+                <label class="detail">ارتباط با:</label>
+                {{ form.relationship|add_class:"input" }}
+                {% if form.relationship.errors %}
+                    <div class="error-message">
+                        {{ form.relationship.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
             <div class="input-box">
                 <label class="detail">متن پیام:</label>
                 {{ form.text|add_class:"input1" }}

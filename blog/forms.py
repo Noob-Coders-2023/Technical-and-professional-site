@@ -11,22 +11,49 @@ class ContectForm(forms.ModelForm):
 
     class Meta:
         model = Conect
-        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'mehvar', 'subject']
-        widgets = {'mehvar': forms.CheckboxSelectMultiple()}
+        exclude = [ 'subject', 'mehvar']
+        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'relationship']
 
-    MEHVAR_CHOICES = [
+
+    RELATIONSHIP_CHOICES = (
+        ('rm', 'رییس مرکز'),
+        ('ka', 'کارشناس آموزش'),
+        ('ki', 'کارشناس it'),
+        ('ma', 'معاون آموزش'),
+        ('em', 'ارتباط با مربیان'),
+    )
+    first_lastname = forms.CharField(label='نام و نام خانوادگی', error_messages=messages)
+    national_code = forms.CharField(label='کدملی', error_messages=messages)
+    phone_number = forms.CharField(label='شماره تماس', error_messages=messages)
+    title = forms.CharField(label='موضوع', error_messages=messages)
+    text = forms.CharField(label='متن پیام', error_messages=messages)
+    relationship = forms.ChoiceField(label='ارتباط با', error_messages=messages, choices=RELATIONSHIP_CHOICES)
+
+
+#   فرم شکایت---------------------------
+class complaint (forms.ModelForm):
+    messages = {
+        "required": 'لطفا این فیلد را پر کنید',
+    }
+    SUBJECT_CHOICES = (
+        ('sh', 'شکایت'),
+        ('da', 'درخواست'),
+        ('en', 'انتقاد'),
+
+    )
+    MEHVAR_CHOICES = (
         ('ma', 'مالی'),
         ('ed', 'اداری'),
         ('am', 'آموزش'),
         ('sa', 'سنجش و گواهینامه'),
         ('ta', 'تکریم ارباب رجوع'),
-    ]
-    SUBJECT_CHOICES =(
-        ('sh','شکایت'),
-        ('da','درخوایت'),
-        ('en','انتقاد'),
 
     )
+    class Meta:
+        model = Conect
+        exclude = [ 'relationship']
+        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'mehvar', 'subject']
+        widgets = {'mehvar': forms.CheckboxSelectMultiple()}
 
     first_lastname = forms.CharField(label='نام و نام خانوادگی', error_messages=messages)
     national_code = forms.CharField(label='کدملی', error_messages=messages)
@@ -35,7 +62,6 @@ class ContectForm(forms.ModelForm):
     text = forms.CharField(label='متن پیام', error_messages=messages)
     mehvar = forms.MultipleChoiceField(label='محور شکایت', choices=MEHVAR_CHOICES, widget=forms.CheckboxSelectMultiple)
     subject = forms.ChoiceField(label='موضوع', error_messages=messages, choices=SUBJECT_CHOICES)
-
 
 class ChoicesForm(forms.Form):
     GENDER_CHOICES = (
