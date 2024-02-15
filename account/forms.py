@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+from captcha.fields import CaptchaField
 messages = {
     "required": 'لطفا این فیلد را پر کنید',
     'invalid': 'لطفا کارکتر معتبر وارد کنید',
@@ -21,6 +21,7 @@ class SignupForm(UserCreationForm):
         ('m', 'مذکر'),
 
     )
+    captcha = CaptchaField()
     password1 = forms.CharField(label='password', widget=forms.PasswordInput,required=True)
     password2 = forms.CharField(label='confirm password', widget=forms.PasswordInput)
     email = forms.EmailField(label='ایمیل', required=True)
@@ -99,3 +100,5 @@ class VerifyCodeForm(forms.Form):
         max_value=9999,
         localize=True,
     )
+
+

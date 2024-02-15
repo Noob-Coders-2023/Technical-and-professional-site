@@ -24,9 +24,9 @@ from .models import OtpCode
 from django.contrib import messages
 from jdatetime import datetime
 from extension.utils import persian_number_converter
+from captcha.fields import CaptchaStore
+
 CustomUser = get_user_model()
-
-
 # Create your views here.
 
 
@@ -60,6 +60,11 @@ class Register(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
+            captcha_value = form.cleaned_data['captcha']
+            captcha_key = form.cleaned_data['captcha_0']
+            if not CaptchaStore.objects.filter(response=captcha_value, hashkey=captcha_key).exists():
+                messages.error(request, 'کد امنیتی نادرست است', 'danger')
+                return render(request, 'registration/register.html', {'form': form})
             random_code = random.randint(1000, 9999)
             send_top_code(form.cleaned_data['phone_number'], random_code)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)

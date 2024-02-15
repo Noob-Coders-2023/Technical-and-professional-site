@@ -1,0 +1,97 @@
+@font-face {
+    font-family: myFont;
+    src: url("/static/blog/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+
+:root {
+  --rotation-angle: 0deg;
+  --font-family: 'cursive';
+  --captcha-color: #00d50b;
+}
+
+.captcha .preview span {
+  display: inline-block;
+  transform: rotate(var(--rotation-angle));
+  font-family: var(--font-family);
+  color: var(--captcha-color);
+}
+
+.captcha_refresh {
+  cursor: pointer;
+}
+
+/* افزودن تغییرات به دکمه تازه‌سازی */
+.captcha_refresh:hover {
+  transform: rotate(180deg);
+}
+.captcha .preview{
+    text-align: center;
+   height: 66px;
+    width: 46%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    padding-right: 10px;
+       font-family: 'myFont', Arial, sans-serif;
+        padding-top: 2px;
+    font-size: 28px;
+}
+.captcha {
+
+    width: 573px;
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding: 21px;
+}
+.captcha_form{
+        display: flex;
+    align-items: center;
+    gap: 12px;
+}
+#captcha_form{
+        height: 42px;
+    width: 38%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    padding-right: 10px;
+}
+#captcha_form:hover,
+#captcha_form:active{
+border-color: #001180;
+}
+.captcha label{
+        color: #cf1818;
+    font-size: 17px;
+}
+.captcha_refresh{
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    padding: 5px 5px;
+    outline: none;
+    border: 1px solid #cbc9c9;
+     border-radius: 5px;
+        border-bottom-width: 2px;
+}
+.captcha_refresh:hover,
+.captcha_refresh:active{
+    border-color: #001180;
+    box-shadow: 0 15px 50px rgba(0,0,0,.2);
+
+}
+.captcha_refresh:active{
+        transform: scale(0.9);
+}

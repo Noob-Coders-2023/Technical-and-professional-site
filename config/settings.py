@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'gallery.apps.GalleryConfig',
     'posts.apps.PostsConfig',
     'jalali_date',
+    'captcha',
 
 
 ]

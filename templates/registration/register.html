@@ -10,15 +10,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link href="{% static 'course/css/singup.css' %}" rel="stylesheet">
+    <link href="{% static 'error/error.css' %}" rel="stylesheet">
     <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
 
 
     <title>ثبت نام</title>
 </head>
 <body>
+<div>  {% include 'includes/messages_block.html' %}</div>
 <div class="cont">
 
-    <div>  {% include 'includes/messages_block.html' %}</div>
+
     <div class="container">
 
         <div class="title">ثبت نام</div>
@@ -151,9 +153,12 @@
                         {% endfor %}
                     </div>
                 </div>
+{% include 'captcha/captcha.html' %}
+
+
 
                 <div class="button">
-                    <button type="submit">ثبت نام</button>
+                    <button type="submit" id="login_btn">ثبت نام</button>
                 </div>
 
 

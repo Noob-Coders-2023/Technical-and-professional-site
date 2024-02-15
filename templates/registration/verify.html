@@ -20,9 +20,10 @@
 <body>
 {% include 'course/navbar.html' %}
 
+  <div>  {% include 'includes/messages_block.html' %}</div>
+<div id="container">
+<div id="content">
 
-<div class="container">
-    <div>  {% include 'includes/messages_block.html' %}</div>
     <div class="title">کد ارسال شده را وارد کنید!</div>
     <form method="post" novalidate>
         {% csrf_token %}
@@ -51,6 +52,7 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 
 {% include 'course/footer.html' %}
