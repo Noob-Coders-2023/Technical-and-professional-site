@@ -1,3 +1,16 @@
+@font-face {
+    font-family: myFont;
+   src: url("/static/course/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+
+* {
+    font-family: 'myFont', Arial, sans-serif;
+
+
+}
 .footer .containe{
     border-radius: unset;
     width: 100%;

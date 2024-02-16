@@ -5,8 +5,12 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from extension.utils import persian_number_converter
 from jdatetime import datetime
+from django_ratelimit.decorators import ratelimit
+
 # Create your views here.
 
+
+@ratelimit(key='user_or_ip', rate='10/m')
 def add_gallery_item(request):
     if request.method == 'POST':
         form = GalleryItemForm(request.POST, request.FILES)
@@ -24,6 +28,9 @@ def add_gallery_item(request):
 
     return render(request, 'gallery/add_img.html', {'form': form})
 
+
+
+@ratelimit(key='user_or_ip', rate='10/m')
 def galleries(request):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     gallery_list = Image.objects.all()
@@ -36,6 +43,8 @@ def galleries(request):
 
 
 
+
+@ratelimit(key='user_or_ip', rate='10/m')
 def slide_detail(request, id):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     image = get_object_or_404(Image, pk=id)

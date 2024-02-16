@@ -5,11 +5,13 @@ from .forms import PostForm
 from jdatetime import datetime
 from extension.utils import persian_number_converter
 from django.contrib import messages
+from django_ratelimit.decorators import ratelimit
 
 # Create your views here.
 
 
 @login_required
+@ratelimit(key='user_or_ip', rate='10/m')
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -25,7 +27,7 @@ def create_post(request):
         form = PostForm()
     return render(request, 'posts/create_post.html', {'form': form})
 
-
+@ratelimit(key='user_or_ip', rate='10/m')
 def posts(request):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     posts_list = Post.objects.all().order_by('-created_at')
@@ -35,7 +37,7 @@ def posts(request):
     }
     return render(request, 'posts/detail-posts.html', context)
 
-
+@ratelimit(key='user_or_ip', rate='10/m')
 def post(request, id):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     context = {

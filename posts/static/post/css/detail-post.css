@@ -1,3 +1,13 @@
+@font-face {
+    font-family: myFont;
+    src: url("/static/course/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+*{    font-family: 'myFont', Arial, sans-serif;
+
+
+}
 .container {
     display: flex;
     flex-direction: column;

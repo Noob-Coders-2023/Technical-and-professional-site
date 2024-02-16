@@ -1,6 +1,6 @@
 @font-face {
     font-family: myFont;
-    src: url("/static/blog/font/Vazir.woff");
+   src: url("/static/course/font/Vazir.woff");
     /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
 
 }
@@ -191,45 +191,3 @@ form .button button:hover {
 
 }
 
-/*.alert-error {*/
-/*    background-color: #ff00009c;*/
-/*    height: 50px;*/
-/*    text-align: center;*/
-/*    padding-top: 15px;*/
-
-/*    color: #ffffff;*/
-
-/*    font-size: 18px;*/
-/*}*/
-
-/*.alert-success {*/
-/*    background-color: #9ADE7B;*/
-/*    height: 50px;*/
-/*    text-align: center;*/
-/*    padding-top: 15px;*/
-/*    color: #ffffff;*/
-/*    font-size: 18px;*/
-/*}*/
-
-/*.error {*/
-/*    border-color: red;*/
-/*    color: #ffff;*/
-/*    background-color: #f94545b8;*/
-/*    width: 691px;*/
-/*    height: 50px;*/
-/*    text-align: center;*/
-/*    padding-top: 16px;*/
-/*    margin-bottom: 20px;*/
-/*    margin-top: 20px;*/
-/*    border-radius: 8px;*/
-
-/*    border-bottom-color: #470000;*/
-/*}*/
-
-/*.error-message {*/
-/*    color: red;*/
-/*}*/
-
-/*.error-message {*/
-/*    padding-right: 23px;*/
-/*}*/

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ContectForm, ChoicesForm, CourseForm,ComplaintForm
+from .forms import ContectForm, ChoicesForm, CourseForm, ComplaintForm
 from .models import Course, Conect, Choes_cours, Free_school
 from django.contrib import messages
 from gallery.models import Image
@@ -11,11 +11,13 @@ from django.http import HttpResponse
 from jdatetime import datetime
 from extension.utils import persian_number_converter
 from datetime import date as datetimeen
+from django_ratelimit.decorators import ratelimit
 
 
 # Create your views here.
 
 # ----------------page home
+@ratelimit(key='user_or_ip', rate='10/m')
 def home(request):
     course_list = Course.objects.all().order_by('status')
     n = datetimeen.today()
@@ -42,6 +44,7 @@ def home(request):
 
 # --------------detail cours
 @login_required()
+@ratelimit(key='user_or_ip', rate='10/m')
 def detail(request, id):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     context = {
@@ -59,6 +62,7 @@ def detail(request, id):
 
 
 # --------ارتباط با مسولین---------
+@ratelimit(key='user_or_ip', rate='10/m')
 def conect(request):
     if request.method == 'POST':
         form = ContectForm(request.POST)
@@ -75,7 +79,8 @@ def conect(request):
                 form.add_error('national_code', 'کد ملی وارد شده باید با کد ملی ثبت نام شما مطابقت داشته باشد.')
                 return render(request, 'course/conect.html', {'form': form})
             cd = form.cleaned_data
-            Conect.objects.create(title=cd['title'], text=cd['text'], first_lastname=cd['first_lastname'],relationship=cd['relationship'],
+            Conect.objects.create(title=cd['title'], text=cd['text'], first_lastname=cd['first_lastname'],
+                                  relationship=cd['relationship'],
                                   user=request.user)
             messages.success(request, "پیام شما ارسال شد")
             return redirect('course:conect')
@@ -93,6 +98,7 @@ def conect(request):
 
 
 # _____________form shekayat ___________
+@ratelimit(key='user_or_ip', rate='10/m')
 def complaint(request):
     if request.method == 'POST':
         form = ComplaintForm(request.POST)
@@ -109,7 +115,8 @@ def complaint(request):
                 form.add_error('national_code', 'کد ملی وارد شده باید با کد ملی ثبت نام شما مطابقت داشته باشد.')
                 return render(request, 'course/complaint_form.html', {'form': form})
             cd = form.cleaned_data
-            Conect.objects.create(title=cd['title'], text=cd['text'], user=request.user, first_lastname=cd['first_lastname'],subject=cd['subject'],
+            Conect.objects.create(title=cd['title'], text=cd['text'], user=request.user,
+                                  first_lastname=cd['first_lastname'], subject=cd['subject'],
                                   mehvar=cd['mehvar']
                                   )
             messages.success(request, "پیام شما ارسال شد")
@@ -127,6 +134,7 @@ def complaint(request):
     return render(request, 'course/complaint_form.html', {'form': form})
 
 
+@ratelimit(key='user_or_ip', rate='10/m')
 def choices(request):
     if request.method == 'POST':
         form = ChoicesForm(request.POST)
@@ -140,6 +148,7 @@ def choices(request):
         return redirect('course:home')
 
 
+@ratelimit(key='user_or_ip', rate='10/m')
 def user_selected_courses(request):
     if request.user.is_authenticated:
         user_courses = Choes_cours.objects.filter(user=request.user)
@@ -153,6 +162,7 @@ def user_selected_courses(request):
 
 
 # ------حذف درس----------
+@ratelimit(key='user_or_ip', rate='10/m')
 def delete_course(request, id):
     user_courses = Choes_cours.objects.filter(id=id)
 
@@ -163,7 +173,8 @@ def delete_course(request, id):
     return redirect('course:home')
 
 
-# -----ساخت درس توسط ادمین----------
+# -----ساخت درس توسط
+@ratelimit(key='user_or_ip', rate='10/m')
 def create_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
@@ -186,6 +197,7 @@ def create_course(request):
 
 
 # ------دریافت لیست دروس اتخابی کلاینت---
+@ratelimit(key='user_or_ip', rate='10/m')
 def export_courses_to_excel(request):
     courses = Choes_cours.objects.all()
 
@@ -221,7 +233,10 @@ def export_courses_to_excel(request):
     courses_df.to_excel(response, index=False)
 
     return response
+
+
 # ------دریافت لیست تمامی دروس ---
+@ratelimit(key='user_or_ip', rate='10/m')
 def all_courses_to_excel(request):
     courses = Course.objects.all()
 
@@ -238,7 +253,7 @@ def all_courses_to_excel(request):
             'نام دوره': o.title,
             'مدرس': o.teacher,
             'کد درس': o.course_code,
-            'تاریخ شروع':jalali_start,
+            'تاریخ شروع': jalali_start,
             'تاریخ پایان': jalali_end,
             'نام مرکز دولتی': o.govermentcenter,
             'کارگاه/آموزشگاه': o.workshop,
@@ -247,7 +262,6 @@ def all_courses_to_excel(request):
         })
 
     courses_df = pd.DataFrame(lst)
-
 
     excel_file_name = 'all_courses.xlsx'
 
@@ -262,8 +276,8 @@ def all_courses_to_excel(request):
     return response
 
 
-
 # ---------لیست اموزشگاه های آزاد----------
+@ratelimit(key='user_or_ip', rate='10/m')
 def free_school(request):
     academy_list = Free_school.objects.all()
     context = {

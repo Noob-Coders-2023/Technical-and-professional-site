@@ -25,21 +25,27 @@ from django.contrib import messages
 from jdatetime import datetime
 from extension.utils import persian_number_converter
 from django.contrib.auth.views import LoginView
-
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 CustomUser = get_user_model()
 # Create your views here.
 
+
 class CustomLoginView(LoginView):
     form_class = CaptchaAuthenticationForm
+
+@ratelimit(key='user_or_ip', rate='10/m')
 def home(request):
     return render(request, 'registration/home.html')
 
 
 class PasswordChange(PasswordChangeView):
+    @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.success_url = reverse_lazy('account:password_change_done')
 
-    success_url = reverse_lazy('account:password_change_done')
-
-
+@ratelimit(key='user_or_ip', rate='10/m')
 def user_selected_courses(request):
     if request.user.is_authenticated:
         user_courses = Choes_cours.objects.filter(user=request.user)
@@ -52,8 +58,10 @@ def user_selected_courses(request):
 
 
 class Register(View):
+
     form_class = SignupForm
 
+    @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
     def get(self, request):
         form = self.form_class
         return render(request, 'registration/register.html', {'form': form})
@@ -62,11 +70,7 @@ class Register(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            # captcha_value = form.cleaned_data['captcha']
-            # captcha_key = form.cleaned_data['captcha_0']
-            # if not CaptchaStore.objects.filter(response=captcha_value, hashkey=captcha_key).exists():
-            #     messages.error(request, 'کد امنیتی نادرست است', 'danger')
-            #     return render(request, 'registration/register.html', {'form': form})
+
             random_code = random.randint(1000, 9999)
             send_top_code(form.cleaned_data['phone_number'], random_code)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
@@ -109,8 +113,9 @@ class Register(View):
 
 
 class UserRegisterVerifyCodeView(View):
-    form_class = VerifyCodeForm
 
+    form_class = VerifyCodeForm
+    @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
     def get(self, request):
         form = self.form_class
         return render(request, 'registration/verify.html', {'form': form})
@@ -137,6 +142,7 @@ class UserRegisterVerifyCodeView(View):
 
 
 @login_required
+@ratelimit(key='user_or_ip', rate='10/m')
 def profile(request):
     current_date = persian_number_converter(str(datetime.now().strftime("%Y/%m/%d")))
     if request.method == 'POST':
