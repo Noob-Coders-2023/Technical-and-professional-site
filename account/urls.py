@@ -1,12 +1,12 @@
 from django.contrib.auth import views
 from django.urls import path, include
-from .views import PasswordChange, Register, user_selected_courses, home, profile,UserRegisterVerifyCodeView
+from .views import *
 
 
 
 app_name = 'account'
 urlpatterns = [
-    path("login/", views.LoginView.as_view(), name="login"),
+    path("login/", CustomLoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path('register/', Register.as_view(), name='register'),
     # path('activate/<uidb64>/<token>/', activate, name='activate'),
@@ -33,12 +33,16 @@ urlpatterns = [
         views.PasswordResetCompleteView.as_view(),
         name="password_reset_complete",
     ),
-    path('verify/', UserRegisterVerifyCodeView.as_view(), name='verify_code')
+    path('verify/', UserRegisterVerifyCodeView.as_view(), name='verify_code'),
+
+
 ]
 
 urlpatterns += [
     path('', home, name='home'),
     path('user_selected_courses/', user_selected_courses, name='user_selected_courses'),
     path('profile/', profile, name='profile'),
+
+
 
 ]

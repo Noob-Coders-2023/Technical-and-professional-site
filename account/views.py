@@ -9,7 +9,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from course.models import Choes_cours
-from .forms import SignupForm, CustomUserChangeForm, VerifyCodeForm
+from .forms import SignupForm, CustomUserChangeForm, VerifyCodeForm, CaptchaAuthenticationForm
 from .tokens import account_activation_token
 from django.contrib.auth import get_user_model
 from account.models import User
@@ -24,17 +24,19 @@ from .models import OtpCode
 from django.contrib import messages
 from jdatetime import datetime
 from extension.utils import persian_number_converter
-from captcha.fields import CaptchaStore
+from django.contrib.auth.views import LoginView
 
 CustomUser = get_user_model()
 # Create your views here.
 
-
+class CustomLoginView(LoginView):
+    form_class = CaptchaAuthenticationForm
 def home(request):
     return render(request, 'registration/home.html')
 
 
 class PasswordChange(PasswordChangeView):
+
     success_url = reverse_lazy('account:password_change_done')
 
 
@@ -60,11 +62,11 @@ class Register(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            captcha_value = form.cleaned_data['captcha']
-            captcha_key = form.cleaned_data['captcha_0']
-            if not CaptchaStore.objects.filter(response=captcha_value, hashkey=captcha_key).exists():
-                messages.error(request, 'کد امنیتی نادرست است', 'danger')
-                return render(request, 'registration/register.html', {'form': form})
+            # captcha_value = form.cleaned_data['captcha']
+            # captcha_key = form.cleaned_data['captcha_0']
+            # if not CaptchaStore.objects.filter(response=captcha_value, hashkey=captcha_key).exists():
+            #     messages.error(request, 'کد امنیتی نادرست است', 'danger')
+            #     return render(request, 'registration/register.html', {'form': form})
             random_code = random.randint(1000, 9999)
             send_top_code(form.cleaned_data['phone_number'], random_code)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
@@ -155,3 +157,9 @@ def profile(request):
     }
 
     return render(request, 'registration/profile.html',context)
+
+
+
+
+
+

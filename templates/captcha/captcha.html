@@ -1,12 +1,13 @@
 {% load static %}
-
+{% load widget_tweaks %}
 
    <link href="{% static 'utils/captcha/css/captcha.css' %}" rel="stylesheet">
-     <div class="captcha">
+     <div id="captcha">
+
                 <label for="captcha_input">کد امنیتی:</label>
-                <div class="preview"></div>
+
                 <div class="captcha_form">
-                    <input type="text" id="captcha_form" placeholder=" کد امنیتی را وارد کنید">
+                     {{form.captcha|add_class:'captcha_field'}}
                     <button class="captcha_refresh">
                     <img src="{% static 'utils/captcha/svg/refresh.svg' %}">
                     </button>

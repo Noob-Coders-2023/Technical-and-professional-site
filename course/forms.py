@@ -2,7 +2,7 @@ from django import forms
 from course.models import Course, Conect
 from jalali_date.fields import JalaliDateField
 from jalali_date.widgets import AdminJalaliDateWidget
-
+from captcha.fields import CaptchaField
 
 class ContectForm(forms.ModelForm):
     messages = {
@@ -12,7 +12,7 @@ class ContectForm(forms.ModelForm):
     class Meta:
         model = Conect
         exclude = [ 'subject', 'mehvar']
-        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'relationship']
+        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'relationship','captcha']
 
 
     RELATIONSHIP_CHOICES = (
@@ -22,6 +22,7 @@ class ContectForm(forms.ModelForm):
         ('ma', 'معاون آموزش'),
         ('em', 'ارتباط با مربیان'),
     )
+    captcha = CaptchaField()
     first_lastname = forms.CharField(label='نام و نام خانوادگی', error_messages=messages)
     national_code = forms.CharField(label='کدملی', error_messages=messages)
     phone_number = forms.CharField(label='شماره تماس', error_messages=messages)
@@ -31,7 +32,7 @@ class ContectForm(forms.ModelForm):
 
 
 #   فرم شکایت---------------------------
-class complaint (forms.ModelForm):
+class ComplaintForm(forms.ModelForm):
     messages = {
         "required": 'لطفا این فیلد را پر کنید',
     }
@@ -52,9 +53,10 @@ class complaint (forms.ModelForm):
     class Meta:
         model = Conect
         exclude = [ 'relationship']
-        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'mehvar', 'subject']
+        fields = ['first_lastname', 'national_code', 'phone_number', 'title', 'text', 'mehvar', 'subject','captcha']
         widgets = {'mehvar': forms.CheckboxSelectMultiple()}
 
+    captcha = CaptchaField()
     first_lastname = forms.CharField(label='نام و نام خانوادگی', error_messages=messages)
     national_code = forms.CharField(label='کدملی', error_messages=messages)
     phone_number = forms.CharField(label='شماره تماس', error_messages=messages)

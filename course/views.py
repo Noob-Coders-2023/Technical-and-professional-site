@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ContectForm, ChoicesForm, CourseForm
+from .forms import ContectForm, ChoicesForm, CourseForm,ComplaintForm
 from .models import Course, Conect, Choes_cours, Free_school
 from django.contrib import messages
 from gallery.models import Image
@@ -95,7 +95,7 @@ def conect(request):
 # _____________form shekayat ___________
 def complaint(request):
     if request.method == 'POST':
-        form = complaint(request.POST)
+        form = ComplaintForm(request.POST)
         if form.is_valid():
             phone_number = form.cleaned_data.get('phone_number')
             national_code = form.cleaned_data.get('national_code')

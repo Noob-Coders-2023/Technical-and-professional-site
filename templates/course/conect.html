@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ارتباط </title>
     <link href="{% static 'course/css/conect.css' %}" rel="stylesheet">
+    <link href="{% static 'error/error.css' %}" rel="stylesheet">
     <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
      <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
     <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
@@ -93,6 +94,7 @@
                         {{ form.text.errors.0 }}
                     </div>
                 {% endif %}
+            {% include 'captcha/captcha.html' %}
 
             </div>
 

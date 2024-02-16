@@ -8,14 +8,22 @@
     margin-bottom: 20px;
     border-bottom-color: #470000;
 }
+.alert-success{
+border-color: red;
+    color: #ffff;
+    background-color: #85fb49;
+    height: 50px;
+    text-align: center;
+    padding-top: 16px;
+    font-size: 27px;
+}
 
-.error_message {
+.error-message {   padding-right: 23px;
     color: red;
+    font-size: 15px;
 }
 
-.error_message {
-    padding-right: 23px;
-}
+
 
 .alert-error {
     margin: 0;
@@ -28,12 +36,5 @@
     border: 1px solid;
 }
 
-.alert-success {
-    background-color: #4fdd336e;
-    height: 50px;
-    text-align: center;
-    padding-top: 13px;
-    color: #ffffff;
-    border: 1px solid;
-}
+
 

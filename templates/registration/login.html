@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'course/css/rtl.css' %}">
     <!--===============================================================================================-->
+
 </head>
 <body>
 
@@ -93,6 +94,12 @@
                         {{ form.password.errors }}
                     </div>
                 {% endif %}
+<div id="captcha">
+    {% include 'captcha/captcha.html' %}
+</div>
+
+
+
 
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
@@ -140,77 +147,3 @@
 
 </body>
 </html>
-{##}
-{##}
-{#{% load static %}#}
-{#{% load widget_tweaks %}#}
-{##}
-{#<!doctype html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport"#}
-{#          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
-{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
-{##}
-{#    <link href="{% static 'course/css/singup.css' %}" rel="stylesheet">#}
-{#    <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">#}
-{##}
-{##}
-{#    <title>ثبت نام</title>#}
-{#</head>#}
-{#<body>#}
-{#<div class="cont">#}
-{##}
-{#    <div>  {% include 'includes/messages_block.html' %}</div>#}
-{#    <div class="container">#}
-{#        <div class="title">ثبت نام</div>#}
-{#        <form method="post" novalidate>#}
-{#            {% csrf_token %}#}
-{#            {% if form.non_field_errors %}#}
-{#                <div>#}
-{#                    {% for error in form.non_field_errors %}#}
-{#                        <span>{{ error }}</span>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#            {% endif %}#}
-{#            <div class="user-details">#}
-{##}
-{##}
-{#                <div class="input-box">#}
-{##}
-{#                    <span class="detail">شماره همراه:</span>#}
-{#                    {{ form.phone_number|add_class:'input' }}#}
-{#                    {% if form.phone_number.errors %}#}
-{#                        <div class="error_message">#}
-{#                            {{ form.phone_number.errors }}#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#                <br>#}
-{##}
-{##}
-{#                <div class="input-box">#}
-{##}
-{##}
-{#                    <span class="detail">گذر واژه:</span>#}
-{#                    {{ form.password1|add_class:'input' }}#}
-{#                    {% if form.password1.errors %}#}
-{#                        <div class="error_message">#}
-{#                            {{ form.password1.errors }}#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#                <br>#}
-{##}
-{##}
-{#                <div class="button">#}
-{#                    <button type="submit">ثبت نام</button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </form>#}
-{#    </div>#}
-{#</div>#}
-{##}
-{#</body>#}
-{#</html>#}

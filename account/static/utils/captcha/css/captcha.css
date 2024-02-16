@@ -5,58 +5,32 @@
 
 }
 
-
-:root {
-  --rotation-angle: 0deg;
-  --font-family: 'cursive';
-  --captcha-color: #00d50b;
-}
-
-.captcha .preview span {
-  display: inline-block;
-  transform: rotate(var(--rotation-angle));
-  font-family: var(--font-family);
-  color: var(--captcha-color);
-}
-
-.captcha_refresh {
-  cursor: pointer;
-}
-
-/* افزودن تغییرات به دکمه تازه‌سازی */
-.captcha_refresh:hover {
-  transform: rotate(180deg);
-}
-.captcha .preview{
-    text-align: center;
-   height: 66px;
-    width: 46%;
-    outline: none;
+.captcha img{
+    width: 103px;
+    height: 44px;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    padding-left: 15px;
-    border-bottom-width: 2px;
-    transition: all 0.3s ease;
-    padding-right: 10px;
-       font-family: 'myFont', Arial, sans-serif;
-        padding-top: 2px;
-    font-size: 28px;
+    padding: 0;
 }
-.captcha {
+#captcha {
 
     width: 573px;
     height: 223px;
     display: flex;
     flex-direction: column;
     gap: 17px;
-    padding: 21px;
+  padding: 21px 0;
 }
 .captcha_form{
-        display: flex;
+    display: flex;
     align-items: center;
     gap: 12px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 17px;
+    flex-direction: row;
+    width: 285px;
 }
-#captcha_form{
+.captcha_field{
         height: 42px;
     width: 38%;
     outline: none;
@@ -68,11 +42,14 @@
     transition: all 0.3s ease;
     padding-right: 10px;
 }
-#captcha_form:hover,
-#captcha_form:active{
+
+.captcha_field:hover,
+.captcha_field:active,
+.captcha_form:hover,
+.captcha_form:active{
 border-color: #001180;
 }
-.captcha label{
+#captcha label{
         color: #cf1818;
     font-size: 17px;
 }

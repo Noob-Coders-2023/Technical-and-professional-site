@@ -1,45 +1,21 @@
-(function () {
-  const fonts = ['cursive', 'sans-serif'];
-  let captchaValue = '';
 
-  function generateCaptcha() {
-    let value = btoa(Math.random() * 1000000000);
-    value = value.substr(0, 5 + Math.random() * 5);
-    captchaValue = value;
-  }
+function generateCaptcha() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/generate_captcha/", true);  // این را به آدرس مناسب خود تغییر دهید
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            // دریافت تصویر کپچا و تنظیم به عنوان پس‌زمینه div.preview
+            document.querySelector(".preview").style.backgroundImage = "url(" + data.captcha_image + ")";
+        }
+    };
+    xhr.send();
+}
 
-  function setCaptcha() {
-    const rotate = -20 + Math.trunc(Math.random() * 30);
-    const font = Math.trunc(Math.random() * fonts.length);
+// فراخوانی تابع برای ایجاد تصویر اولیه کپچا
+generateCaptcha();
 
-    // تنظیم متغیرهای CSS
-    document.documentElement.style.setProperty('--rotation-angle', `${rotate}deg`);
-    document.documentElement.style.setProperty('--font-family', fonts[font]);
-
-    // تنظیم رنگ تصادفی
-    const randomColor = getRandomColor();
-    document.documentElement.style.setProperty('--captcha-color', randomColor);
-
-    // نمایش کد در HTML
-    const html = captchaValue.split('').map(char => `<span>${char}</span>`).join('');
-    document.querySelector('.captcha .preview').innerHTML = html;
-  }
-
-  function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
-  document.querySelector('.captcha .captcha_refresh').addEventListener('click', function () {
+// افزودن گوش کننده رویداد به دکمه تازه‌سازی برای ایجاد کپچا جدید
+document.querySelector(".captcha_refresh").addEventListener("click", function() {
     generateCaptcha();
-    setCaptcha();
-  });
-
-  // اولین بار که صفحه لود می‌شود
-  generateCaptcha();
-  setCaptcha();
-})();
+});

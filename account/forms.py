@@ -5,6 +5,7 @@ from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from captcha.fields import CaptchaField
+from django.contrib.auth.forms import AuthenticationForm
 messages = {
     "required": 'لطفا این فیلد را پر کنید',
     'invalid': 'لطفا کارکتر معتبر وارد کنید',
@@ -33,7 +34,7 @@ class SignupForm(UserCreationForm):
     gender = forms.ChoiceField(label='جنسیت', choices=GENDER_CHOICES, required=True)
     class Meta:
         model = User
-        fields = ('email', 'username', 'first_name', "last_name", 'phone_number', 'national_code', 'gender')
+        fields = ('email', 'username', 'first_name', "last_name", 'phone_number', 'national_code', 'gender','captcha')
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -59,7 +60,7 @@ class CustomUserChangeForm(UserChangeForm):
         'max_length': _('تعداد کاراکترها بیشتر از حد مجاز است'),
         'min_length': _('تعداد کاراکترها کمتر از حد مجاز است'),
     }
-
+    captcha = CaptchaField()
     username = forms.CharField(error_messages=messages)
     first_name = forms.CharField(error_messages=messages)
     last_name = forms.CharField(error_messages=messages)
@@ -79,14 +80,6 @@ class CustomUserChangeForm(UserChangeForm):
         return email
 
 
-    # def clean_phone_number(self):
-    #
-    #
-    #     phone_number=self.cleaned_data['phone_number']
-    #     user=User.objects.filter(phone_number=phone_number).exists()
-    #     if user:
-    #         raise ValidationError('این شماره موبایل قبلا استفاده شده است')
-    #     return phone_number
 
     class Meta(UserChangeForm.Meta):
         model = User
@@ -100,5 +93,6 @@ class VerifyCodeForm(forms.Form):
         max_value=9999,
         localize=True,
     )
-
+class CaptchaAuthenticationForm(AuthenticationForm):
+    captcha = CaptchaField()
 

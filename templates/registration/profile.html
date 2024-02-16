@@ -8,14 +8,15 @@
     <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
     <link href="{% static 'registration/profile/css/profile.css' %}" rel="stylesheet">
     <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'error/error.css' %}" rel="stylesheet">
     <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
 </head>
 <body>
 <div>{% include 'course/navbar.html' %}</div>
-
+    <div>  {% include 'includes/messages_block.html' %}</div>
 <div class="body">
 
-    <div>  {% include 'includes/messages_block.html' %}</div>
+
     <div class="container">
 
 
@@ -90,6 +91,8 @@
                     <input class="input1" type="text" name="national_code" value="{{ form.national_code.value }}"
                            readonly>
                 </div>
+             {% include 'captcha/captcha.html' %}
+
                 <button class="button" type="submit">ذخیره تغییرات</button>
             </div>
         </form>
