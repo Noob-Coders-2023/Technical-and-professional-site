@@ -12,6 +12,8 @@ from jdatetime import datetime
 from extension.utils import persian_number_converter
 from datetime import date as datetimeen
 from django_ratelimit.decorators import ratelimit
+from openpyxl import Workbook
+from openpyxl.styles import Alignment
 
 
 
@@ -225,13 +227,26 @@ def export_courses_to_excel(request):
     # نام فایل Excel
     excel_file_name = 'registered_courses.xlsx'
 
-    # تولید فایل Excel
-    courses_df.to_excel(excel_file_name, index=False)
+    writer = pd.ExcelWriter(excel_file_name, engine='openpyxl')
+    courses_df.to_excel(writer, index=False, sheet_name='Sheet1')
 
-    # ارسال فایل Excel به عنوان پاسخ به درخواست
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = f'attachment; filename="{excel_file_name}"'
-    courses_df.to_excel(response, index=False)
+    # دریافت شیت openpyxl از نویسنده
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
+
+
+    # تنظیمات زبان و چینش متن در اکسل
+    worksheet.sheet_view.rightToLeft = True
+    for row in worksheet.iter_rows():
+        for cell in row:
+            cell.alignment = Alignment(horizontal='right')
+
+    workbook.save(excel_file_name)
+
+    with open(excel_file_name, 'rb') as excel_file:
+        response = HttpResponse(excel_file.read(),
+                                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = f'attachment; filename="{excel_file_name}"'
 
     return response
 
@@ -239,6 +254,7 @@ def export_courses_to_excel(request):
 # ------دریافت لیست تمامی دروس ---
 @ratelimit(key='user_or_ip', rate='10/m')
 def all_courses_to_excel(request):
+
     courses = Course.objects.all()
 
     if not courses:
@@ -265,14 +281,26 @@ def all_courses_to_excel(request):
     courses_df = pd.DataFrame(lst)
 
     excel_file_name = 'all_courses.xlsx'
+    writer = pd.ExcelWriter(excel_file_name, engine='openpyxl')
+    courses_df.to_excel(writer, index=False, sheet_name='Sheet1')
 
-    # تولید فایل Excel
-    courses_df.to_excel(excel_file_name, index=False)
+    # دریافت شیت openpyxl از نویسنده
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
 
-    # ارسال فایل Excel به عنوان پاسخ به درخواست
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = f'attachment; filename="{excel_file_name}"'
-    courses_df.to_excel(response, index=False)
+
+    # تنظیمات زبان و چینش متن در اکسل
+    worksheet.sheet_view.rightToLeft = True
+    for row in worksheet.iter_rows():
+        for cell in row:
+            cell.alignment = Alignment(horizontal='right')
+
+    workbook.save(excel_file_name)
+
+    with open(excel_file_name, 'rb') as excel_file:
+        response = HttpResponse(excel_file.read(),
+                                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = f'attachment; filename="{excel_file_name}"'
 
     return response
 

@@ -72,9 +72,9 @@
                     {% if user.is_admin %}
                         <a href="{% url 'course:create_course' %}">ایجاد دوره</a>
                     {% endif %}
-                    <a href='{% url 'posts:list' %}'>پست ها</a>
-                    <a href='{% url 'gallery:galleries' %}'>گالری</a>
-                    <div href="#" class="about-us">درباره ما
+{#                    <a href='{% url 'posts:list' %}'>پست ها</a>#}
+{#                    <a href='{% url 'gallery:galleries' %}'>گالری</a>#}
+{#                    <div href="#" class="about-us">درباره ما#}
                         <ul class="submenu">
 
 
@@ -83,12 +83,16 @@
                             <li><a href="https://irantvto.ir/%D9%85%D9%86%D8%B4%D9%88%D8%B1">منشور اخلاقی</a></li>
                             <li><a href="https://irantvto.ir/%D9%85%D8%B9%D8%B1%D9%81%DB%8C-%D9%85%D8%AF%DB%8C%D8%B1%D8%A7%D9%86">معرفی مدیران</a></li>
                         </ul>
+
+                {% endif %}
+                     <a href='{% url 'posts:list' %}'>پست ها</a>
+                    <a href='{% url 'gallery:galleries' %}'>گالری</a>
+                    <div href="#" class="about-us">درباره ما
                     </div>
 
 
 
 
-                {% endif %}
             </nav>
         </a>
         <div class="icons">
