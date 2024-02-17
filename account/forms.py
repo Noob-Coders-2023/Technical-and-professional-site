@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from captcha.fields import CaptchaField
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import PasswordResetForm
 messages = {
     "required": 'لطفا این فیلد را پر کنید',
     'invalid': 'لطفا کارکتر معتبر وارد کنید',
@@ -96,3 +97,11 @@ class VerifyCodeForm(forms.Form):
 class CaptchaAuthenticationForm(AuthenticationForm):
     captcha = CaptchaField()
 
+class CustomPasswordResetForm(PasswordResetForm):
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise forms.ValidationError('کاربری با این ایمیل وجود ندارد.')
+        return email

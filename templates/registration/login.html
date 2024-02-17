@@ -15,12 +15,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
           href="{% static 'registration/login/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'registration/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'registration/login/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/animate/animate.css' %}">
     <!--===============================================================================================-->
@@ -110,13 +105,23 @@
                     </div>
                 </div>
 
-                <div class="text-center p-t-115">
+                <div class="text-center p-t-t115">
 						<span class="txt1">
 							ثبت نام نکرده ام از قبل:
 						</span>
 
 
                     <a class="txt2" href="{% url 'account:register' %}">ثبت نام کنید</a>
+
+
+                </div>
+                      <div class="text-center p-t-t115">
+						<span class="txt1">
+                            رمز عبور خود را فراموش کرده اید؟
+						</span>
+
+
+                    <a class="txt2" href="{% url 'account:password_change' %}">اینجا کلیک کنید</a>
 
 
                 </div>

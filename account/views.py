@@ -48,6 +48,7 @@ def home(request):
 
 class PasswordChange(PasswordChangeView):
     @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.success_url = reverse_lazy('account:password_change_done')
@@ -133,7 +134,7 @@ class UserRegisterVerifyCodeView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            expiration_time = code_instance.created + timezone.timedelta(minutes=2)
+            expiration_time = code_instance.created + timezone.timedelta(minutes=5)
             if expiration_time > timezone.now():
                 if cd['code'] == code_instance.code:
                     User.objects.create_user(
@@ -182,6 +183,30 @@ def profile(request):
     }
 
     return render(request, 'registration/profile.html',context)
+
+
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+
+
+class CustomPasswordResetView(auth_views.PasswordResetView):
+    form_class = PasswordResetForm
+    template_name = 'registration/password_reset_form.html'  # اگر نیاز به سفارشی‌سازی تمپلیت دارید
+
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            messages.error(self.request, 'کاربری با این ایمیل وجود ندارد.')
+            return HttpResponseRedirect(reverse_lazy('password_reset'))
+
+        # ادامه دهید به فرایند ارسال ایمیل یا هر کاری که نیاز دارید
+        # در این مثال، ما به فرآیند ارسال ایمیل به توسط ابزارهای داخلی Django ادامه می‌دهیم.
+        return super().form_valid(form)
 
 
 
