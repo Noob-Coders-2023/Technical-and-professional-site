@@ -9,16 +9,18 @@
     border-bottom-color: #470000;
 }
 .alert-success{
-border-color: red;
+
     color: #ffff;
-    background-color: #85fb49;
+    background-color: #43b312;
     height: 50px;
     text-align: center;
-    padding-top: 16px;
+    padding-top: 6px;
     font-size: 27px;
 }
 
-.error-message {   padding-right: 23px;
+
+.error-message ,
+.errorlist{   padding-right: 23px;
     color: red;
     font-size: 15px;
 }

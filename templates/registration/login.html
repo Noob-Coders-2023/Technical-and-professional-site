@@ -42,16 +42,16 @@
 
 </head>
 <body>
-
+       <div>  {% include 'includes/messages_block.html' %}</div>
 <div class="limiter">
 
 
     <div class="container-login100">
         <div class="wrap-login100">
-            <div>  {% include 'includes/messages_block.html' %}</div>
+
             <form class="login100-form validate-form" method="post" autocomplete="off" novalidate>
                 {% csrf_token %}
-                      <div>  {% include 'includes/messages_block.html' %}</div>
+
                 {% if form.non_field_errors %}
                     <div>
                         {% for error in form.non_field_errors %}

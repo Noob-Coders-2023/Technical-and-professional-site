@@ -27,11 +27,18 @@ from extension.utils import persian_number_converter
 from django.contrib.auth.views import LoginView
 from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
+from django.utils import timezone
+from django.http import HttpResponseForbidden
+
+
 CustomUser = get_user_model()
 # Create your views here.
 
 
 class CustomLoginView(LoginView):
+    @method_decorator(ratelimit(key='user_or_ip', rate='2/s'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
     form_class = CaptchaAuthenticationForm
 
 @ratelimit(key='user_or_ip', rate='10/m')
@@ -86,7 +93,7 @@ class Register(View):
 
 
             }
-            messages.success(request, 'کدی برای شما ارسال شد', 'success')
+            messages.success(request, 'کدی به شماره همراه شما ارسال شد.', 'success')
             return redirect('account:verify_code')
         messages.error(request, 'فیلد ها صحیح وارد نشده اند.', 'error')
         return render(request, 'registration/register.html', {"form": form})
@@ -126,21 +133,33 @@ class UserRegisterVerifyCodeView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            if cd['code'] == code_instance.code:
-                User.objects.create_user(user_session['phone_number'], user_session['email'],
-                                         user_session['username'], user_session['password2'],
-                                         user_session['first_name'],
-                                         user_session['last_name'], user_session['national_code']
-                                         , user_session['gender'])
+            expiration_time = code_instance.created + timezone.timedelta(minutes=2)
+            if expiration_time > timezone.now():
+                if cd['code'] == code_instance.code:
+                    User.objects.create_user(
+                                             user_session['phone_number'],
+                                             user_session['email'],
+                                             user_session['username'],
+                                             user_session['password2'],
+                                             user_session['first_name'],
+                                             user_session['last_name'],
+                                             user_session['national_code'],
+                                             user_session['gender']
+                                             )
 
-                code_instance.delete()
-                messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
+                    code_instance.delete()
+                    messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
+                else:
+                    messages.error(request, 'کد شما اشتباه است', 'danger')
+                    return redirect('account:verify_code')
             else:
-                messages.error(request, 'کد شما اشتباه است', 'danger')
+                messages.error(request, 'کد شما منقضی شده است ,لطفا دوباره امتحان کنید.', 'danger')
+                code_instance.delete()
                 return redirect('account:verify_code')
-        return redirect('course:home')
 
+        return redirect('account:login')
 
+# golab11047
 @login_required
 @ratelimit(key='user_or_ip', rate='10/m')
 def profile(request):

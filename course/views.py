@@ -14,6 +14,7 @@ from datetime import date as datetimeen
 from django_ratelimit.decorators import ratelimit
 
 
+
 # Create your views here.
 
 # ----------------page home

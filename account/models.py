@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from .manager import UserManager
+from django.utils import timezone
 
 
 class User(AbstractBaseUser):
@@ -48,6 +49,13 @@ class OtpCode(models.Model):
     phone_number = models.CharField(max_length=11)
     code = models.PositiveSmallIntegerField()
     created = models.DateTimeField(auto_now=True)
+    expiration_time = models.DateTimeField( blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        # تنظیم زمان انقضاء به 2 دقیقه بعد از ایجاد
+        self.expiration_time = timezone.now() + timezone.timedelta(minutes=4)
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return f'{self.phone_number}-{self.code}-{self.created}'
