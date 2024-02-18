@@ -1,7 +1,7 @@
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
@@ -9,7 +9,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from course.models import Choes_cours
-from .forms import SignupForm, CustomUserChangeForm, VerifyCodeForm, CaptchaAuthenticationForm
+from .forms import SignupForm, CustomUserChangeForm, VerifyCodeForm, CaptchaAuthenticationForm, PasswordResetForm
 from .tokens import account_activation_token
 from django.contrib.auth import get_user_model
 from account.models import User
@@ -21,14 +21,18 @@ from django.views import View
 import random
 from utils import send_top_code
 from .models import OtpCode
-from django.contrib import messages
 from jdatetime import datetime
 from extension.utils import persian_number_converter
 from django.contrib.auth.views import LoginView
 from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
 from django.utils import timezone
-from django.http import HttpResponseForbidden
+from django.contrib.auth import views as auth_views
+
+
+
+
+
 
 
 CustomUser = get_user_model()
@@ -80,8 +84,8 @@ class Register(View):
         if form.is_valid():
 
             random_code = random.randint(1000, 9999)
-            send_top_code(form.cleaned_data['phone_number'], random_code)
-            OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
+            send_top_code(form.cleaned_data['phone_number'], random_code,form.cleaned_data['first_name'])
+            OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code,first_name=form.cleaned_data['first_name'])
             request.session['user_registration_info'] = {
                 'phone_number': form.cleaned_data['phone_number'],
                 'email': form.cleaned_data['email'],
@@ -185,11 +189,6 @@ def profile(request):
     return render(request, 'registration/profile.html',context)
 
 
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.forms import PasswordResetForm
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
 
 
 class CustomPasswordResetView(auth_views.PasswordResetView):

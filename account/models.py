@@ -47,6 +47,7 @@ class User(AbstractBaseUser):
 
 class OtpCode(models.Model):
     phone_number = models.CharField(max_length=11)
+    first_name = models.CharField(max_length=30, blank=True, null=True)
     code = models.PositiveSmallIntegerField()
     created = models.DateTimeField(auto_now=True)
     expiration_time = models.DateTimeField( blank=True, null=True)

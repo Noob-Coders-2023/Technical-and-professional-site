@@ -30,6 +30,7 @@
     text-transform: capitalize;
     transition: all .2s linear;
 
+
 }
 
 html {
@@ -41,7 +42,7 @@ html {
 
 body {
     background: #eee;
-
+    font-size: 62.5%;
 }
 
 .header {
@@ -67,13 +68,13 @@ body {
 .header_top {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+
     background: url("../img/4907157.png");
     justify-content: space-between;
     align-items: center;
     padding-left: 65px;
     margin-left: 42px;
-    margin-right: 106px;
+    margin-right: 65px;
 
 }
 
@@ -88,61 +89,81 @@ body {
 }
 
 
-
 .header .logo {
     font-size: 2.5rem;
     font-weight: bolder;
     color: var(--black);
 
 }
-#svg{
+
+#svg {
     background-color: unset;
 }
+
 .header .logo i {
     font-size: 15px;
     color: #0006c1;
 }
-.header .logo i:hover{
+
+.header .logo i:hover {
     color: #01012c;
 }
-.account div{
+
+.account div {
     display: flex;
 }
+
 .account .logout {
 
     font-size: 18px;
     cursor: pointer;
     color: #2c20ab;
 }
-.account .logins{
-        display: flex;
+
+.account .logins {
+    display: flex;
     gap: 5px;
 }
-.account .logout:hover{
-     color: #000000;
+
+.account .logout:hover {
+    color: #000000;
 
 }
-.account .logout:active{
-        transform: scale(.94);
+
+.account .logout:active {
+    transform: scale(.94);
 }
-.account a{
-        color: #2c20ab;
+
+.account a {
+    color: #2c20ab;
 }
-.account .slash{
-        color: #2c20ab;
+
+.account .slash {
+    color: #2c20ab;
 }
-.account a:hover{
-         color: #000000;
+
+.account a:hover {
+    color: #000000;
 
 }
-.account a:active{
-        transform: scale(.94);
+
+.account a:active {
+    transform: scale(.94);
 }
+
 .header .navbar a {
     font-size: 1.7rem;
     margin: 0 1rem;
     color: var(--black);
 
+}
+
+.slide div p {
+    font-size: 2rem;
+    margin-bottom: 0;
+    color: #fff;
+    padding: 10px;
+    transition: font-size 0.5s;
 }
 
 .header .navbar a:hover {
@@ -195,6 +216,7 @@ li {
 
     margin-top: 33px;
 }
+
 section {
     padding: 2rem 9%;
 
@@ -294,6 +316,7 @@ section {
     font-size: 17px;
     /* margin-top: -17px; */
     padding-top: 28px;
+    width: 175px;
 }
 
 svg {
@@ -382,7 +405,12 @@ svg {
     outline: var(--outline);
     box-shadow: var(--box-shadow);
     outline-offset: -1rem;
+        width: 86%;
 
+}
+
+.container-access h1 {
+    font-size: 2.2rem;
 }
 
 .container_excel .titre {
@@ -522,28 +550,41 @@ svg {
     transform: rotate(-45deg) scaleX(1);
 }
 
+.menu {
+    width: 23px;
+    opacity: 0;
+}
 
-@media (max-width: 991px) {
+.menubar {
+    display: flex;
+    align-items: center;
+    gap: 13px;
 
-    html {
-        font-size: 55%;
 
+}
+
+@media screen and (max-width: 1309px) {
+    .slide_posts {
+        width: 100% !important;
     }
 
-    .header {
-        padding: 2rem;
+    .posts {
+        width: 70% !important;
+    }
+
+    .galler_post {
+
+        flex-direction: column !important;
     }
 }
 
-@media (max-width: 768px) {
-    .header .navbar {
-        position: absolute;
-        top: 110%;
-        right: 2rem;
-        width: 30rem;
-        box-shadow: var(--box-shadow);
-        border-radius: .5rem;
-        background: #fff;
+@media screen and (max-width: 1055px) {
+    .menu {
+        opacity: 1;
+    }
+
+    .navbar {
+        display: none;
     }
 
     .header .navbar a {
@@ -553,14 +594,155 @@ svg {
 
     }
 
-    section {
-        padding: 2rem;
+    .dropdown-menu.show {
+        display: block;
+        position: absolute;
+        /* filter: blur(1px); */
+        top: 56px;
+        width: 304px;
+        align-items: center;
+        background: #fff;
+        padding: 8px 19px 26px;
+        margin-right: -52px;
+        margin-top: 8px;
+        /* border: 1px solid blue; */
+        border-radius: 9px;
+
+    }
+
+    .header .navbar a {
+        font-size: 2rem;
+        margin: 2rem 2.5rem;
+        display: block;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .slide div p {
+        font-size: 2rem;
+    }
+
+    html {
+        font-size: 55%;
+
+    }
+
+    .galler_post {
+
+        flex-direction: column !important;
+    }
+
+    .slideshow {
+        margin-top: 3px;
+        width: 100% !important
+    }
+
+    .slide_posts {
+        margin-top: -37px;
+        margin-bottom: 18px;
+        font-size: 14px;
+    }
+
+    .post {
+        height: 267px;
+        padding: 26px 10px 14px 10px;
+    }
+
+    .footer .containe .content .conect {
+        padding: 2px 1px;
+        margin: 0px 21px;
+    }
+
+    .footer .containe .content {
+        gap: 175px !important;
     }
 
 
 }
 
-@media (max-width: 450px) {
+@media (max-width: 970px) {
+.download-all-course{
+    padding-right:0 !important
+}
+    .slideshow {
+        margin-top: 3px;
+        width: 100% !important;
+    }
+
+    .header_top {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+        width: 100% !important;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .header {
+        padding: 11px 70px 11px;
+    }
+
+    .menu {
+        opacity: 1;
+    }
+
+
+    section {
+        padding: 2rem;
+    }
+
+    .dropdown-menu.show {
+        display: block;
+        position: absolute;
+        /* filter: blur(1px); */
+        top: 56px;
+        width: 304px;
+        align-items: center;
+        background: #fff;
+        padding: 8px 19px 26px;
+        margin-right: -52px;
+        margin-top: 8px;
+        /* border: 1px solid blue; */
+        border-radius: 9px;
+
+    }
+
+    .header .navbar a {
+        font-size: 2rem;
+        margin: 2rem 2.5rem;
+        display: block;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+
+    .container_excel {
+        flex-direction: column;
+        align-items: center;
+        margin: 53px auto;
+    }
+
+
+
+    .container_excel .titre {
+        padding: 0px 34px;
+    }
+
+    .footer .containe .content {
+        flex-direction: column !important;
+        gap: 27px !important;
+    }
+
+
+}
+
+@media (max-width: 672px) {
+    .slideshow {
+        margin-top: 3px;
+        width: 100% !important;
+    }
 
     html {
         font-size: 50%;
@@ -571,6 +753,73 @@ svg {
         font-size: 2.5rem;
     }
 
+    .header_top {
+        width: 100%;
+
+    }
+
+    .rezome {
+        padding: 0px 64px;
+        text-align: center;
+    }
 }
+
+@media (max-width: 535px) {
+    .header_top {
+        padding-left: 0px !important;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .header_top__left {
+        width: 100%;
+
+        gap: 12px;
+        flex-direction: row !important;
+
+    }
+
+    .header_top__left .account {
+        padding-left: 11px;
+    }
+
+    .date__today {
+        padding-right: 39px;
+        width: 119% !important;
+    }
+
+    .slog {
+        width: 50%;
+        height: 50%;
+        align-items: center;
+        padding-right: 15px;
+    }
+
+    .slog img {
+        width: 74%;
+
+    }
+
+    .header_top .logo {
+        width: 50%;
+        height: 50%;
+    }
+
+    .slide_posts {
+        width: 100% !important;
+    }
+
+    .posts {
+        width: 100% !important;
+    }
+
+    .download {
+        width: 84%;
+        padding: 3px;
+        margin: 14px;
+    }
+}
+
+
 
 
