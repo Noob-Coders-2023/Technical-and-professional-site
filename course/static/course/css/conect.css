@@ -19,19 +19,16 @@ body {
     background: #eee;
 }
 
-.body {
-    padding-top: 60px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
-.container {
+
+
+.container_conect {
+    margin: 25px auto;
     display: flex;
     outline: var(--outline);
     outline-offset: -3rem;
     max-width: 1000px;
-    width: 100%;
+    width: 90%;
     margin-bottom: 116px;
     padding: 59px 57px;
     background: #eee;
@@ -42,19 +39,19 @@ body {
     flex-direction: column;
 }
 
-.container:hover,
-.container:active {
+.container_conect:hover,
+.container_conect:active {
     outline: var(--outline-hover);
     outline-offset: -3rem;
 }
 
-.container .title {
+.container_conect .title {
     font-size: 25px;
     font-weight: 500;
     position: relative;
 }
 
-.container .title::before {
+.container_conect .title::before {
       content: '';
     position: absolute;
     right: 0;
@@ -64,7 +61,7 @@ body {
     background: #1111bd;
 }
 
-.container form .user-details {
+.container_conect form .user-details {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -126,7 +123,8 @@ form .user-details .input-box {
 
 form .button {
       height: 45px;
-    margin: 45px 119px;
+
+    width: 100%;
 }
 
 
@@ -168,26 +166,36 @@ form .button button:hover {
     font-size: 18px;
     padding-right: 20px;
 }
+.user-details .input-box .input3{
+    color: #c9c7c7;
+        height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.user-details .input-box .detail3{
+
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+        color: #c9c7c7;
+
+}
 
 
-@media (max-width: 484px) {
-    .container {
-        max-width: 100%;
-    }
 
-    form .user-details .input-box {
-        margin-bottom: 15px;
+@media screen and (max-width: 772px){
+form .user-details .input-box {
+
+     width: 81%;
+}
+    .user-details .input-box .input1{
         width: 100%;
     }
-
-    .container form .user-details {
-        max-height: 300px;
-        overflow: scroll;
-    }
-
-    .user-details::-webkit-scrollbar {
-        width: 0
-    }
-
 }
 

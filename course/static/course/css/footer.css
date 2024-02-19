@@ -22,7 +22,7 @@
     align-items: center;
     gap: 23px;
     padding-bottom: 21px;
-    font-size: 20px;
+    font-size: 2rem;
 }
 .footer .containe .content{    gap: 273px;
         display: flex;

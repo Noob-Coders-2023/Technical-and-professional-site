@@ -95,14 +95,11 @@ form .user-details .input-box {
 
 }
 
-form .button {
-    height: 45px;
-    margin: 45px 0;
-}
+
 
 .button {
     height: 55px;
-    width: 643px;
+    width: 80vw;
     outline: none;
     color: #eee;
     border: none;
@@ -113,13 +110,14 @@ form .button {
  background: linear-gradient(135deg, #718ce6, #05138d);
 }
 .button input{
-        font-size: 20px;
+    font-size: 2rem;
     background: none;
-    color: #eee;
+    color: #ffffff;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 7px 300px;
+    padding: 12px 0px;
+    width: 101%;
 }
 
 .button:hover {
@@ -127,22 +125,21 @@ form .button {
 }
 
 @media (max-width: 484px) {
-    .container {
-        max-width: 100%;
-    }
 
     form .user-details .input-box {
-        margin-bottom: 15px;
-        width: 100%;
-    }
 
-    .container form .user-details {
-        max-height: 300px;
-        overflow: scroll;
+        width: 90%;
     }
 
     .user-details::-webkit-scrollbar {
         width: 0
     }
 
+}
+
+@media (max-width: 467px) {
+    #captcha {
+        width: 55% !important;
+            padding: 22px !important;
+    }
 }

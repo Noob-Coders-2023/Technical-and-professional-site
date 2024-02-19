@@ -63,6 +63,11 @@ body {
 
 .finished {
     color: #a91717;
+    font-size: 1.5rem;
+}
+
+.post a h3 {
+    font-size: 1.5rem;
 }
 
 .header_top {
@@ -101,7 +106,7 @@ body {
 }
 
 .header .logo i {
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #0006c1;
 }
 
@@ -327,6 +332,7 @@ svg {
 
 .logo img {
     width: 220px;
+    padding-left: 24px;
 }
 
 .pagination {
@@ -405,7 +411,7 @@ svg {
     outline: var(--outline);
     box-shadow: var(--box-shadow);
     outline-offset: -1rem;
-        width: 86%;
+    width: 86%;
 
 }
 
@@ -442,6 +448,10 @@ svg {
 
 .download.active .progress-wrapper {
     transform: scale(.6);
+}
+
+.post {
+    padding-right: 25px !important;
 }
 
 .progress-wrapper .inner {
@@ -563,6 +573,7 @@ svg {
 
 }
 
+
 @media screen and (max-width: 1309px) {
     .slide_posts {
         width: 100% !important;
@@ -662,10 +673,11 @@ svg {
 
 }
 
-@media (max-width: 970px) {
-.download-all-course{
-    padding-right:0 !important
-}
+@media (max-width: 975px) {
+    .download-all-course {
+        padding-right: 0 !important
+    }
+
     .slideshow {
         margin-top: 3px;
         width: 100% !important;
@@ -682,7 +694,7 @@ svg {
     }
 
     .header {
-        padding: 11px 70px 11px;
+        padding: 11px 21px 11px;
     }
 
     .menu {
@@ -725,7 +737,6 @@ svg {
     }
 
 
-
     .container_excel .titre {
         padding: 0px 34px;
     }
@@ -764,7 +775,12 @@ svg {
     }
 }
 
-@media (max-width: 535px) {
+@media (max-width: 590px) {
+    .header .logo i {
+        font-size: 2.5rem;
+
+    }
+
     .header_top {
         padding-left: 0px !important;
         flex-wrap: wrap;
@@ -820,6 +836,12 @@ svg {
     }
 }
 
+@media (max-width: 384px) {
+    .header_top .sal {
+        width: 50%;
+    }
 
+
+}
 
 

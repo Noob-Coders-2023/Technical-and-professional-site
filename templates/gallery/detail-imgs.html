@@ -19,18 +19,21 @@
 </head>
 <body>
 {% include 'course/navbar.html' %}
-
-<div class="container">
+<div class="body">
+<div class="container_post">
     {% for gallery in gallery_list %}
-        <div class="conten">
-        <img src="{{ gallery.image.url }}" alt="{{ gallery.title }}">
-        <div class="flex">
-        <a class="title" href="{% url 'gallery:slide_detail' gallery.id %}">{{ gallery.title|truncatewords:10 }}</a>
+        <div class="conten_post">
+            <img src="{{ gallery.image.url }}" alt="{{ gallery.title }}" class="img">
+            <div class="flex">
+                <a class="title"
+                   href="{% url 'gallery:slide_detail' gallery.id %}">{{ gallery.title|truncatewords:10 }}</a>
 
 
-</div></div>
+            </div>
+        </div>
     {% endfor %}
-    </div>
-    {% include 'course/footer.html' %}
+</div>
+</div>
+{% include 'course/footer.html' %}
 </body>
 </html>

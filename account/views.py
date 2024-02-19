@@ -51,11 +51,19 @@ def home(request):
 
 
 class PasswordChange(PasswordChangeView):
-    @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
+    class PasswordChange(PasswordChangeView):
+        @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
+        def dispatch(self, request, *args, **kwargs):
+            # Your request-related logic can go here
+            return super().dispatch(request, *args, **kwargs)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.success_url = reverse_lazy('account:password_change_done')
+        def form_valid(self, form):
+            # Your form handling logic for a valid form submission
+            return super().form_valid(form)
+
+        def get_success_url(self):
+            # Specify the success URL after a successful password change
+            return reverse_lazy('account:password_change_done')
 
 @ratelimit(key='user_or_ip', rate='10/m')
 def user_selected_courses(request):
@@ -84,8 +92,8 @@ class Register(View):
         if form.is_valid():
 
             random_code = random.randint(1000, 9999)
-            send_top_code(form.cleaned_data['phone_number'], random_code,form.cleaned_data['first_name'])
-            OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code,first_name=form.cleaned_data['first_name'])
+            send_top_code(form.cleaned_data['phone_number'], random_code)
+            OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
             request.session['user_registration_info'] = {
                 'phone_number': form.cleaned_data['phone_number'],
                 'email': form.cleaned_data['email'],
@@ -162,7 +170,7 @@ class UserRegisterVerifyCodeView(View):
                 code_instance.delete()
                 return redirect('account:verify_code')
 
-        return redirect('account:login')
+        return redirect('account:verify_code')
 
 # golab11047
 @login_required

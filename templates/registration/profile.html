@@ -7,20 +7,22 @@
     <title>پروفایل</title>
     <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
     <link href="{% static 'registration/profile/css/profile.css' %}" rel="stylesheet">
+
     <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/conect.css' %}" rel="stylesheet">
     <link href="{% static 'error/error.css' %}" rel="stylesheet">
     <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
 </head>
 <body>
-<div>{% include 'course/navbar.html' %}</div>
+{% include 'course/navbar.html' %}
     <div>  {% include 'includes/messages_block.html' %}</div>
+
+
 <div class="body">
+    <div class="container_conect">
 
 
-    <div class="container">
 
-
-        <h2 class="title">پروفایل کاربری</h2>
 
         <form method="post" novalidate>
             {% csrf_token %}
@@ -31,7 +33,10 @@
                     {% endfor %}
                 </div>
             {% endif %}
+   <div class="content-left-title">
+           <h2 class="title">پروفایل کاربری</h2>
 
+        </div>
             <div class="user-details">
                 <div class="input-box">
                     <span class="detail">ایمیل:</span>
@@ -43,7 +48,7 @@
                     {% endif %}
                 </div>
 
-                <br>
+
 
 
                 <div class="input-box">
@@ -56,7 +61,7 @@
                     {% endif %}
                 </div>
 
-                <br>
+
                 <div class="input-box">
                     <span class="detail">نام:</span>
                     {{ form.first_name|add_class:'input' }}
@@ -67,7 +72,7 @@
                     {% endif %}
                 </div>
 
-                <br>
+
                 <div class="input-box">
                     <span class="detail">نام خانوادگی:</span>
                     {{ form.last_name|add_class:'input' }}
@@ -79,16 +84,16 @@
                 </div>
 
                 <div class="input-box">
-                    <span class="detail1">شماره موبایل:</span>
-                    <input class="input1" type="text" name="phone_number" value="{{ form.phone_number.value }}"
+                    <span class="detail3">شماره موبایل:</span>
+                    <input class="input3" type="text" name="phone_number" value="{{ form.phone_number.value }}"
                            {% if form.phone_number.value %}readonly{% endif %}>
                 </div>
-                <br>
+
 
 
                 <div class="input-box">
-                    <span class="detail1">کدملی:</span>
-                    <input class="input1" type="text" name="national_code" value="{{ form.national_code.value }}"
+                    <span class="detail3">کدملی:</span>
+                    <input class="input3" type="text" name="national_code" value="{{ form.national_code.value }}"
                            readonly>
                 </div>
              {% include 'captcha/captcha.html' %}
@@ -97,11 +102,11 @@
             </div>
         </form>
 
-
+</div>
     </div>
 
 
-</div>
+
 {% include 'course/footer.html' %}
 <script src="{% static 'registration/profile/js/profile.js' %}"></script>
 </body>

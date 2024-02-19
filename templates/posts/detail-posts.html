@@ -18,17 +18,18 @@
 </head>
 <body>
 {% include 'course/navbar.html' %}
-
-<div class="container">
+<div class="body">
+<div class="container_post">
 {% for post in post_list %}
-    <div class="conten">
-    <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}">
+    <div class="conten_post">
+    <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="img">
         <div class="flex">
 <a class="title" href="{% url 'posts:post' post.id %}">{{ post.title|truncatewords:10 }}</a>
 
 
 <div class="created_at ">{{ post.jcreated_at}}</div></div></div>
    {% endfor %}
+</div>
 </div>
 {% include 'course/footer.html' %}
 </body>

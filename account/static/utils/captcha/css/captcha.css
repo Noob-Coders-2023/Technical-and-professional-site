@@ -72,3 +72,14 @@ border-color: #001180;
 .captcha_refresh:active{
         transform: scale(0.9);
 }
+@media (max-width: 467px){
+    #captcha{
+        width: 77% !important;
+    }
+    .captcha_form{
+        width: 100% !important;
+    }
+    .user-details{
+        margin: -25px;
+    }
+}

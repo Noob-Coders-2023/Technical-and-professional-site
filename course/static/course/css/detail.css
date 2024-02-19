@@ -8,7 +8,8 @@
      font-family: 'myFont', Arial, sans-serif;
 }
 .body{
-    margin:0;
+
+    margin:0px auto;
     padding: 20px 0 61px 0;
     display: flex;
     align-content: space-between;
@@ -19,7 +20,7 @@
     font-size: 18px;
     top: 50%;
     left: 50%;
-    width: 845px;
+ width: 90%;
     padding: 30px;
     background: #eee;
     box-sizing: border-box;
@@ -79,4 +80,14 @@ h1{
 }
 .choice-course:active{
     transform: scale(0.96);
+}
+
+
+@media screen and (max-width: 536px){
+h1{
+    margin: 179px 0px 0px
+}
+    /*.teacher{*/
+    /*    font-size: 14px;*/
+    /*}*/
 }

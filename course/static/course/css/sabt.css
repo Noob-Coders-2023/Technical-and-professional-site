@@ -13,43 +13,31 @@
 
 }
 
-body {
-    /*align-items: center;*/
-    /*margin-bottom: 165px;*/
-    /*padding-bottom: 95px;*/
-    /*padding-top: 138px;*/
-    gap: 25px;
-    direction: rtl;
-    display: flex;
-    text-align: right;
-    flex-direction: column;
-}
 
-.body {
-    padding-top: 60px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
-.container {
-    max-width: 700px;
+
+.container_creat {
+     display: flex;
+    max-width: 92%;
     width: 100%;
     margin-bottom: 116px;
     padding: 25px 30px;
     background: #eee;
     box-sizing: border-box;
     border-radius: 10px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, .2)
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .2);
+    justify-items: center;
+    flex-direction: column;
+    margin: 43px auto;
 }
 
-.container .title {
+.container_creat .title {
     font-size: 25px;
     font-weight: 500;
     position: relative;
 }
 
-.container .title::before {
+.container_creat .title::before {
     content: '';
     position: absolute;
     right: 0;
@@ -59,7 +47,7 @@ body {
     background: #1111bd;
 }
 
-.container form .user-details {
+.container_creat form .user-details {
     display: flex;
     flex-wrap: wrap;
 
@@ -95,7 +83,7 @@ form .user-details .input-box {
 }
 .user-details .input-box .input1 {
     padding-right: 10px;
-       width: 618px;
+       width: 200%;
     height: 171px;
     outline: none;
     border-radius: 5px;
@@ -119,12 +107,13 @@ form .user-details .input-box {
 
 form .button {
     height: 45px;
-    margin: 45px 0;
+    margin: 15px auto;
+    width: 100%;
 }
 
 form .button button {
     height: 55px;
-    width: 643px;
+    width: 193%;
     outline: none;
     color: #eee;
     border: none;
@@ -132,11 +121,12 @@ form .button button {
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-     background: linear-gradient(135deg, #718ce6, #05138d);
+    background: linear-gradient(135deg, #718ce6, #05138d);
+      margin: 15px auto;
 }
 
 form .button button:hover {
-     background: linear-gradient(-135deg, #718ce6, #05138d);
+    background: linear-gradient(-135deg, #718ce6, #05138d);
 }
 
 @media (max-width: 484px) {
@@ -203,4 +193,20 @@ form .button button:hover {
 
 .error-message {
     padding-right: 23px;
+}
+
+@media screen and (max-width: 484px){
+    .user-details .input-box .input1 {
+
+    width: 100%;
+
+}
+}
+@media screen and (max-width: 655px){
+.container{
+    flex-direction: column !important;
+
+}
+
+
 }

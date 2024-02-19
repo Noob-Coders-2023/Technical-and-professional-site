@@ -19,13 +19,14 @@ body{
 
 }
 table,th,td{
+        border-collapse: collapse;
     padding: 1rem;
 }
 main.table{
     width: 82vw;
     height: 90vh;
     background-color: #fff5;
-    backdrop-filter: blur(7px);
+
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
     overflow: hidden;
@@ -41,7 +42,7 @@ main.table{
 }
 .table_header a{
         text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: lighter;
     color:black ;
 }
@@ -67,15 +68,33 @@ main.table{
     height: 0.5rem;
 }
 table{
+        display: flex;
     width: 100%;
+    margin: auto;
+    flex-direction: column;
+
+
+}
+tr{    width: 100%;
+        display: flex;
+    gap: 8px;
+}
+tbody{
+    display: flex;
+width: 100%;
+}
+thead{
+       width: 100%;
 }
 thead th{
-    position: sticky;
+
+
+
     top: 0;left: 0;
     background-color: #d5d1defe;
 }
-thead ,th,td{
-    border-collapse: collapse;
+thead ,th,td{    text-align: center;
+     width: 100%;
     padding: 1rem;
 
 }
@@ -96,4 +115,36 @@ td a{
 }
 td a:hover{
         color:blue;
+}
+@media screen and (max-width: 842px){
+
+
+    table{
+        overflow: scroll;
+    }
+}
+@media screen and (max-width: 577px){
+    .table_header{
+    gap: 43px !important;
+
+}
+}
+@media screen and (max-width: 416px) {
+    thead th{
+            font-size: 13px;
+
+    }
+    main.table {
+    width: 96%;}
+
+
+}
+@media screen and (max-width: 360px) {
+        .table_header{
+    gap: 43px !important;
+    font-size: 13px;
+}
+.table_header a i {
+    font-size: 13px;
+}
 }
