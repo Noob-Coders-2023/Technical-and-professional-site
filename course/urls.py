@@ -14,4 +14,5 @@ urlpatterns = [
     path('amozeshgayeazad/',free_school, name='free_school'),
     path('complaint_form/',complaint, name='complaint'),
 
+
 ]

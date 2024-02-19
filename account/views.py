@@ -1,7 +1,7 @@
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
@@ -28,14 +28,12 @@ from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.contrib.auth import views as auth_views
-
-
-
-
-
-
+from django.views.generic import ListView
+from .models import Employee
 
 CustomUser = get_user_model()
+
+
 # Create your views here.
 
 
@@ -43,7 +41,9 @@ class CustomLoginView(LoginView):
     @method_decorator(ratelimit(key='user_or_ip', rate='2/s'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
     form_class = CaptchaAuthenticationForm
+
 
 @ratelimit(key='user_or_ip', rate='10/m')
 def home(request):
@@ -65,6 +65,7 @@ class PasswordChange(PasswordChangeView):
             # Specify the success URL after a successful password change
             return reverse_lazy('account:password_change_done')
 
+
 @ratelimit(key='user_or_ip', rate='10/m')
 def user_selected_courses(request):
     if request.user.is_authenticated:
@@ -78,7 +79,6 @@ def user_selected_courses(request):
 
 
 class Register(View):
-
     form_class = SignupForm
 
     @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
@@ -90,7 +90,6 @@ class Register(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-
             random_code = random.randint(1000, 9999)
             send_top_code(form.cleaned_data['phone_number'], random_code)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
@@ -103,7 +102,6 @@ class Register(View):
                 'last_name': form.cleaned_data['last_name'],
                 'national_code': form.cleaned_data['national_code'],
                 'gender': form.cleaned_data['gender'],
-
 
             }
             messages.success(request, 'کدی به شماره همراه شما ارسال شد.', 'success')
@@ -133,8 +131,8 @@ class Register(View):
 
 
 class UserRegisterVerifyCodeView(View):
-
     form_class = VerifyCodeForm
+
     @method_decorator(ratelimit(key='user_or_ip', rate='1/s'))
     def get(self, request):
         form = self.form_class
@@ -150,15 +148,15 @@ class UserRegisterVerifyCodeView(View):
             if expiration_time > timezone.now():
                 if cd['code'] == code_instance.code:
                     User.objects.create_user(
-                                             user_session['phone_number'],
-                                             user_session['email'],
-                                             user_session['username'],
-                                             user_session['password2'],
-                                             user_session['first_name'],
-                                             user_session['last_name'],
-                                             user_session['national_code'],
-                                             user_session['gender']
-                                             )
+                        user_session['phone_number'],
+                        user_session['email'],
+                        user_session['username'],
+                        user_session['password2'],
+                        user_session['first_name'],
+                        user_session['last_name'],
+                        user_session['national_code'],
+                        user_session['gender']
+                    )
 
                     code_instance.delete()
                     messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
@@ -171,6 +169,7 @@ class UserRegisterVerifyCodeView(View):
                 return redirect('account:verify_code')
 
         return redirect('account:verify_code')
+
 
 # golab11047
 @login_required
@@ -194,9 +193,7 @@ def profile(request):
         'current_date': current_date
     }
 
-    return render(request, 'registration/profile.html',context)
-
-
+    return render(request, 'registration/profile.html', context)
 
 
 class CustomPasswordResetView(auth_views.PasswordResetView):
@@ -216,7 +213,10 @@ class CustomPasswordResetView(auth_views.PasswordResetView):
         return super().form_valid(form)
 
 
+class EmployeeListView(ListView):
+    model = Employee
+    template_name = 'jam/employee_list.html'
+    context_object_name = 'employees'
+def jam_about(request):
 
-
-
-
+   return render(request, 'jam/jam_about.html')

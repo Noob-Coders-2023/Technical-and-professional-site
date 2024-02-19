@@ -39,6 +39,8 @@ urlpatterns += [
     path('', home, name='home'),
     path('user_selected_courses/', user_selected_courses, name='user_selected_courses'),
     path('profile/', profile, name='profile'),
+    path('employees/', EmployeeListView.as_view(), name='employee-list'),
+    path('jam_about/', jam_about, name='jam_about'),
 
 
 

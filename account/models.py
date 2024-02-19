@@ -41,8 +41,31 @@ class User(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
+class Employee(models.Model):
+    DEPARTMENT_CHOICES = [
+        ('IT', 'کارشناس IT'),
+        ('karamoz', 'کارآموز'),
+        ('modir_markaz', 'مدیر مرکز'),
+        ('moaven', 'معاون'),
+        ('moshaver', 'مشاور'),
+        ('morabi', 'مربی'),
 
 
+    ]
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
+    employee_id = models.CharField(max_length=20, unique=True,verbose_name='شماره پرسنلی')
+    department = models.CharField(max_length=18, choices=DEPARTMENT_CHOICES,verbose_name='سمت')
+    thumbnail = models.ImageField(upload_to='images/', verbose_name="تصویر")
+    field=models.CharField(max_length=50,blank=True, null=True,verbose_name='رشته تحصیلی')
+    description = models.TextField(verbose_name="محتوا",blank=True, null=True)
+    full_name = models.CharField(max_length=70, blank=True, null=True,verbose_name='نام و نام خانوادگی')
+
+    class Meta:
+        verbose_name = "کارمند"
+        verbose_name_plural = 'کارمندان'
+
+    def __str__(self):
+        return self.full_name
 
 
 class OtpCode(models.Model):

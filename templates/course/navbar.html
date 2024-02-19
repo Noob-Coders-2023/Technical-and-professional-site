@@ -6,8 +6,8 @@
     <div class="header_top">
 
 
-            <img src="{% static 'course/img/سال.png' %}" alt="شعار سال" width="196"
-                 height="110" class="sal">
+        <img src="{% static 'course/img/سال.png' %}" alt="شعار سال" width="196"
+             height="110" class="sal">
 
         <a class="logo" aria-label="title" target="_self">
             <img src="{% static 'gallery/svg/logo-animate_1.svg' %}" type="image/svg+xml" width="240"
@@ -61,10 +61,10 @@
 
 
     <header class="header">
-    <div class="menubar">
+        <div class="menubar">
             <img src="{% static 'course/svg/menu.svg' %}" class="menu">
-        <a href="{% url 'course:home' %}" class="logo"><i class="fas fa-shopping-basket">مرکز فنی حرفه ای ۱۴ جم</i></a>
-    </div>
+            <a href="{% url 'course:home' %}" class="logo"><i class="fas fa-shopping-basket">مرکز فنی حرفه ای ۱۴ جم</i></a>
+        </div>
 
         <nav class="navbar dropdown-menu">
 
@@ -76,14 +76,29 @@
                 {% if user.is_admin %}
                     <a href="{% url 'course:create_course' %}">ایجاد دوره</a>
                 {% endif %}
-                {#                    <a href='{% url 'posts:list' %}'>پست ها</a>#}
-                {#                    <a href='{% url 'gallery:galleries' %}'>گالری</a>#}
-                {#                    <div href="#" class="about-us">درباره ما#}
+                {#                                    <a href='{% url 'posts:list' %}'>پست ها</a>#}
+                {#                                    <a href='{% url 'gallery:galleries' %}'>گالری</a>#}
+                {#                                    <div href="#" class="about-us">درباره ما#}
 
             {% endif %}
             <a href='{% url 'posts:list' %}'>پست ها</a>
             <a href='{% url 'gallery:galleries' %}'>گالری</a>
-            <div href="#">درباره ما
+            <div href="#" class="about-us">درباره ما
+
+            
+
+                <div class="submenu">
+                    <li>
+                          <a href="{% url 'account:employee-list' %}" >لیست کارمندان</a>
+                    </li>
+                       <li>
+                          <a href="{% url 'account:jam_about' %}" >آموزشگاه دولتی</a>
+                    </li>
+                       <li>
+                          <a href="{% url 'course:free_school' %}" >آموزشگاه آزاد</a>
+                    </li>
+
+                </div>
             </div>
 
 

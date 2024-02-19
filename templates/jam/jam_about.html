@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ image.title }}</title>
+        <link href="{% static 'gallery/css/slide_detail.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+        <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
+</head>
+<body>{% include 'course/navbar.html' with current_date=current_date %}
+<div class="gallery">
+
+
+<div class="container">
+
+  
+
+
+        <img src="{% static 'gallery/svg/logo-animate_1.svg' %}" >
+
+
+    <p>آدرس:
+    </p>
+</div>
+</div>
+{% include 'course/footer.html' %}
+</body>
+</html>

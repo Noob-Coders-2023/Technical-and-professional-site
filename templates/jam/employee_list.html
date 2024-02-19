@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>کارمندان</title>
+    <link href="{% static 'course/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'course/css/footer.css' %}" rel="stylesheet">
+</head>
+<body>
+{% include 'course/navbar.html' %}
+
+<section class="features" id="features">
+    <h1 class="heading">کارمندان</h1>
+    <div class="box-container">
+        {% for employee in employees %}
+
+
+            <div class="box start">
+
+                    {% if employee.thumbnail %}
+           <img src="{{ employee.thumbnail.url }}" alt="تصویر">
+
+            {% else %}
+                <p>تصویر موجود نیست</p>
+            {% endif %}
+
+
+            <p>نام و نام خانوادگی:{{ employee.full_name }}</p>
+            <p>سمت:{{ employee.department }}</p>
+            <p>رشته تحصیلی:{{ employee.field }}</p>
+            <p>{{ employee.description }}</p>
+
+
+
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% include 'course/footer.html' %}
+</body>
+</html>

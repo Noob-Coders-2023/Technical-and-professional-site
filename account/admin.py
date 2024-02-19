@@ -1,4 +1,6 @@
+
 from django.contrib import admin
+from .models import Employee
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import SignupForm, CustomUserChangeForm
 from .models import User,OtpCode
@@ -27,3 +29,9 @@ admin.site.register(User,UserAdmin)
 @admin.register(OtpCode)
 class OtpCodeAdmin(admin.ModelAdmin):
     list_display = ('phone_number','code','created')
+
+
+
+class EmployeeAdmin(admin.ModelAdmin):
+    list_display = ( 'full_name', 'department',"field")
+admin.site.register(Employee,EmployeeAdmin)
