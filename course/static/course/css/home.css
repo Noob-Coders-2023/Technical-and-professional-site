@@ -598,12 +598,14 @@ svg {
         display: flex;
         justify-content: center;
     }
+
 .submenu{
     width: 100%;
     background: #c5c6f0;
     top: -34px;
     height: -webkit-fill-available;
     transition: unset;
+    display: none;
 }
 
 
