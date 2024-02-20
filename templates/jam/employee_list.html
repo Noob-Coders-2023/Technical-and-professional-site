@@ -19,19 +19,35 @@
 
             <div class="box start">
 
-                    {% if employee.thumbnail %}
-           <img src="{{ employee.thumbnail.url }}" alt="تصویر">
+                {% if employee.thumbnail %}
+                    <img src="{{ employee.thumbnail.url }}" alt="تصویر" style="    margin: 1rem 0;
+    height: 15rem;
+    border-radius: 9px;
+}">
 
-            {% else %}
-                <p>تصویر موجود نیست</p>
-            {% endif %}
+                {% else %}
+                    <p>تصویر موجود نیست</p>
+                {% endif %}
 
 
-            <p>نام و نام خانوادگی:{{ employee.full_name }}</p>
-            <p>سمت:{{ employee.department }}</p>
-            <p>رشته تحصیلی:{{ employee.field }}</p>
-            <p>{{ employee.description }}</p>
-
+                <p style="    font-size: 1.6rem; color: #3c20ab;">نام و نام خانوادگی:{{ employee.full_name }}</p>
+                <p>سمت:
+                    {% if employee.department == 'IT' %}
+                        کارشناس IT
+                    {% elif employee.department == 'karamoz' %}
+                        کارآموز
+                    {% elif employee.department == 'modir_markaz' %}
+                        مدیر مرکز
+                    {% elif employee.department == 'moaven' %}
+                        معاون
+                    {% elif employee.department == 'moshaver' %}
+                        مشاور
+                    {% elif employee.department == 'morabi' %}
+                        مربی
+                    {% endif %}
+                </p>
+                <p>رشته تحصیلی:{{ employee.field }}</p>
+                <p>{{ employee.description }}</p>
 
 
             </div>

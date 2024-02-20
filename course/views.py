@@ -161,7 +161,7 @@ def user_selected_courses(request):
             'selected': True
         }
 
-        return render(request, 'registration/home.html', context)
+        return render(request, 'registration/choice.html', context)
 
 
 # ------حذف درس----------

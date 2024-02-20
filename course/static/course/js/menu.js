@@ -14,3 +14,21 @@
             }
         });
     });
+
+
+var aboutUs = document.querySelector('.about-us');
+var submenu = document.querySelector('.submenu');
+var about_back = document.querySelector('.about_back');
+
+aboutUs.addEventListener('click', () => {
+    if (submenu.classList.contains('show')) {
+        submenu.classList.remove('show');
+    } else {
+        submenu.classList.add('show');
+    }
+});
+about_back.addEventListener('click', ()=>{
+
+        submenu.classList.add('hidden');
+
+})

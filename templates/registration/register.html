@@ -20,153 +20,152 @@
 <div>  {% include 'includes/messages_block.html' %}</div>
 
 
+<div class="container">
 
-    <div class="container">
+    <div class="title">ثبت نام</div>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div>
+                {% for error in form.non_field_errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="user-details">
 
-        <div class="title">ثبت نام</div>
-        <form method="post" novalidate>
-            {% csrf_token %}
-            {% if form.non_field_errors %}
-                <div>
-                    {% for error in form.non_field_errors %}
-                        <span>{{ error }}</span>
+
+            <div class="input-box">
+                <span class="detail">نام:</span>
+                {{ form.first_name|add_class:'input' }}
+                {% if form.first_name.errors %}
+                    <div class="error_message">
+                        {{ form.first_name.errors }}
+                    </div>
+                {% endif %}
+
+
+            </div>
+
+            <br>
+
+
+            <div class="input-box">
+
+                <span class="detail">نام خانوادگی:</span>
+                {{ form.last_name|add_class:'input' }}
+                {% if form.last_name.errors %}
+                    <div class="error_message">
+                        {{ form.last_name.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <br>
+
+
+            <div class="input-box">
+                <span class="detail">نام کاربری:</span>
+
+                {{ form.username|add_class:'input' }}
+
+                {% if form.username.errors %}
+                    <div class="error_message">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+
+            <div class="input-box">
+
+                <span class="detail">آدرس ایمیل: </span>
+                {{ form.email|add_class:'input' }}
+                {% if form.email.errors %}
+                    <div class="error_message">
+                        {{ form.email.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+
+
+            <div class="input-box">
+
+                <span class="detail">شماره همراه:</span>
+                {{ form.phone_number|add_class:'input' }}
+                {% if form.phone_number.errors %}
+                    <div class="error_message">
+                        {{ form.phone_number.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+
+
+            <div class="input-box">
+
+                <span class="detail">کدملی:</span>
+                {{ form.national_code|add_class:'input' }}
+                {% if form.national_code.errors %}
+                    <div class="error_message">
+                        {{ form.national_code.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+
+
+            <div class="input-box">
+
+
+                <span class="detail">گذر واژه:</span>
+                {{ form.password1|add_class:'input' }}
+                {% if form.password1.errors %}
+                    <div class="error_message">
+                        {{ form.password1.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+
+
+            <div class="input-box">
+
+                <span class="detail">تکرار گذر واژه:</span>
+                {{ form.password2|add_class:'input' }}
+                {% if form.password2.errors %}
+                    <div class="error_message">
+                        {{ form.password2.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="gender_details">
+                <span class="gender_title">جنسیت:</span>
+                <div class="category">
+                    {% for value, label in form.gender.field.choices %}
+                        <label>
+                            <input type="radio" name="{{ form.gender.name }}" value="{{ value }}"
+                                   {% if form.gender.value == value %}checked{% endif %} class="input">
+                            {{ label }}
+                        </label>
                     {% endfor %}
                 </div>
-            {% endif %}
-            <div class="user-details">
-
-
-                <div class="input-box">
-                    <span class="detail">نام:</span>
-                    {{ form.first_name|add_class:'input' }}
-                    {% if form.first_name.errors %}
-                        <div class="error_message">
-                            {{ form.first_name.errors }}
-                        </div>
-                    {% endif %}
-
-
-                </div>
-
-                <br>
-
-
-                <div class="input-box">
-
-                    <span class="detail">نام خانوادگی:</span>
-                    {{ form.last_name|add_class:'input' }}
-                    {% if form.last_name.errors %}
-                        <div class="error_message">
-                            {{ form.last_name.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <br>
-
-
-                <div class="input-box">
-                    <span class="detail">نام کاربری:</span>
-
-                    {{ form.username|add_class:'input' }}
-
-                    {% if form.username.errors %}
-                        <div class="error_message">
-                            {{ form.username.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                <br>
-
-                <div class="input-box">
-
-                    <span class="detail">آدرس ایمیل: </span>
-                    {{ form.email|add_class:'input' }}
-                    {% if form.email.errors %}
-                        <div class="error_message">
-                            {{ form.email.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                <br>
-
-
-                <div class="input-box">
-
-                    <span class="detail">شماره همراه:</span>
-                    {{ form.phone_number|add_class:'input' }}
-                    {% if form.phone_number.errors %}
-                        <div class="error_message">
-                            {{ form.phone_number.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                <br>
-
-
-                <div class="input-box">
-
-                    <span class="detail">کدملی:</span>
-                    {{ form.national_code|add_class:'input' }}
-                    {% if form.national_code.errors %}
-                        <div class="error_message">
-                            {{ form.national_code.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                <br>
-
-
-                <div class="input-box">
-
-
-                    <span class="detail">گذر واژه:</span>
-                    {{ form.password1|add_class:'input' }}
-                    {% if form.password1.errors %}
-                        <div class="error_message">
-                            {{ form.password1.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                <br>
-
-
-                <div class="input-box">
-
-                    <span class="detail">تکرار گذر واژه:</span>
-                    {{ form.password2|add_class:'input' }}
-                    {% if form.password2.errors %}
-                        <div class="error_message">
-                            {{ form.password2.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="gender_details">
-                    <span class="gender_title">جنسیت:</span>
-                    <div class="category">
-                        {% for value, label in form.gender.field.choices %}
-                            <label>
-                                <input type="radio" name="{{ form.gender.name }}" value="{{ value }}"
-                                       {% if form.gender.value == value %}checked{% endif %} class="input">
-                                {{ label }}
-                            </label>
-                        {% endfor %}
-                    </div>
-
-
-{% include 'captcha/captcha.html' %}
-
-
-
-                <div class="button">
-                    <button type="submit" id="login_btn">ثبت نام</button>
-                </div>
-
-                    <div class=""><a href="{% url 'account:login' %}">قبلا ثبت نام کردم</a></div>
             </div>
-        </form>
-    </div>
+
+            {% include 'captcha/captcha.html' %}
+
+
+            <button class="button" type="submit" id="login_btn">ثبت نام</button>
+
+
+            <div style="    text-align: center;
+    padding-right: 64px;"><a href="{% url 'account:login' %}" style="    color: blue;
+    text-decoration: none;cursor: pointer">قبلا ثبت نام کردم</a></div>
+
+    </form>
+</div>
 </div>
 
 </body>

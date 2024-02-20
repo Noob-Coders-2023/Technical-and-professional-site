@@ -38,7 +38,7 @@ def galleries(request):
         'gallery_list': gallery_list,
         'current_date': current_date
     }
-    return render(request, 'gallery/detail-imgs.html', context)
+    return render(request, 'gallery/detailimgs.html', context)
 
 
 

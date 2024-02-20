@@ -14,10 +14,8 @@
 }
 
 
-
-
 .container_creat {
-     display: flex;
+    display: flex;
     max-width: 92%;
     width: 100%;
     margin-bottom: 116px;
@@ -81,9 +79,10 @@ form .user-details .input-box {
 
 
 }
+
 .user-details .input-box .input1 {
     padding-right: 10px;
-       width: 200%;
+    width: 200%;
     height: 171px;
     outline: none;
     border-radius: 5px;
@@ -98,9 +97,9 @@ form .user-details .input-box {
 }
 
 .user-details .input-box .input:focus,
-.user-details .input-box .input:valid ,
+.user-details .input-box .input:valid,
 .user-details .input-box .input1:focus,
-.user-details .input-box .input1:valid{
+.user-details .input-box .input1:valid {
     border-color: #001180;
 
 }
@@ -111,7 +110,7 @@ form .button {
     width: 100%;
 }
 
-form .button button {
+form .button {
     height: 55px;
     width: 193%;
     outline: none;
@@ -122,10 +121,10 @@ form .button button {
     border-radius: 5px;
     letter-spacing: 1px;
     background: linear-gradient(135deg, #718ce6, #05138d);
-      margin: 15px auto;
+    margin: 15px auto;
 }
 
-form .button button:hover {
+form .button:hover {
     background: linear-gradient(-135deg, #718ce6, #05138d);
 }
 
@@ -158,7 +157,7 @@ form .button button:hover {
     padding-top: 15px;
     color: #ffffff;
     font-size: 18px;
-        margin-top: -24px;
+    margin-top: -24px;
 }
 
 .alert-success {
@@ -168,7 +167,7 @@ form .button button:hover {
     padding-top: 15px;
     color: #ffffff;
     font-size: 18px;
-     margin-top: -24px;
+    margin-top: -24px;
 }
 
 .error {
@@ -195,18 +194,23 @@ form .button button:hover {
     padding-right: 23px;
 }
 
-@media screen and (max-width: 484px){
-    .user-details .input-box .input1 {
+@media (max-width: 467px) {
+    #captcha {
+        width: 110% !important;
+    }}
 
-    width: 100%;
+    @media screen and (max-width: 484px) {
+        .user-details .input-box .input1 {
 
-}
-}
-@media screen and (max-width: 655px){
-.container{
-    flex-direction: column !important;
+            width: 100%;
 
-}
+        }
+    }
+    @media screen and (max-width: 655px) {
+        .container {
+            flex-direction: column !important;
+
+        }
+    }
 
 
-}

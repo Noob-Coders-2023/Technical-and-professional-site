@@ -74,7 +74,7 @@ border-color: #001180;
 }
 @media (max-width: 467px){
     #captcha{
-        width: 77% !important;
+        width: 89% !important;
     }
     .captcha_form{
         width: 100% !important;

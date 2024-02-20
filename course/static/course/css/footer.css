@@ -24,11 +24,13 @@
     padding-bottom: 21px;
     font-size: 2rem;
 }
-.footer .containe .content{    gap: 273px;
-        display: flex;
+.footer .containe .content{
+
+    display: flex;
     padding-right: 30px;
     margin-right: 0px;
     width: 100%;
+    justify-content: space-between;
 }
 .footer .containe .content .conect{
     flex: 0 0 auto;

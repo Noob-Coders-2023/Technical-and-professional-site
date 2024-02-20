@@ -198,4 +198,10 @@ form .user-details .input-box {
         width: 100%;
     }
 }
+@media (max-width: 467px){
+   #captcha {
+    width: 110% !important;
+}
+}
+
 

@@ -188,20 +188,15 @@ nav div {
 }
 
 .submenu {
-    position: absolute;
-    width: 200px;
-    display: flex;
-    gap: 10px;
+       position: absolute;
     border-radius: 10px;
-    background-color: #ffff;
     box-shadow: 0 20px 45px #00000025;
-    margin-top: 0;
-    opacity: 0;
-    z-index: -9999;
-    transition: all ease 0.5s;
     list-style-type: none;
     flex-direction: column;
-    border: 1px solid blue;
+
+    opacity: 0;
+  transition: display 0.5s ease;
+
 }
 
 .submenu li:hover {
@@ -212,7 +207,7 @@ li {
     border-bottom: #1b1b1b;
 }
 
-.about-us:hover .submenu {
+ .submenu.show {
     flex-direction: column;
     z-index: 1000;
     display: flex;
@@ -504,7 +499,12 @@ svg {
 .circle .right {
     transform: rotate(180deg);
 }
-
+.about-us{
+    cursor: pointer;
+}
+.about-us:hover{
+    color: black;
+}
 .circle .bar.right .progress {
     transition: 1.5s linear;
     transition-delay: 2.5s;
@@ -577,6 +577,7 @@ svg {
     display: none;
 }
 
+
 @media screen and (max-width: 1309px) {
 
     .slide_posts {
@@ -599,14 +600,15 @@ svg {
         justify-content: center;
     }
 
-.submenu{
-    width: 100%;
-    background: #c5c6f0;
-    top: -34px;
-    height: -webkit-fill-available;
-    transition: unset;
-    display: none;
-}
+    .submenu {
+        width: 100%;
+        background: #c5c6f0;
+        top: -34px;
+        height: -webkit-fill-available;
+        transition: unset;
+        display: none;
+    }
+
 
 
     .menu {
@@ -625,20 +627,15 @@ svg {
     }
 
     .dropdown-menu.show {
-      display: block;
-    position: absolute;
-    /* filter: blur(1px); */
-     top: 78px;
-    width: 31%;
-    align-items: center;
-    background: #c5c6f0;
-    padding: 8px 19px 26px;
-    /* margin-right: -52px; */
-    /* margin-top: 8px; */
-    /* border: 1px solid blue; */
-    border-radius: 9px;
-    /* left: 0; */
-    right: 0;
+        display: block;
+        position: absolute;
+        top: 79px;
+        width: 31%;
+        align-items: center;
+        background: #c5c6f0;
+        padding: 8px 19px 26px;
+        border-radius: 1px 0px 0px 18px;
+        right: 0;
 
     }
 
@@ -696,6 +693,19 @@ svg {
         gap: 175px !important;
     }
 
+    .dropdown-menu.show {
+        display: block;
+        position: absolute;
+        top: 70px;
+        width: 31%;
+        align-items: center;
+        background: #c5c6f0;
+        padding: 8px 19px 26px;
+        border-radius: 1px 0px 0px 18px;
+        right: 0;
+
+    }
+
 
 }
 
@@ -735,19 +745,16 @@ svg {
     .dropdown-menu.show {
         display: block;
         position: absolute;
-        /* filter: blur(1px); */
-        top: 56px;
+        top: 49px;
         width: 50%;
         align-items: center;
         background: #c5c6f0;
         padding: 8px 19px 26px;
-        margin-right: -52px;
+        /*margin-right: -52px;*/
         margin-top: 8px;
-        /* border: 1px solid blue; */
-        border-radius: 9px;
+            border-radius: 1px 0px 0px 18px;
 
     }
-
 
 
     .dropdown-menu.show .about-us {
@@ -806,6 +813,19 @@ svg {
     .rezome {
         padding: 0px 64px;
         text-align: center;
+    }
+        .dropdown-menu.show {
+        display: block;
+        position: absolute;
+        top: 46px;
+        width: 50%;
+        align-items: center;
+        background: #c5c6f0;
+        padding: 8px 19px 26px;
+        /*margin-right: -52px;*/
+        margin-top: 8px;
+            border-radius: 1px 0px 0px 18px;
+
     }
 }
 
@@ -869,13 +889,30 @@ svg {
         margin: 14px;
     }
 }
+@media (max-width: 590px){
+            .dropdown-menu.show {
+        display: block;
+        position: absolute;
+        top: 46px;
+        width: 50%;
+        align-items: center;
+        background: #c5c6f0;
+        padding: 8px 19px 26px;
+        /*margin-right: -52px;*/
+        margin-top: 8px;
+            border-radius: 1px 0px 0px 18px;
+
+    }
+}
 
 @media (max-width: 384px) {
     .header_top .sal {
         width: 50%;
     }
 
-
+.logo img{
+        padding-left: 35px;
+}
 }
 
 

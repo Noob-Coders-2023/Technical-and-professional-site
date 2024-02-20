@@ -47,7 +47,7 @@ class CustomLoginView(LoginView):
 
 @ratelimit(key='user_or_ip', rate='10/m')
 def home(request):
-    return render(request, 'registration/home.html')
+    return render(request, 'registration/choice.html')
 
 
 class PasswordChange(PasswordChangeView):
@@ -75,7 +75,7 @@ def user_selected_courses(request):
             'user_courses': user_courses,
         }
 
-        return render(request, 'registration/home.html', context)
+        return render(request, 'registration/choice.html', context)
 
 
 class Register(View):
@@ -160,6 +160,7 @@ class UserRegisterVerifyCodeView(View):
 
                     code_instance.delete()
                     messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
+                    return redirect('account:login')
                 else:
                     messages.error(request, 'کد شما اشتباه است', 'danger')
                     return redirect('account:verify_code')

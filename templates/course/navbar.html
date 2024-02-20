@@ -85,17 +85,30 @@
             <a href='{% url 'gallery:galleries' %}'>گالری</a>
             <div href="#" class="about-us">درباره ما
 
-            
 
                 <div class="submenu">
+                    <li class="about_back" style="    text-align: center;
+    padding-top: 10px;
+    color: #ffffff;
+    background: #04216787;
+    padding-bottom: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    gap: 18px;"
+                    >
+                        درباره ما
+                        <img src="{% static 'course/svg/back.svg' %}" style="width: 17%;height: 88%;">
+                    </li>
                     <li>
-                          <a href="{% url 'account:employee-list' %}" >لیست کارمندان</a>
+                        <a href="{% url 'account:employee-list' %}">لیست کارمندان</a>
                     </li>
-                       <li>
-                          <a href="{% url 'account:jam_about' %}" >آموزشگاه دولتی</a>
+                    <li>
+                        <a href="{% url 'account:jam_about' %}">آموزشگاه دولتی</a>
                     </li>
-                       <li>
-                          <a href="{% url 'course:free_school' %}" >آموزشگاه آزاد</a>
+                    <li>
+                        <a href="{% url 'course:free_school' %}">آموزشگاه آزاد</a>
                     </li>
 
                 </div>
