@@ -1,0 +1,8 @@
+body{
+    direction: rtl;
+    text-align: right;
+}
+span.btn-show-pass{
+    right: initial;
+    left: 0;
+}

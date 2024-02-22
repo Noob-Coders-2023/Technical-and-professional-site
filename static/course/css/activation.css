@@ -1,0 +1,41 @@
+@font-face {
+    font-family: myFont;
+  src: url("/static/course/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+*{
+        font-family: 'myFont', Arial, sans-serif;
+}
+
+.container{
+    display: flex;
+margin: 25px auto;
+    top: 50%;
+    left: 50%;
+
+    width: 85%;
+    padding: 38px;
+    background: #eee;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.2);
+
+    align-items: center;
+    justify-content: center;
+        font-size: 17px;
+
+}
+
+p{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 22px;
+}
+h1{    text-align: center;
+    color: #000043;
+    margin: 0 0 20px;
+    padding: 0;
+    font-size: 30px;
+}

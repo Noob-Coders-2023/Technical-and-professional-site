@@ -1,0 +1,143 @@
+@font-face {
+    font-family: myFont;
+    src: url("/static/course/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+* {
+    font-family: 'myFont', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+
+
+    background: #eee;
+}
+
+.container {
+    max-width: 90%;
+    padding: 33px 20px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .2);
+    margin: 25px auto;
+
+}
+
+.container .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+        padding-bottom: 1rem;
+}
+
+
+
+.container form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+form .user-details .input-box {
+    margin: 20px 15px 12px 0;
+    width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .detail {
+
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+
+}
+
+.user-details .input-box .input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    padding-right: 10px;
+
+
+}
+
+.user-details .input-box .input:focus,
+.user-details .input-box .input:valid {
+    border-color: #001180;
+
+}
+
+
+form .button {
+      height: 55px;
+    width: 88%;
+    outline: none;
+    color: #eee;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #718ce6, #05138d);
+    margin: 15px auto;
+}
+
+form .button:hover {
+    background: linear-gradient(-135deg, #718ce6, #05138d);
+}
+
+form .button button:active {
+    transform: scale(0.96);
+}
+
+.gender_details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 17px;
+    padding-right: 20px;
+}
+
+.category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.gender_title {
+    font-size: 18px;
+}
+
+
+@media (max-width: 484px) {
+
+    form .user-details .input-box {
+
+        width: 90%;
+    }
+
+    .user-details::-webkit-scrollbar {
+        width: 0
+    }
+form .button button {
+    margin: 15px auto;}
+}
+
+@media (max-width: 467px) {
+    #captcha {
+        width: 55% !important;
+            padding: 22px !important;
+    }
+}

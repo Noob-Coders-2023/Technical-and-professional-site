@@ -15,8 +15,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-   background: url("../img/Preview.png") center no-repeat ;
-background-color:rgb(146 128 255 / 50%);
+    background: url(../img/Preview.png);
+    background-color: rgb(146 128 255 / 50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 

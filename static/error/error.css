@@ -1,0 +1,42 @@
+.error {
+    border-color: red;
+    color: #ffff;
+    background-color: #f94545b8;
+    height: 50px;
+    text-align: center;
+    padding-top: 16px;
+    margin-bottom: 20px;
+    border-bottom-color: #470000;
+}
+.alert-success{
+
+    color: #ffff;
+    background-color: #43b312;
+    height: 50px;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 1.5rem;
+}
+
+
+.error-message ,
+.errorlist{   padding-right: 23px;
+    color: red;
+    font-size: 15px;
+}
+
+
+
+.alert-error {
+    margin: 0;
+    background-color: rgb(243 7 7 / 65%);
+    height: 50px;
+    text-align: center;
+    padding-top: 13px;
+    font-size: 23px;
+    color: #ffffff;
+    border: 1px solid;
+}
+
+
+

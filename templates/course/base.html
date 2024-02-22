@@ -2,23 +2,6 @@
 {% load base_tags %}
 <!DOCTYPE html>
 <html lang="en">
-<body>
-
-
-{% include 'course/navbar.html' %}
-    {% include 'includes/messages_block.html' %}
-
-{% block gallery %}{% endblock %}
-{% block access %}{% endblock %}
-{% block features %}{% endblock %}
-{% block excel %}{% endblock %}
-{% include 'course/footer.html' %}
-</body>
-<script src="{% static 'gallery/js/gallery.js' %}"></script>
-<script src="{% static 'course/js/menu.js' %}"></script>
-<script src="{% static 'Exel/Exel.js' %}"></script>
-<script src="{% static 'access/js/access-js.js' %}"></script>
-<script src="{% static 'access/js/script.js' %}"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -36,6 +19,24 @@
 
 
 </head>
+<body>
+
+
+{% include 'course/navbar.html' %}
+    {% include 'includes/messages_block.html' %}
+
+{% block gallery %}{% endblock %}
+{% block access %}{% endblock %}
+{% block features %}{% endblock %}
+{% block excel %}{% endblock %}
+{% include 'course/footer.html' %}
+</body>
+<script src="{% static 'gallery/js/gallery.js' %}"></script>
+<script src="{% static 'course/js/menu.js' %}"></script>
+<script src="{% static 'Exel/Exel.js' %}"></script>
+<script src="{% static 'access/js/access-js.js' %}"></script>
+<script src="{% static 'access/js/script.js' %}"></script>
+
 
 
 </html>

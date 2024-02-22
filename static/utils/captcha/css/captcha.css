@@ -1,0 +1,85 @@
+@font-face {
+    font-family: myFont;
+    src: url("/static/blog/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+.captcha img{
+    width: 103px;
+    height: 44px;
+    border-radius: 5px;
+    padding: 0;
+}
+#captcha {
+
+    width: 573px;
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+  padding: 21px 0;
+}
+.captcha_form{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 17px;
+    flex-direction: row;
+    width: 285px;
+}
+.captcha_field{
+        height: 42px;
+    width: 38%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    padding-right: 10px;
+}
+
+.captcha_field:hover,
+.captcha_field:active,
+.captcha_form:hover,
+.captcha_form:active{
+border-color: #001180;
+}
+#captcha label{
+        color: #cf1818;
+    font-size: 17px;
+}
+.captcha_refresh{
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    padding: 5px 5px;
+    outline: none;
+    border: 1px solid #cbc9c9;
+     border-radius: 5px;
+        border-bottom-width: 2px;
+}
+.captcha_refresh:hover,
+.captcha_refresh:active{
+    border-color: #001180;
+    box-shadow: 0 15px 50px rgba(0,0,0,.2);
+
+}
+.captcha_refresh:active{
+        transform: scale(0.9);
+}
+@media (max-width: 467px){
+    #captcha{
+        width: 89% !important;
+    }
+    .captcha_form{
+        width: 100% !important;
+    }
+    .user-details{
+        margin: -25px;
+    }
+}

@@ -19,6 +19,7 @@
 var aboutUs = document.querySelector('.about-us');
 var submenu = document.querySelector('.submenu');
 var about_back = document.querySelector('.about_back');
+var navbar  = document.querySelector('.navbar ');
 
 aboutUs.addEventListener('click', () => {
     if (submenu.classList.contains('show')) {
@@ -26,6 +27,7 @@ aboutUs.addEventListener('click', () => {
     } else {
         submenu.classList.add('show');
     }
+
 });
 about_back.addEventListener('click', ()=>{
 

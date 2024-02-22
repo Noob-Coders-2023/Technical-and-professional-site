@@ -1,0 +1,216 @@
+@font-face {
+    font-family: myFont;
+    src: url("/static/course/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+* {
+    font-family: 'myFont', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+.container_creat {
+    display: flex;
+    max-width: 92%;
+    width: 100%;
+    margin-bottom: 116px;
+    padding: 25px 30px;
+    background: #eee;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .2);
+    justify-items: center;
+    flex-direction: column;
+    margin: 43px auto;
+}
+
+.container_creat .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+
+.container_creat .title::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    width: 25px;
+    background: #1111bd;
+}
+
+.container_creat form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+form .user-details .input-box {
+    margin: 20px 15px 12px 0;
+    width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .detail {
+    font-size: 18px;
+    color: #0623b9;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+
+}
+
+.user-details .input-box .input {
+    padding-right: 10px;
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+
+
+}
+
+.user-details .input-box .input1 {
+    padding-right: 10px;
+    width: 200%;
+    height: 171px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    resize: none;
+
+
+}
+
+.user-details .input-box .input:focus,
+.user-details .input-box .input:valid,
+.user-details .input-box .input1:focus,
+.user-details .input-box .input1:valid {
+    border-color: #001180;
+
+}
+
+form .button {
+    height: 45px;
+    margin: 15px auto;
+    width: 100%;
+}
+
+form .button {
+    height: 55px;
+    width: 193%;
+    outline: none;
+    color: #eee;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #718ce6, #05138d);
+    margin: 15px auto;
+}
+
+form .button:hover {
+    background: linear-gradient(-135deg, #718ce6, #05138d);
+}
+
+@media (max-width: 484px) {
+    .container {
+        max-width: 100%;
+    }
+
+    form .user-details .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .container form .user-details {
+        max-height: 300px;
+        overflow: scroll;
+    }
+
+    .user-details::-webkit-scrollbar {
+        width: 0
+    }
+
+}
+
+
+.alert-error {
+    background-color: #ff00009c;
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: -24px;
+}
+
+.alert-success {
+    background-color: #9ADE7B;
+    height: 50px;
+    text-align: center;
+    padding-top: 15px;
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: -24px;
+}
+
+.error {
+    border-color: red;
+    color: #ffff;
+    background-color: #f94545b8;
+    width: 691px;
+    height: 50px;
+    text-align: center;
+    padding-top: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+
+    border-bottom-color: #470000;
+}
+
+.error_message {
+    color: red;
+    padding-right: 20px;
+}
+
+.error-message {
+    padding-right: 23px;
+}
+
+@media (max-width: 467px) {
+    #captcha {
+        width: 110% !important;
+    }}
+
+    @media screen and (max-width: 484px) {
+        .user-details .input-box .input1 {
+
+            width: 100%;
+
+        }
+    }
+    @media screen and (max-width: 655px) {
+        .container {
+            flex-direction: column !important;
+
+        }
+    }
+
+

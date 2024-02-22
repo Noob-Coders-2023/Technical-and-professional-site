@@ -1,0 +1,84 @@
+@font-face {
+    font-family: myFont;
+   src: url("/static/course/font/Vazir.woff");
+    /*src: url("/static/main_app/fonts/BTitrBd.ttf");*/
+
+}
+
+
+* {
+    font-family: 'myFont', Arial, sans-serif;
+
+
+}
+.footer .containe{
+    border-radius: unset;
+    width: 100%;
+        background-color: #00264d;
+    padding: 60px 0 20px;
+    color: #ffff;
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 23px;
+    padding-bottom: 21px;
+    font-size: 2rem;
+}
+.footer .containe .content{
+
+    display: flex;
+    padding-right: 30px;
+    margin-right: 0px;
+    width: 100%;
+    justify-content: space-between;
+}
+.footer .containe .content .conect{
+    flex: 0 0 auto;
+
+}
+.footer .containe .content .conect .logo{    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+}
+.footer .containe .content .conect .google-map{
+ font-size: 52px;
+    border-radius: 19px;
+
+    padding: 16px;
+    background: linear-gradient(to top,rgba(0,74,150,1),rgba(34,97,162,.9),rgba(136,173,215,0));
+
+    display: flex;
+    justify-content: flex-start;
+    height: 77px;
+
+    align-content: flex-end;
+    height: 50px;
+    width: 188px;
+    text-align: center;
+}
+.map-item{
+        width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+}
+.map-item svg{
+     color: #fff;
+    padding-bottom: -9px;
+    margin-bottom: 9px;
+}
+.map-item a{
+      font-size: 16px;
+    text-decoration: none;
+    transition: .5s all ease-in;
+    color: #fff;
+}
+.link{
+    color: #c7bf4e;
+}
+.link:hover{
+    color: #de7f29;
+}
