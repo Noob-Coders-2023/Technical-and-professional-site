@@ -193,7 +193,7 @@ nav div {
     box-shadow: 0 20px 45px #00000025;
     list-style-type: none;
     flex-direction: column;
-
+    background-color: floralwhite;
     opacity: 0;
   transition: display 0.5s ease;
 
@@ -201,6 +201,7 @@ nav div {
 
 .submenu li:hover {
     background-color: #ddd;
+
 }
 
 li {
@@ -213,7 +214,7 @@ li {
     display: flex;
     opacity: 1;
     gap: 10px;
-
+    background-color: floralwhite;
     margin-top: 33px;
 }
 
@@ -604,7 +605,7 @@ svg {
         width: 100%;
         background: #c5c6f0;
         top: -34px;
-        height: -webkit-fill-available;
+
         transition: unset;
         display: none;
     }
